@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    background-color: #F5F0E8;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #1C1814;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Thin warm scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #EDE8E0;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #C8DDD9;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4D7C6F;
+  }
+
+  /* Scrollbar for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #C8DDD9 #EDE8E0;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-sage-500 text-white px-5 py-2 rounded-lg text-sm font-medium
+           hover:bg-sage-600 transition-colors duration-150 disabled:opacity-40
+           disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply text-stone-600 px-4 py-2 rounded-lg text-sm font-medium
+           hover:bg-parchment-200 transition-colors duration-150;
+  }
+
+  .input-base {
+    @apply w-full bg-surface border border-border rounded-lg px-4 py-3
+           text-text-primary placeholder-text-tertiary focus:outline-none
+           focus:ring-2 focus:ring-sage-500 focus:border-transparent
+           transition-all duration-150 text-sm;
+  }
+
+  .textarea-base {
+    @apply w-full bg-surface border border-border rounded-lg px-4 py-3
+           text-text-primary placeholder-text-tertiary focus:outline-none
+           focus:ring-2 focus:ring-sage-500 focus:border-transparent
+           transition-all duration-150 text-sm resize-none;
+  }
+
+  .card {
+    @apply bg-surface border border-border rounded-xl p-5;
+  }
+
+  .section-heading {
+    @apply font-serif text-xl text-text-primary mb-1;
+  }
+
+  .label-sm {
+    @apply text-xs font-medium text-text-tertiary uppercase tracking-wide;
+  }
+}
