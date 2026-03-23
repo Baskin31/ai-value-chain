@@ -10,7 +10,7 @@ export default function WhyStep({ onNext, onBack }) {
     setForm((prev) => ({ ...prev, [field]: value }))
   }
 
-  const canContinue = form.statement.trim().length > 0
+  const canContinue = form.statement.trim().length >= 10
 
   async function handleContinue() {
     setSaving(true)
@@ -41,7 +41,9 @@ export default function WhyStep({ onNext, onBack }) {
       <div className="space-y-7">
         {/* Why statement */}
         <div>
-          <div className="text-sm italic text-text-tertiary mb-2">I exist to...</div>
+          <div className="text-sm italic text-text-tertiary mb-2">
+            I exist to... <span className="text-warning not-italic">*</span>
+          </div>
           <textarea
             className="textarea-base"
             rows={5}

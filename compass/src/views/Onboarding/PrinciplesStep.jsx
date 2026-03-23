@@ -24,7 +24,7 @@ export default function PrinciplesStep({ onNext, onBack }) {
     setPrinciples((prev) => prev.filter((_, i) => i !== index))
   }
 
-  const toSave = principles.filter((p) => p.statement.trim().length > 0)
+  const toSave = principles.filter((p) => p.statement.trim().length >= 5)
   const canContinue = toSave.length > 0
 
   async function handleContinue() {
@@ -48,6 +48,10 @@ export default function PrinciplesStep({ onNext, onBack }) {
       <p className="text-text-secondary text-base mb-10 leading-relaxed">
         These aren't rules — they're commitments. The behaviours that, when kept, let
         you look yourself in the eye.
+      </p>
+
+      <p className="text-xs text-text-tertiary mb-6">
+        Add at least one. <span className="text-warning">*</span>
       </p>
 
       <div className="space-y-4">

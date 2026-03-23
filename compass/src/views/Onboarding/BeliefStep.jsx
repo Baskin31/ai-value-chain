@@ -8,7 +8,7 @@ function newBelief() {
 }
 
 function newSuggestion() {
-  return { domains: [], reason: '', loading: false, dismissed: false }
+  return { domains: [], reason: '', loading: false, dismissed: false, noSuggestion: false }
 }
 
 function ImportanceDots({ value, onChange }) {
@@ -60,9 +60,13 @@ export default function BeliefStep({ onNext }) {
   function handleStatementChange(index, value) {
     updateBelief(index, { statement: value })
 
-    // Reset dismissed state when statement changes substantially
+    // Reset suggestion state when statement changes
     setSuggestions((prev) =>
-      prev.map((s, i) => (i === index ? { ...s, dismissed: false, domains: [], reason: '' } : s))
+      prev.map((s, i) =>
+        i === index
+          ? { ...s, dismissed: false, domains: [], reason: '', noSuggestion: false }
+          : s
+      )
     )
 
     // Clear any pending debounce for this belief
@@ -89,6 +93,7 @@ export default function BeliefStep({ onNext }) {
                 reason: result?.reason ?? '',
                 loading: false,
                 dismissed: false,
+                noSuggestion: result === null,
               }
             : s
         )
@@ -98,8 +103,9 @@ export default function BeliefStep({ onNext }) {
 
   function applySuggestion(index) {
     const suggestion = suggestions[index]
+    const validDomains = suggestion.domains.filter((d) => DOMAINS.includes(d))
     setBeliefs((prev) =>
-      prev.map((b, i) => (i === index ? { ...b, domains: suggestion.domains } : b))
+      prev.map((b, i) => (i === index ? { ...b, domains: validDomains } : b))
     )
     setSuggestions((prev) =>
       prev.map((s, i) => (i === index ? { ...s, dismissed: true } : s))
@@ -123,18 +129,18 @@ export default function BeliefStep({ onNext }) {
     setSuggestions((prev) => prev.filter((_, i) => i !== index))
   }
 
-  const hasValid = beliefs.some((b) => b.statement.trim().length > 0)
+  const hasValid = beliefs.some((b) => b.statement.trim().length >= 10)
 
   async function handleContinue() {
     setSaving(true)
     setError(null)
     try {
-      const toSave = beliefs.filter((b) => b.statement.trim().length > 0)
+      const toSave = beliefs.filter((b) => b.statement.trim().length >= 10)
       await Promise.all(
         toSave.map((b) =>
           createBelief({
-            statement: b.statement,
-            domains: JSON.stringify(b.domains.length ? b.domains : ['general']),
+            statement: b.statement.trim(),
+            domains: JSON.stringify(b.domains.filter((d) => DOMAINS.includes(d))),
             importance_score: b.importance_score,
           })
         )
@@ -171,6 +177,9 @@ export default function BeliefStep({ onNext }) {
               <div className="space-y-4">
                 {/* Statement */}
                 <div>
+                  <div className="label-sm mb-2">
+                    Belief <span className="text-warning">*</span>
+                  </div>
                   <textarea
                     className="textarea-base"
                     rows={4}
@@ -181,55 +190,78 @@ export default function BeliefStep({ onNext }) {
 
                   {/* Loading indicator */}
                   {suggestion.loading && (
-                    <p className="mt-1.5 text-xs text-text-tertiary">Thinking...</p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <div className="flex items-center gap-1">
+                        {[0, 1, 2].map((i) => (
+                          <span
+                            key={i}
+                            className="w-1.5 h-1.5 rounded-full bg-sage-400 animate-pulse"
+                            style={{ animationDelay: `${i * 150}ms` }}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-text-tertiary">Analyzing…</span>
+                    </div>
+                  )}
+
+                  {/* No API key hint */}
+                  {suggestion.noSuggestion && !suggestion.loading && (
+                    <p className="mt-1.5 text-xs text-text-tertiary">
+                      Add an API key in Settings to get domain suggestions.
+                    </p>
                   )}
 
                   {/* AI Suggestion card */}
                   {showSuggestion && (
-                    <div className="mt-2 rounded-lg border border-border-light bg-parchment-200 px-4 py-3">
+                    <div className="mt-2 rounded-lg border border-sage-400 bg-sage-50 px-4 py-3">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-medium text-text-tertiary uppercase tracking-wide">
-                          AI suggested
-                        </span>
-                        <div className="flex items-center gap-2">
-                          <button
-                            type="button"
-                            onClick={() => applySuggestion(index)}
-                            className="text-xs text-sage-500 hover:text-sage-600 font-medium transition-colors"
-                          >
-                            Apply
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => dismissSuggestion(index)}
-                            className="text-xs text-text-tertiary hover:text-text-secondary transition-colors"
-                          >
-                            Dismiss
-                          </button>
+                        <div className="flex items-center gap-1.5">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4D7C6F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          </svg>
+                          <span className="text-xs font-semibold text-sage-600">Claude suggests</span>
                         </div>
+                        <button
+                          type="button"
+                          onClick={() => dismissSuggestion(index)}
+                          className="text-sm text-text-tertiary hover:text-text-secondary transition-colors leading-none"
+                          title="Dismiss"
+                        >
+                          ×
+                        </button>
                       </div>
-                      <div className="flex flex-wrap gap-1.5 mb-2">
+                      <div className="flex flex-wrap gap-1.5 mb-3">
                         {suggestion.domains.map((d) => (
                           <span
                             key={d}
-                            className="px-2.5 py-1 rounded-full text-xs font-medium border border-sage-400 bg-sage-50 text-sage-500 capitalize"
+                            className="px-2.5 py-1 rounded-full text-xs font-medium border border-sage-400 bg-white text-sage-600 capitalize"
                           >
                             {d}
                           </span>
                         ))}
                       </div>
                       {suggestion.reason && (
-                        <p className="text-xs text-text-tertiary italic leading-relaxed">
+                        <p className="text-xs text-text-secondary italic leading-relaxed mb-3">
                           {suggestion.reason}
                         </p>
                       )}
+                      <button
+                        type="button"
+                        onClick={() => applySuggestion(index)}
+                        className="bg-sage-500 hover:bg-sage-600 text-white px-3 py-1 rounded-md text-xs font-medium transition-colors duration-100"
+                      >
+                        Apply suggestion
+                      </button>
                     </div>
                   )}
                 </div>
 
                 {/* Domain pills — multi-select */}
                 <div>
-                  <div className="label-sm mb-2">Domain <span className="normal-case font-normal text-text-tertiary">(select all that apply)</span></div>
+                  <div className="label-sm mb-2">
+                    Domain{' '}
+                    <span className="normal-case font-normal text-text-tertiary">(optional — select all that apply)</span>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {DOMAINS.map((d) => {
                       const active = belief.domains.includes(d)
@@ -253,7 +285,10 @@ export default function BeliefStep({ onNext }) {
 
                 {/* Importance */}
                 <div>
-                  <div className="label-sm mb-2">How central is this?</div>
+                  <div className="label-sm mb-2">
+                    How central is this?{' '}
+                    <span className="normal-case font-normal text-text-tertiary">(optional)</span>
+                  </div>
                   <ImportanceDots
                     value={belief.importance_score}
                     onChange={(n) => updateBelief(index, { importance_score: n })}
