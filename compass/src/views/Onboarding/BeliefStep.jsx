@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { createBelief, suggestDomains } from '../../lib/api'
 
-const DOMAINS = ['growth', 'relationships', 'service', 'integrity', 'freedom']
+const DOMAINS = [
+  'self-direction', 'stimulation', 'hedonism',    'achievement', 'power',
+  'security',       'conformity',  'tradition',   'benevolence', 'universalism',
+]
 
 function newBelief() {
   return { statement: '', domains: [], importance_score: 7 }
@@ -281,6 +284,9 @@ export default function BeliefStep({ onNext }) {
                       )
                     })}
                   </div>
+                  <p className="text-xs text-text-tertiary mt-2">
+                    Based on Schwartz's Theory of Basic Human Values (1992)
+                  </p>
                 </div>
 
                 {/* Importance */}

@@ -42,13 +42,16 @@ function EditButton() {
 }
 
 const DOMAIN_COLORS = {
-  growth: '#4D7C6F',
-  relationships: '#7B6B5B',
-  service: '#5B6B7B',
-  integrity: '#7B5B6B',
-  freedom: '#6B7B5B',
-  other: '#6B5B7B',
-  general: '#9A918A',
+  'self-direction': '#4D7C6F',
+  'stimulation':    '#6B7B5B',
+  'hedonism':       '#8A6D3B',
+  'achievement':    '#7B5B3B',
+  'power':          '#7B3B4B',
+  'security':       '#3B5B7B',
+  'conformity':     '#5B4B7B',
+  'tradition':      '#7B6B5B',
+  'benevolence':    '#5B7B7B',
+  'universalism':   '#5B6B7B',
 }
 
 export default function BeliefsView() {
@@ -115,8 +118,8 @@ export default function BeliefsView() {
           <div className="space-y-3">
             {beliefs.map((belief) => {
               const domains = (() => {
-                try { return JSON.parse(belief.domains || '["general"]') }
-                catch { return ['general'] }
+                try { return JSON.parse(belief.domains || '["universalism"]') }
+                catch { return ['universalism'] }
               })()
               return (
                 <div key={belief.belief_id} className="card">
@@ -126,7 +129,7 @@ export default function BeliefsView() {
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <div className="flex items-center gap-2 flex-wrap">
                       {domains.map((d) => {
-                        const color = DOMAIN_COLORS[d] || DOMAIN_COLORS.general
+                        const color = DOMAIN_COLORS[d] || '#9A918A'
                         return (
                           <span
                             key={d}

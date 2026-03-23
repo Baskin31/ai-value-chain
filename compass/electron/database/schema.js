@@ -22,7 +22,7 @@ const SCHEMA = `
     belief_id        INTEGER PRIMARY KEY AUTOINCREMENT,
     profile_id       INTEGER NOT NULL DEFAULT 1 REFERENCES profiles(profile_id),
     statement        TEXT    NOT NULL,
-    domains          TEXT    NOT NULL DEFAULT '["general"]',
+    domains          TEXT    NOT NULL DEFAULT '["universalism"]',
     importance_score INTEGER DEFAULT 7 CHECK(importance_score BETWEEN 1 AND 10),
     created_at       TEXT    DEFAULT (datetime('now')),
     last_reviewed    TEXT,

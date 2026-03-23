@@ -92,7 +92,7 @@ function registerHandlers() {
 
   ipcMain.handle('beliefs:create', (_event, data) => {
     const pid = getActiveProfileId(db)
-    const { statement, domains = '["general"]', importance_score = 7 } = data
+    const { statement, domains = '["universalism"]', importance_score = 7 } = data
     const domainsStr = typeof domains === 'string' ? domains : JSON.stringify(domains)
     const result = db.prepare(
       'INSERT INTO beliefs (profile_id, statement, domains, importance_score) VALUES (?, ?, ?, ?)'
@@ -275,12 +275,20 @@ function registerHandlers() {
       const msg = await client.messages.create({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 200,
-        system: `You help categorize personal belief statements into domains.
-Domains: growth (personal development, learning), relationships (connection, love, family),
-service (contribution, helping others), integrity (honesty, authenticity, commitments),
-freedom (autonomy, choice, independence).
+        system: `You help categorize personal belief statements using Schwartz's Theory of Basic Human Values.
+Available domains (use exact names):
+- self-direction (independent thought, freedom to explore, creativity)
+- stimulation (excitement, novelty, challenge, varied life)
+- hedonism (pleasure, enjoyment, sensuous gratification)
+- achievement (personal success through demonstrated competence, ambition)
+- power (social status, prestige, control over resources and people)
+- security (safety, harmony, stability, sense of belonging)
+- conformity (restraint, following norms, avoiding harm to others)
+- tradition (respect for customs, culture, religion, and continuity)
+- benevolence (care and loyalty to close others, relationships, family)
+- universalism (justice, tolerance, care for all people and nature)
 Return ONLY valid JSON with no other text: {"domains":["domain1"],"reason":"one sentence why"}
-Pick 1-2 domains maximum. Only use the 5 domain names listed above.`,
+Pick 1-2 domains maximum. Only use the exact domain names listed above.`,
         messages: [{ role: 'user', content: statement }],
       })
       return JSON.parse(msg.content[0].text)
