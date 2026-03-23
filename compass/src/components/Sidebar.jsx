@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
+import { getProfiles, createProfile, setActiveProfile } from '../lib/api'
 
 const navItems = [
   {
@@ -70,7 +71,129 @@ const navItems = [
   },
 ]
 
-export default function Sidebar() {
+function ProfileSwitcher({ activeProfile, onProfileSwitch }) {
+  const [open, setOpen] = useState(false)
+  const [profiles, setProfiles] = useState([])
+  const [creating, setCreating] = useState(false)
+  const [newName, setNewName] = useState('')
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    if (open) {
+      getProfiles().then(setProfiles)
+    }
+  }, [open])
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setOpen(false)
+        setCreating(false)
+        setNewName('')
+      }
+    }
+    if (open) document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [open])
+
+  async function handleSwitch(profile) {
+    if (profile.profile_id === activeProfile?.profile_id) {
+      setOpen(false)
+      return
+    }
+    const updated = await setActiveProfile(profile.profile_id)
+    setOpen(false)
+    onProfileSwitch(updated)
+  }
+
+  async function handleCreate() {
+    const trimmed = newName.trim().slice(0, 30)
+    if (!trimmed) return
+    const profile = await createProfile(trimmed)
+    setOpen(false)
+    setCreating(false)
+    setNewName('')
+    // profile has onboarding_complete=0 — App will show onboarding
+    onProfileSwitch(profile)
+  }
+
+  return (
+    <div ref={containerRef} className="relative px-3 pb-2">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-stone-600 hover:bg-parchment-200 hover:text-text-primary transition-colors duration-150"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="text-text-tertiary flex-shrink-0">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        <span className="flex-1 text-left truncate">{activeProfile?.name ?? '—'}</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-text-tertiary flex-shrink-0">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute bottom-full left-3 right-3 mb-1 bg-parchment-100 border border-border rounded-lg shadow-lg py-1 z-50">
+          {profiles.map((p) => (
+            <button
+              key={p.profile_id}
+              onClick={() => handleSwitch(p)}
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-parchment-200 transition-colors duration-100 text-left"
+            >
+              <span className="flex-1 truncate text-text-primary">{p.name}</span>
+              {p.profile_id === activeProfile?.profile_id && (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4D7C6F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              )}
+            </button>
+          ))}
+
+          <div className="border-t border-border-light mt-1 pt-1">
+            {creating ? (
+              <div className="px-3 py-2 flex items-center gap-2">
+                <input
+                  autoFocus
+                  type="text"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value.slice(0, 30))}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleCreate()
+                    if (e.key === 'Escape') { setCreating(false); setNewName('') }
+                  }}
+                  placeholder="Profile name"
+                  maxLength={30}
+                  className="flex-1 text-sm bg-transparent border-b border-border focus:outline-none focus:border-sage-500 text-text-primary placeholder-text-tertiary"
+                />
+                <button
+                  onClick={handleCreate}
+                  disabled={!newName.trim()}
+                  className="text-xs text-sage-500 font-medium disabled:opacity-40"
+                >
+                  Add
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setCreating(true)}
+                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-text-tertiary hover:text-text-primary hover:bg-parchment-200 transition-colors duration-100"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                New profile
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default function Sidebar({ activeProfile, onProfileSwitch }) {
   return (
     <aside className="w-[220px] flex-shrink-0 h-full bg-parchment-100 border-r border-border flex flex-col">
       {/* App Header */}
@@ -79,7 +202,7 @@ export default function Sidebar() {
           <circle cx="12" cy="12" r="10" />
           <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
         </svg>
-        <span className="font-serif text-lg text-text-primary tracking-tight">Compass</span>
+        <span className="font-serif text-lg text-text-primary tracking-tight">Lodestar</span>
       </div>
 
       {/* Navigation */}
@@ -108,30 +231,33 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* Settings at bottom */}
-      <div className="px-3 pb-4 flex-shrink-0">
-        <NavLink
-          to="/settings"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
-              isActive
-                ? 'bg-sage-50 text-sage-500 font-medium'
-                : 'text-stone-600 hover:bg-parchment-200 hover:text-text-primary'
-            }`
-          }
-        >
-          {({ isActive }) => (
-            <>
-              <span className={isActive ? 'text-sage-500' : 'text-text-tertiary'}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                </svg>
-              </span>
-              Settings
-            </>
-          )}
-        </NavLink>
+      {/* Profile Switcher + Settings */}
+      <div className="pb-2 flex-shrink-0 border-t border-border-light pt-2">
+        <ProfileSwitcher activeProfile={activeProfile} onProfileSwitch={onProfileSwitch} />
+        <div className="px-3">
+          <NavLink
+            to="/settings"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
+                isActive
+                  ? 'bg-sage-50 text-sage-500 font-medium'
+                  : 'text-stone-600 hover:bg-parchment-200 hover:text-text-primary'
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                <span className={isActive ? 'text-sage-500' : 'text-text-tertiary'}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                  </svg>
+                </span>
+                Settings
+              </>
+            )}
+          </NavLink>
+        </div>
       </div>
     </aside>
   )

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { getAppState } from './lib/api'
+import { getActiveProfile, setActiveProfile as setActiveProfileApi } from './lib/api'
 import Layout from './components/Layout'
 import Onboarding from './views/Onboarding'
 import Today from './views/Today'
@@ -10,15 +10,26 @@ import Placeholder from './views/Placeholder'
 import Settings from './views/Settings'
 
 export default function App() {
-  const [onboardingComplete, setOnboardingComplete] = useState(null) // null = loading
+  const [activeProfile, setActiveProfile] = useState(null) // null = loading
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    getAppState('onboarding_complete').then((val) => {
-      setOnboardingComplete(val === 'true')
+    getActiveProfile().then((profile) => {
+      setActiveProfile(profile)
+      setReady(true)
     })
   }, [])
 
-  if (onboardingComplete === null) {
+  const handleProfileSwitch = useCallback(async (profile) => {
+    const updated = await setActiveProfileApi(profile.profile_id)
+    setActiveProfile(updated)
+  }, [])
+
+  const handleOnboardingComplete = useCallback((profile) => {
+    setActiveProfile(profile)
+  }, [])
+
+  if (!ready) {
     return (
       <div className="flex h-screen items-center justify-center bg-parchment-100">
         <div className="text-text-tertiary text-sm">Loading...</div>
@@ -26,16 +37,14 @@ export default function App() {
     )
   }
 
-  if (!onboardingComplete) {
+  if (!activeProfile || !activeProfile.onboarding_complete) {
     return (
-      <Onboarding
-        onComplete={() => setOnboardingComplete(true)}
-      />
+      <Onboarding onComplete={handleOnboardingComplete} />
     )
   }
 
   return (
-    <Layout>
+    <Layout activeProfile={activeProfile} onProfileSwitch={handleProfileSwitch}>
       <Routes>
         <Route path="/" element={<Navigate to="/today" replace />} />
         <Route path="/today" element={<Today />} />
@@ -66,7 +75,7 @@ export default function App() {
           element={
             <Placeholder
               title="Insights"
-              description="Patterns surface over time. Compass will notice principle violations, role neglect, and moments of why drift — and bring them to you thoughtfully."
+              description="Patterns surface over time. Lodestar will notice principle violations, role neglect, and moments of why drift — and bring them to you thoughtfully."
               comingSoon
             />
           }

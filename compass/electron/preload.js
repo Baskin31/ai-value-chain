@@ -31,6 +31,13 @@ contextBridge.exposeInMainWorld('api', {
   updateRole: (id, data) => ipcRenderer.invoke('roles:update', id, data),
   deleteRole: (id) => ipcRenderer.invoke('roles:delete', id),
 
+  // Profiles
+  getProfiles:         ()     => ipcRenderer.invoke('profiles:getAll'),
+  createProfile:       (name) => ipcRenderer.invoke('profiles:create', name),
+  setActiveProfile:    (id)   => ipcRenderer.invoke('profiles:setActive', id),
+  markProfileComplete: (id)   => ipcRenderer.invoke('profiles:markComplete', id),
+  getActiveProfile:    ()     => ipcRenderer.invoke('profiles:getActive'),
+
   // AI
   suggestDomains: (statement) => ipcRenderer.invoke('ai:suggestDomains', statement),
 

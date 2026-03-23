@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(grep -rn profile_id --include=*.js --include=*.jsx electron/ src/)"
     ]
   }
 }

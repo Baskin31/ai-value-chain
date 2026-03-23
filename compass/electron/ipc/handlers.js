@@ -1,6 +1,16 @@
 const { ipcMain } = require('electron')
 const { getDb } = require('../database/db')
 
+// Active profile cached in memory after first load
+let activeProfileId = null
+
+function getActiveProfileId(db) {
+  if (activeProfileId !== null) return activeProfileId
+  const row = db.prepare("SELECT value FROM settings WHERE key = 'current_profile_id'").get()
+  activeProfileId = row ? parseInt(row.value, 10) : null
+  return activeProfileId
+}
+
 function registerHandlers() {
   const db = getDb()
 
@@ -28,17 +38,65 @@ function registerHandlers() {
     return true
   })
 
+  // ─── Profiles ─────────────────────────────────────────────────────────────
+  ipcMain.handle('profiles:getAll', () => {
+    return db.prepare('SELECT * FROM profiles ORDER BY last_active DESC, profile_id ASC').all()
+  })
+
+  ipcMain.handle('profiles:create', (_event, name) => {
+    const trimmed = String(name).trim().slice(0, 30)
+    const result = db.prepare(
+      `INSERT INTO profiles (name, onboarding_complete, last_active)
+       VALUES (?, 0, datetime('now'))`
+    ).run(trimmed)
+    const profile = db.prepare('SELECT * FROM profiles WHERE profile_id = ?').get(result.lastInsertRowid)
+    // Set as active profile immediately
+    activeProfileId = profile.profile_id
+    db.prepare(
+      "INSERT OR REPLACE INTO settings (key, value, updated_at) VALUES ('current_profile_id', ?, datetime('now'))"
+    ).run(String(profile.profile_id))
+    return profile
+  })
+
+  ipcMain.handle('profiles:setActive', (_event, id) => {
+    const profile = db.prepare('SELECT * FROM profiles WHERE profile_id = ?').get(id)
+    if (!profile) return null
+    activeProfileId = profile.profile_id
+    db.prepare(
+      "INSERT OR REPLACE INTO settings (key, value, updated_at) VALUES ('current_profile_id', ?, datetime('now'))"
+    ).run(String(id))
+    db.prepare(
+      "UPDATE profiles SET last_active = datetime('now') WHERE profile_id = ?"
+    ).run(id)
+    return db.prepare('SELECT * FROM profiles WHERE profile_id = ?').get(id)
+  })
+
+  ipcMain.handle('profiles:markComplete', (_event, id) => {
+    db.prepare('UPDATE profiles SET onboarding_complete = 1 WHERE profile_id = ?').run(id)
+    return db.prepare('SELECT * FROM profiles WHERE profile_id = ?').get(id)
+  })
+
+  ipcMain.handle('profiles:getActive', () => {
+    const pid = getActiveProfileId(db)
+    if (!pid) return null
+    return db.prepare('SELECT * FROM profiles WHERE profile_id = ?').get(pid)
+  })
+
   // ─── Beliefs ──────────────────────────────────────────────────────────────
   ipcMain.handle('beliefs:getAll', () => {
-    return db.prepare('SELECT * FROM beliefs ORDER BY importance_score DESC').all()
+    const pid = getActiveProfileId(db)
+    return db.prepare(
+      'SELECT * FROM beliefs WHERE profile_id = ? ORDER BY importance_score DESC'
+    ).all(pid)
   })
 
   ipcMain.handle('beliefs:create', (_event, data) => {
+    const pid = getActiveProfileId(db)
     const { statement, domains = '["general"]', importance_score = 7 } = data
     const domainsStr = typeof domains === 'string' ? domains : JSON.stringify(domains)
     const result = db.prepare(
-      'INSERT INTO beliefs (statement, domains, importance_score) VALUES (?, ?, ?)'
-    ).run(statement, domainsStr, importance_score)
+      'INSERT INTO beliefs (profile_id, statement, domains, importance_score) VALUES (?, ?, ?, ?)'
+    ).run(pid, statement, domainsStr, importance_score)
     return db.prepare('SELECT * FROM beliefs WHERE belief_id = ?').get(result.lastInsertRowid)
   })
 
@@ -59,28 +117,39 @@ function registerHandlers() {
 
   // ─── Why Statement ────────────────────────────────────────────────────────
   ipcMain.handle('why:get', () => {
-    return db.prepare('SELECT * FROM why_statement WHERE id = 1').get() || null
+    const pid = getActiveProfileId(db)
+    return db.prepare('SELECT * FROM why_statement WHERE profile_id = ?').get(pid) || null
   })
 
   ipcMain.handle('why:set', (_event, data) => {
+    const pid = getActiveProfileId(db)
     const { statement, belief_ids = '[]', origin_story = null, resonance_score = 8 } = data
     db.prepare(
-      `INSERT OR REPLACE INTO why_statement (id, statement, belief_ids, origin_story, resonance_score)
-       VALUES (1, ?, ?, ?, ?)`
-    ).run(statement, belief_ids, origin_story, resonance_score)
-    return db.prepare('SELECT * FROM why_statement WHERE id = 1').get()
+      `INSERT INTO why_statement (profile_id, statement, belief_ids, origin_story, resonance_score)
+       VALUES (?, ?, ?, ?, ?)
+       ON CONFLICT(profile_id) DO UPDATE SET
+         statement = excluded.statement,
+         belief_ids = excluded.belief_ids,
+         origin_story = excluded.origin_story,
+         resonance_score = excluded.resonance_score`
+    ).run(pid, statement, belief_ids, origin_story, resonance_score)
+    return db.prepare('SELECT * FROM why_statement WHERE profile_id = ?').get(pid)
   })
 
   // ─── Principles ───────────────────────────────────────────────────────────
   ipcMain.handle('principles:getAll', () => {
-    return db.prepare('SELECT * FROM principles ORDER BY principle_id').all()
+    const pid = getActiveProfileId(db)
+    return db.prepare(
+      'SELECT * FROM principles WHERE profile_id = ? ORDER BY principle_id'
+    ).all(pid)
   })
 
   ipcMain.handle('principles:create', (_event, data) => {
+    const pid = getActiveProfileId(db)
     const { statement, belief_ids = '[]' } = data
     const result = db.prepare(
-      'INSERT INTO principles (statement, belief_ids) VALUES (?, ?)'
-    ).run(statement, belief_ids)
+      'INSERT INTO principles (profile_id, statement, belief_ids) VALUES (?, ?, ?)'
+    ).run(pid, statement, belief_ids)
     return db.prepare('SELECT * FROM principles WHERE principle_id = ?').get(result.lastInsertRowid)
   })
 
@@ -101,10 +170,14 @@ function registerHandlers() {
 
   // ─── Roles ────────────────────────────────────────────────────────────────
   ipcMain.handle('roles:getAll', () => {
-    return db.prepare('SELECT * FROM roles ORDER BY priority_rank').all()
+    const pid = getActiveProfileId(db)
+    return db.prepare(
+      'SELECT * FROM roles WHERE profile_id = ? ORDER BY priority_rank'
+    ).all(pid)
   })
 
   ipcMain.handle('roles:create', (_event, data) => {
+    const pid = getActiveProfileId(db)
     const {
       name,
       principle_ids = '[]',
@@ -114,9 +187,9 @@ function registerHandlers() {
       color = '#5B7B6F',
     } = data
     const result = db.prepare(
-      `INSERT INTO roles (name, principle_ids, priority_rank, time_budget_hrs_week, current_satisfaction, color)
-       VALUES (?, ?, ?, ?, ?, ?)`
-    ).run(name, principle_ids, priority_rank, time_budget_hrs_week, current_satisfaction, color)
+      `INSERT INTO roles (profile_id, name, principle_ids, priority_rank, time_budget_hrs_week, current_satisfaction, color)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`
+    ).run(pid, name, principle_ids, priority_rank, time_budget_hrs_week, current_satisfaction, color)
     return db.prepare('SELECT * FROM roles WHERE role_id = ?').get(result.lastInsertRowid)
   })
 
@@ -149,12 +222,14 @@ function registerHandlers() {
   `
 
   ipcMain.handle('tasks:getForDate', (_event, date) => {
+    const pid = getActiveProfileId(db)
     return db.prepare(
-      `${TASK_WITH_ROLE_SQL} WHERE date(t.scheduled_at) = date(?) ORDER BY t.task_id`
-    ).all(date)
+      `${TASK_WITH_ROLE_SQL} WHERE t.profile_id = ? AND date(t.scheduled_at) = date(?) ORDER BY t.task_id`
+    ).all(pid, date)
   })
 
   ipcMain.handle('tasks:create', (_event, data) => {
+    const pid = getActiveProfileId(db)
     const {
       title,
       goal_id = null,
@@ -166,9 +241,9 @@ function registerHandlers() {
       energy_required = 'medium',
     } = data
     const result = db.prepare(
-      `INSERT INTO tasks (title, goal_id, role_id, principle_ids, scheduled_at, duration_mins, status, energy_required)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-    ).run(title, goal_id, role_id, principle_ids, scheduled_at, duration_mins, status, energy_required)
+      `INSERT INTO tasks (profile_id, title, goal_id, role_id, principle_ids, scheduled_at, duration_mins, status, energy_required)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).run(pid, title, goal_id, role_id, principle_ids, scheduled_at, duration_mins, status, energy_required)
     return db.prepare(`${TASK_WITH_ROLE_SQL} WHERE t.task_id = ?`).get(result.lastInsertRowid)
   })
 

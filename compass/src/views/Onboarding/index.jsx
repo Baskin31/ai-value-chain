@@ -1,32 +1,45 @@
 import React, { useState } from 'react'
-import { setAppState } from '../../lib/api'
+import { createProfile, markProfileComplete } from '../../lib/api'
 import BeliefStep from './BeliefStep'
 import WhyStep from './WhyStep'
 import PrinciplesStep from './PrinciplesStep'
 import RolesStep from './RolesStep'
 
-const TOTAL_STEPS = 4
+const TOTAL_STEPS = 5
 
 export default function Onboarding({ onComplete }) {
   const [step, setStep] = useState(1)
+  const [profileId, setProfileId] = useState(null)
+  const [profileName, setProfileName] = useState('')
+  const [nameError, setNameError] = useState('')
   const [complete, setComplete] = useState(false)
 
   function handleNext() {
     if (step < TOTAL_STEPS) {
       setStep((s) => s + 1)
     } else {
-      // After step 4 saved, show completion screen
       setComplete(true)
     }
   }
 
   function handleBack() {
-    if (step > 1) setStep((s) => s - 1)
+    if (step > 2) setStep((s) => s - 1)
+  }
+
+  async function handleNameContinue() {
+    const trimmed = profileName.trim().slice(0, 30)
+    if (!trimmed) {
+      setNameError('Please enter a name for this profile.')
+      return
+    }
+    const profile = await createProfile(trimmed)
+    setProfileId(profile.profile_id)
+    setStep(2)
   }
 
   async function handleFinish() {
-    await setAppState('onboarding_complete', 'true')
-    onComplete()
+    const profile = profileId ? await markProfileComplete(profileId) : null
+    onComplete(profile)
   }
 
   if (complete) {
@@ -58,7 +71,7 @@ export default function Onboarding({ onComplete }) {
             onClick={handleFinish}
             className="btn-primary px-8 py-3 text-base"
           >
-            Enter Compass
+            Enter Lodestar
           </button>
         </div>
       </div>
@@ -74,7 +87,7 @@ export default function Onboarding({ onComplete }) {
             <circle cx="12" cy="12" r="10" />
             <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
           </svg>
-          <span className="font-serif text-base text-text-primary">Compass</span>
+          <span className="font-serif text-base text-text-primary">Lodestar</span>
         </div>
         <span className="text-sm text-text-tertiary">Step {step} of {TOTAL_STEPS}</span>
       </div>
@@ -91,15 +104,56 @@ export default function Onboarding({ onComplete }) {
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-2xl mx-auto py-16 px-8">
           {step === 1 && (
+            <div>
+              <h2 className="font-serif text-3xl text-text-primary mb-3 leading-snug">
+                Let's start with a name.
+              </h2>
+              <p className="text-text-secondary text-base leading-relaxed mb-8">
+                Profiles keep your values, roles, and goals separate. Give this one a name — your own name, a context like "Work", or anything that feels right.
+              </p>
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-text-secondary">
+                  Profile name
+                </label>
+                <input
+                  autoFocus
+                  type="text"
+                  value={profileName}
+                  onChange={(e) => {
+                    setProfileName(e.target.value.slice(0, 30))
+                    setNameError('')
+                  }}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleNameContinue() }}
+                  placeholder="e.g. Alex, Work, Personal"
+                  maxLength={30}
+                  className="input-base w-full"
+                />
+                <div className="flex items-center justify-between">
+                  {nameError
+                    ? <p className="text-xs text-red-500">{nameError}</p>
+                    : <span />
+                  }
+                  <span className="text-xs text-text-tertiary">{profileName.length}/30</span>
+                </div>
+              </div>
+              <div className="mt-8">
+                <button onClick={handleNameContinue} className="btn-primary px-6 py-2.5">
+                  Continue
+                </button>
+              </div>
+            </div>
+          )}
+
+          {step === 2 && (
             <BeliefStep onNext={handleNext} />
           )}
-          {step === 2 && (
+          {step === 3 && (
             <WhyStep onNext={handleNext} onBack={handleBack} />
           )}
-          {step === 3 && (
+          {step === 4 && (
             <PrinciplesStep onNext={handleNext} onBack={handleBack} />
           )}
-          {step === 4 && (
+          {step === 5 && (
             <RolesStep onNext={handleNext} onBack={handleBack} />
           )}
         </div>

@@ -52,7 +52,7 @@ export default function Settings() {
     <div className="max-w-2xl mx-auto px-8 py-10">
       <div className="mb-10">
         <h1 className="font-serif text-3xl text-text-primary mb-1">Settings</h1>
-        <p className="text-text-secondary text-sm">Configure Compass for your preferences.</p>
+        <p className="text-text-secondary text-sm">Configure Lodestar for your preferences.</p>
       </div>
 
       {/* API Configuration */}
@@ -135,7 +135,7 @@ export default function Settings() {
         <div className="card space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-text-secondary">Application</span>
-            <span className="text-sm font-medium text-text-primary">Compass</span>
+            <span className="text-sm font-medium text-text-primary">Lodestar</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-sm text-text-secondary">Version</span>

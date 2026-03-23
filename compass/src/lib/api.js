@@ -7,6 +7,12 @@ export const setAppState = (key, value) => window.api.setAppState(key, value)
 export const getSetting = (key) => window.api.getSetting(key)
 export const setSetting = (key, value) => window.api.setSetting(key, value)
 
+export const getProfiles         = ()     => window.api.getProfiles()
+export const createProfile       = (name) => window.api.createProfile(name)
+export const setActiveProfile    = (id)   => window.api.setActiveProfile(id)
+export const markProfileComplete = (id)   => window.api.markProfileComplete(id)
+export const getActiveProfile    = ()     => window.api.getActiveProfile()
+
 export const suggestDomains = (statement) => window.api.suggestDomains(statement)
 
 export const getBeliefs = () => window.api.getBeliefs()
