@@ -122,6 +122,11 @@ func _land() -> void:
 	global_position.y = GROUND_Y + DISC_HEIGHT
 	landed.emit(global_position)
 
+func stop_in_basket(basket_world_pos: Vector3) -> void:
+	state = State.LANDED
+	velocity = Vector3.ZERO
+	global_position = basket_world_pos
+
 func _update_visual(delta: float) -> void:
 	spin_yaw = fmod(spin_yaw + SPIN_SPEED * delta, 360.0)
 	_mesh.rotation_degrees.y = spin_yaw

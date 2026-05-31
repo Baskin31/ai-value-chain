@@ -1,15 +1,23 @@
 extends Node3D
 
+# Basket ~20m out, slightly right — reachable at ~50% power
+const BASKET_POS := Vector3(8.0, 0.0, -18.0)
+const TEE_POS    := Vector3(0.0, 0.0, 0.0)
+
 var _disc: DiscFlight
 var _camera: CameraController
 var _throw_ctrl: ThrowController
-var _player_pos: Vector3 = Vector3(0.0, 0.0, 0.0)
+var _hole: Hole
+
+var _player_pos: Vector3 = TEE_POS
 var _throw_dir: Vector3 = Vector3(0.0, 0.0, -1.0)
+var _strokes: int = 0
+var _holed: bool = false
 
 func _ready() -> void:
 	_build_environment()
 	_build_ground()
-	_build_basket(Vector3(55.0, 0.0, -40.0))
+	_build_hole()
 	_build_trees()
 	_spawn_disc()
 	_setup_camera()
@@ -62,64 +70,23 @@ func _build_ground() -> void:
 	body.add_child(col)
 	add_child(body)
 
-func _build_basket(pos: Vector3) -> void:
-	var root := Node3D.new()
-	root.position = pos
-	add_child(root)
-
-	# Pole
-	var pole := MeshInstance3D.new()
-	var pcyl := CylinderMesh.new()
-	pcyl.top_radius = 0.025
-	pcyl.bottom_radius = 0.025
-	pcyl.height = 1.6
-	pole.mesh = pcyl
-	pole.position.y = 0.8
-	var pole_mat := StandardMaterial3D.new()
-	pole_mat.albedo_color = Color(0.78, 0.78, 0.78)
-	pole.material_override = pole_mat
-	root.add_child(pole)
-
-	# Basket ring
-	var ring := MeshInstance3D.new()
-	var rcyl := CylinderMesh.new()
-	rcyl.top_radius = 0.30
-	rcyl.bottom_radius = 0.30
-	rcyl.height = 0.022
-	rcyl.rings = 1
-	ring.mesh = rcyl
-	ring.position.y = 1.05
-	var ring_mat := StandardMaterial3D.new()
-	ring_mat.albedo_color = Color(1.0, 0.55, 0.0)
-	ring.material_override = ring_mat
-	root.add_child(ring)
-
-	# Chains suggestion: a slightly smaller darker ring below
-	var chain_ring := MeshInstance3D.new()
-	var ccyl := CylinderMesh.new()
-	ccyl.top_radius = 0.20
-	ccyl.bottom_radius = 0.20
-	ccyl.height = 0.35
-	ccyl.rings = 1
-	chain_ring.mesh = ccyl
-	chain_ring.position.y = 0.82
-	var chain_mat := StandardMaterial3D.new()
-	chain_mat.albedo_color = Color(0.6, 0.6, 0.6, 0.6)
-	chain_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	chain_ring.material_override = chain_mat
-	root.add_child(chain_ring)
+func _build_hole() -> void:
+	_hole = Hole.new()
+	_hole.position = BASKET_POS
+	add_child(_hole)
+	_hole.disc_holed.connect(_on_disc_holed)
 
 func _build_trees() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 12345
 
-	var avoid_radius := 15.0  # keep clear around tee and basket
-	var basket_xz := Vector2(55.0, -40.0)
-	var tee_xz := Vector2(0.0, 0.0)
+	var avoid_radius := 8.0
+	var basket_xz := Vector2(BASKET_POS.x, BASKET_POS.z)
+	var tee_xz    := Vector2(TEE_POS.x, TEE_POS.z)
 
 	for i in range(30):
-		var tx := rng.randf_range(-120.0, 120.0)
-		var tz := rng.randf_range(-120.0, 120.0)
+		var tx := rng.randf_range(-80.0, 80.0)
+		var tz := rng.randf_range(-80.0, 80.0)
 		var p2 := Vector2(tx, tz)
 		if p2.distance_to(tee_xz) < avoid_radius or p2.distance_to(basket_xz) < avoid_radius:
 			continue
@@ -162,28 +129,58 @@ func _setup_throw_controller() -> void:
 	_throw_ctrl.disc = _disc
 	_throw_ctrl.throw_origin = _disc.global_position
 	_throw_ctrl.throw_direction = _throw_dir
+	_throw_ctrl.thrown.connect(_on_throw_started)
 	add_child(_throw_ctrl)
-
-	# Keep camera throw_direction in sync with controller's aim
-	# We do this by sharing the same vector reference via _process polling
-	set_process(true)
 
 func _process(_delta: float) -> void:
 	if _camera:
 		_camera.throw_direction = _throw_ctrl.throw_direction
 
-func _on_disc_landed(pos: Vector3) -> void:
-	await get_tree().create_timer(2.2).timeout
-	_reset(pos)
+	# Check basket every frame while disc is airborne
+	if not _holed and _disc and _disc.state != DiscFlight.State.IDLE:
+		if _disc.state != DiscFlight.State.LANDED:
+			if _hole.check(_disc):
+				# snap disc visually into the basket
+				_disc.stop_in_basket(_hole.global_position + Vector3(0.0, 0.7, 0.0))
 
-func _reset(new_pos: Vector3) -> void:
+# ── Event handlers ──────────────────────────────────────────────────────────────
+
+func _on_throw_started() -> void:
+	_strokes += 1
+	_throw_ctrl.hud.set_strokes(_strokes)
+
+func _on_disc_holed() -> void:
+	_holed = true
+	_throw_ctrl.hud.show_holed(_strokes)
+	await get_tree().create_timer(3.0).timeout
+	_reset_to_tee()
+
+func _on_disc_landed(pos: Vector3) -> void:
+	if _holed:
+		return
+	await get_tree().create_timer(2.0).timeout
+	_reset_lie(pos)
+
+func _reset_lie(new_pos: Vector3) -> void:
 	_player_pos = new_pos
 	_throw_dir = _throw_ctrl.throw_direction
-
 	_disc.queue_free()
 	_spawn_disc()
-
 	_camera.target = _disc
 	_throw_ctrl.disc = _disc
 	_throw_ctrl.throw_origin = _disc.global_position
 	_throw_ctrl.reset()
+
+func _reset_to_tee() -> void:
+	_holed = false
+	_strokes = 0
+	_player_pos = TEE_POS
+	_throw_dir = Vector3(0.0, 0.0, -1.0)
+	_disc.queue_free()
+	_spawn_disc()
+	_camera.target = _disc
+	_throw_ctrl.disc = _disc
+	_throw_ctrl.throw_origin = _disc.global_position
+	_throw_ctrl.throw_direction = _throw_dir
+	_throw_ctrl.reset()
+	_throw_ctrl.hud.set_strokes(0)

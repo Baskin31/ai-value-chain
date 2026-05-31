@@ -8,6 +8,8 @@ var hud: HUD
 var throw_origin: Vector3 = Vector3.ZERO
 var throw_direction: Vector3 = Vector3(0.0, 0.0, -1.0)
 
+signal thrown
+
 var state: ThrowState = ThrowState.IDLE
 var power: float = 0.0
 var accuracy: float = 0.0
@@ -30,6 +32,12 @@ func reset() -> void:
 	hud.show_idle()
 
 func _process(delta: float) -> void:
+	# Analog left-stick aim (all states except mid-throw)
+	if state == ThrowState.IDLE:
+		var stick_x: float = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+		if abs(stick_x) > 0.15:
+			throw_direction = throw_direction.rotated(Vector3.UP, -stick_x * 2.5 * delta).normalized()
+
 	match state:
 		ThrowState.BACKSWING:
 			power += POWER_SPEED * _power_dir * delta
@@ -52,11 +60,14 @@ func _process(delta: float) -> void:
 			hud.update_accuracy(accuracy)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not (event is InputEventMouseButton):
-		return
-	if not (event as InputEventMouseButton).pressed:
-		return
-	if (event as InputEventMouseButton).button_index != MOUSE_BUTTON_LEFT:
+	var is_throw := false
+	if event is InputEventMouseButton:
+		var mb := event as InputEventMouseButton
+		is_throw = mb.pressed and mb.button_index == MOUSE_BUTTON_LEFT
+	elif event is InputEventJoypadButton:
+		var jb := event as InputEventJoypadButton
+		is_throw = jb.pressed and jb.button_index == JOY_BUTTON_A
+	if not is_throw:
 		return
 
 	match state:
@@ -79,6 +90,7 @@ func _execute_throw() -> void:
 	state = ThrowState.THROWN
 	hud.show_thrown()
 	disc.throw_disc(throw_origin, throw_direction, power, accuracy)
+	thrown.emit()
 
 # Mouse horizontal movement rotates aim when idle
 func _input(event: InputEvent) -> void:
