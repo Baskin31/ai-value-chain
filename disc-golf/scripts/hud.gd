@@ -8,6 +8,7 @@ var _power_fill: ColorRect
 var _power_target_line: ColorRect
 var _hint_label: Label
 var _stroke_label: Label
+var _throw_type_label: Label
 var _celebration_label: Label
 
 const BAR_W: float = 220.0
@@ -30,6 +31,9 @@ func _build_ui() -> void:
 
 	# Stroke counter — top left
 	_stroke_label = _make_label(20.0, 20.0, 200.0, "Throw: 0", 18, HORIZONTAL_ALIGNMENT_LEFT)
+	# Throw type — top left, below stroke counter
+	_throw_type_label = _make_label(20.0, 46.0, 200.0, "RHBH", 14, HORIZONTAL_ALIGNMENT_LEFT)
+	_throw_type_label.add_theme_color_override("font_color", Color(1.0, 0.88, 0.0, 0.85))
 
 	# Celebration — center screen, hidden until holed
 	_celebration_label = _make_label(240.0, 260.0, 800.0, "", 42, HORIZONTAL_ALIGNMENT_CENTER)
@@ -89,6 +93,9 @@ func show_thrown() -> void:
 
 func set_strokes(n: int) -> void:
 	_stroke_label.text = "Throw: %d" % n
+
+func set_throw_type(type_name: String) -> void:
+	_throw_type_label.text = type_name + "  [T]"
 
 func show_holed(strokes: int) -> void:
 	_set_state(ThrowState.THROWN)

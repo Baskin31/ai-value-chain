@@ -15,6 +15,7 @@ var _strokes: int = 0
 var _holed: bool = false
 
 func _ready() -> void:
+	ThrowTest.run()   # prints expected-vs-actual curve directions to the Output panel
 	_build_environment()
 	_build_ground()
 	_build_hole()
@@ -131,6 +132,7 @@ func _setup_throw_controller() -> void:
 	_throw_ctrl.throw_direction = _throw_dir
 	_throw_ctrl.thrown.connect(_on_throw_started)
 	add_child(_throw_ctrl)
+	_throw_ctrl.hud.set_throw_type("RHBH")
 
 func _process(_delta: float) -> void:
 	if _camera:
