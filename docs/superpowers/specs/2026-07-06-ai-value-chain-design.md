@@ -105,7 +105,7 @@ description: >
   ~90% gross margin. Backlog visibility 2+ years out.
 
 investability:
-  type: direct                    # direct | adr | proxy | uninvestable
+  type: direct                    # direct | adr | proxy | hk_stock_connect | etf_bucket | uninvestable
   notes: "Listed on NASDAQ as ASML (ADR). Also trades on Euronext Amsterdam."
   proxy_for: null                 # required non-null when type=proxy
 
@@ -465,7 +465,7 @@ Seeded across all 9 layers with both obvious representatives and dark horses. Da
 
 | Layer | Obvious | Dark Horses |
 |---|---|---|
-| Raw Materials | MP Materials, Albemarle, Lynas | Perpetua Resources, Energy Fuels, Vital Metals |
+| Raw Materials | MP Materials, Albemarle, Lynas | Perpetua Resources, Energy Fuels, Vital Metals, China Rare Earth (HK: 0769, via HK Stock Connect), China Northern Rare Earth (SH: 600111, via HK Stock Connect), REMX (VanEck Rare Earth/Strategic Metals ETF — bucket exposure to China-dominant supply chain) |
 | Lithography & Fab Equipment | ASML, Applied Materials, Lam Research | Onto Innovation, Axcelis Technologies, Lasertec |
 | Fabrication & Packaging | TSMC, Samsung, Intel Foundry | ASE Technology, Amkor, JCET Group |
 | Memory | Micron, SK Hynix, Samsung | CXMT (proxy only), Nanya Technology |
