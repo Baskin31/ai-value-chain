@@ -1,0 +1,59 @@
+id: nextera_energy
+name: NextEra Energy
+ticker: NEE
+exchange: NYSE
+layer: energy_power
+secondary_layers: []
+is_dark_horse: false
+description: >
+  Largest renewable energy generator in the US, combining a rate-regulated
+  utility (Florida Power & Light) with the world's largest wind and solar
+  generation fleet. AI data center power demand has become an explicit demand
+  driver for utility-scale renewable development and long-term PPAs.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as NEE. Highly liquid large-cap utility."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Largest renewable energy generator in the US; rate-regulated utility base provides cash flow floor"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "Regulated utility revenue ~50% of earnings — very stable; renewable power purchase agreements (PPAs) multi-year"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Investment grade; managed leverage appropriate for regulated utility"
+  downside_scenario: >
+    Rising interest rates compress utility valuations materially —
+    regulated utilities trade as bond proxies. Renewable development
+    costs rise. Regulatory delays on permitting.
+  market_expansion: 7
+  market_expansion_rationale: "AI data center power demand has become an explicit demand driver for utility-scale renewable + storage"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "Utility multiples naturally compress upside; primarily a compounder, not a lottery ticket"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Hyperscalers signing 20-year PPAs for dedicated renewable generation — NextEra's development pipeline is the product"
+  upside_probability: 0.45
+  upside_multiple: 2.5
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 130
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 24
+  revenue_growth_yoy: 0.09
+  pe_ratio: 22
+  sources:
+    - description: "NextEra Energy Q1 2026 10-Q filing"
+      url: "investor.nexteraenergy.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Microsoft, Google, and AWS signed multi-GW renewable PPAs in 2024-25 — NextEra is counterparty on several"
+  - type: risk
+    note: "Interest rate sensitivity: regulated utilities trade as bond proxies — rate rises hurt valuations significantly"
+
+relationships: []

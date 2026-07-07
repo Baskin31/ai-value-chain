@@ -1,0 +1,70 @@
+id: nvidia
+name: NVIDIA Corporation
+ticker: NVDA
+exchange: NASDAQ
+layer: silicon_design
+secondary_layers: []
+is_dark_horse: false
+description: >
+  Dominant AI accelerator GPU designer with 80%+ AI training share. CUDA
+  software ecosystem creates a 10+ year moat that is harder to replicate
+  than the hardware itself. Designs H100/B100/B200 GPUs fabbed at TSMC N4/N3.
+  Four independent TAMs: AI training, inference, robotics, autonomous vehicles.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as NVDA. Highly liquid large-cap. One of the most widely held AI stocks globally."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 9
+  moat_durability_rationale: "CUDA ecosystem — 10+ year software moat that is harder to replicate than the hardware; 80%+ AI training GPU share"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "Hyperscaler capex commitments (H100/B200 orders 12-18 months out); CUDA lock-in makes switching costly"
+  balance_sheet_strength: 9
+  balance_sheet_rationale: "Net cash >$30B; extraordinary FCF generation"
+  downside_scenario: >
+    Hyperscalers develop competing in-house silicon (TPU, Trainium, Maia) at
+    scale and defect from NVIDIA. AMD closes the software gap faster than
+    expected. Geopolitical restrictions on China sales expand.
+  market_expansion: 9
+  market_expansion_rationale: "AI training, inference, robotics, autonomous vehicles, simulation — four independent TAMs, each alone justifying a large company"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "Intel and AMD are years behind on both hardware and software ecosystem — ceiling constrained mainly by its existing size"
+  strategic_optionality: 9
+  strategic_optionality_rationale: "Benefits from ALL AI capex regardless of application layer winner — the arms dealer thesis"
+  upside_probability: 0.55
+  upside_multiple: 2.5
+  valuation_sentiment: priced_for_perfection
+
+fundamentals:
+  market_cap_usd_b: 3200
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 113
+  revenue_growth_yoy: 1.22
+  pe_ratio: 45
+  sources:
+    - description: "NVIDIA FY2026 Q1 10-Q filing"
+      url: "investor.nvidia.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "TSMC concentration: all H/B series GPUs fabbed at TSMC N4/N3 — Taiwan geopolitical risk is an NVIDIA risk"
+  - type: risk
+    note: "Hyperscaler customers are also competitors: Google TPU, AWS Trainium, Microsoft Maia are direct alternatives being scaled aggressively"
+  - type: opportunity
+    note: "Inference scaling is a second demand wave entirely separate from training — NVIDIA's installed base dominates inference too"
+
+relationships:
+  - company_id: tsmc
+    type: supplier
+    note: "Sole fab for H100/B100/B200 GPUs at N4/N3 nodes"
+  - company_id: micron
+    type: supplier
+    note: "HBM memory supplier for H/B series GPU packages"
+  - company_id: sk_hynix
+    type: supplier
+    note: "Primary HBM3e supplier — ~70% of NVIDIA HBM allocation"

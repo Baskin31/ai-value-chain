@@ -1,0 +1,59 @@
+id: nvent_electric
+name: nVent Electric
+ticker: NVT
+exchange: NYSE
+layer: energy_power
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Electrical enclosures and thermal management for industrial and data center
+  applications. Schroff brand is specification-standard in European data
+  centers. Growing data center mix improving overall business quality versus
+  industrial cyclicality.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as NVT. Liquid mid-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 6
+  moat_durability_rationale: "Thermal management and electrical enclosures for industrial and data center applications — Schroff brand is specification-standard in European data centers"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Diversified industrial + data center revenue; growing data center mix improves quality"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash, conservative management"
+  downside_scenario: >
+    Industrial revenue remains cyclical and data center segment fails to
+    become a large enough portion to change the growth profile. Vertiv and
+    Schneider out-compete on liquid cooling.
+  market_expansion: 7
+  market_expansion_rationale: "Data center power density increase drives demand for better thermal management and electrical protection"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "Could re-rate as data center mix grows and industrial mix shrinks"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Electrical enclosures and cooling for edge computing and AI inference at the edge"
+  upside_probability: 0.40
+  upside_multiple: 3.0
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 12
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 3.5
+  revenue_growth_yoy: 0.11
+  pe_ratio: 20
+  sources:
+    - description: "nVent Electric Q1 2026 10-Q filing"
+      url: "investors.nvent.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Immersion cooling and liquid cooling adoption in data centers drives demand for nVent's liquid-ready enclosures"
+  - type: risk
+    note: "Less direct AI exposure than Vertiv — nVent's data center mix is still a minority of revenue"
+
+relationships: []

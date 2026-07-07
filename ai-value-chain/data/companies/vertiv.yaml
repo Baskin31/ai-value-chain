@@ -1,0 +1,62 @@
+id: vertiv
+name: Vertiv Holdings
+ticker: VRT
+exchange: NYSE
+layer: energy_power
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Dominant provider of data center power and thermal management infrastructure
+  including UPS, PDU, and liquid cooling systems. AI data centers require 5-10x
+  more power density than traditional data centers, making Vertiv's thermal
+  management capabilities directly critical infrastructure.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as VRT. Liquid mid-cap with strong institutional ownership."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Dominant in data center power and thermal management (UPS, PDU, liquid cooling) — switching costs are high once infrastructure is installed"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Service revenue ~35% of total; long-term maintenance contracts"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Net debt but declining; strong FCF generation"
+  downside_scenario: >
+    Eaton and Schneider compete aggressively on liquid cooling. Supply chain
+    for liquid cooling components remains constrained. Valuation already
+    priced for perfection — any execution shortfall is punished.
+  market_expansion: 8
+  market_expansion_rationale: "AI data centers require 5-10x more power density than traditional — Vertiv's thermal management directly addresses this"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If liquid cooling becomes standard (driven by GPU power density), Vertiv's share of the liquid cooling market could be 3x current revenue"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "Every AI data center built anywhere in the world needs Vertiv's equipment — geography-agnostic demand"
+  upside_probability: 0.55
+  upside_multiple: 3.0
+  valuation_sentiment: priced_for_perfection
+
+fundamentals:
+  market_cap_usd_b: 40
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 8.5
+  revenue_growth_yoy: 0.33
+  pe_ratio: 60
+  sources:
+    - description: "Vertiv Q1 2026 10-Q filing"
+      url: "investors.vertiv.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Nvidia GB200 NVL72 racks require direct liquid cooling — Vertiv is a preferred cooling partner"
+  - type: risk
+    note: "Valuation has moved from cheap to priced_for_perfection — significant execution required to justify current multiple"
+
+relationships:
+  - company_id: nvidia
+    type: supplier
+    note: "Cooling infrastructure partner for GB200 NVL72 liquid-cooled rack systems"

@@ -1,0 +1,59 @@
+id: cerebras_systems
+name: Cerebras Systems
+ticker: null
+exchange: null
+layer: silicon_design
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Maker of the Wafer Scale Engine (WSE-3), a single-wafer chip containing
+  4 trillion transistors. Eliminates DRAM bandwidth bottleneck for certain
+  AI workloads. IPO filed then withdrawn in 2024. Primary customers include
+  G42 (UAE) and sovereign AI compute buyers.
+
+investability:
+  type: uninvestable
+  notes: "Not publicly listed. IPO filed and withdrawn 2024. Monitor for re-filing. No accessible proxy."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "Wafer-scale engine (WSE-3) is architecturally unique — single wafer containing 4 trillion transistors; no DRAM bandwidth bottleneck for certain workloads"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "Small revenue base; hyperscaler contract wins (G42 in UAE, Cerebras cloud); pre-profitability"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "Well-funded but burning cash; IPO filed then withdrawn in 2024 — public market access uncertain"
+  downside_scenario: >
+    TSMC fab constraints on wafer-scale yields create production bottleneck.
+    Power consumption challenges limit data center adoption.
+    NVIDIA builds inference-optimized SKUs that close the latency gap.
+    IPO remains withdrawn indefinitely.
+  market_expansion: 9
+  market_expansion_rationale: "For certain AI workloads (ultra-large models, sparse computation), WSE architecture outperforms GPU clusters dramatically"
+  competitive_position_ceiling: 8
+  competitive_position_rationale: "If wafer-scale becomes the dominant inference architecture for very large models, Cerebras could be a major platform"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Unique architecture means it cannot be easily replicated by NVIDIA even if they tried"
+  upside_probability: 0.30
+  upside_multiple: 10.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 4
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.5
+  pe_ratio: null
+  sources:
+    - description: "Cerebras S-1 filing and press releases"
+      url: "cerebras.net"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: risk
+    note: "IPO uncertainty — watch for re-filing or acquisition"
+  - type: opportunity
+    note: "Government/sovereign AI compute buyers (UAE, Saudi Arabia) are early adopters not constrained by CUDA ecosystem inertia"
+
+relationships: []

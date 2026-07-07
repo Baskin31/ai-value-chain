@@ -1,0 +1,58 @@
+id: groq
+name: Groq Inc.
+ticker: null
+exchange: null
+layer: silicon_design
+secondary_layers: []
+is_dark_horse: true
+description: >
+  LPU (Language Processing Unit) architecture achieving industry-leading
+  inference tokens/second for LLM inference. Deterministic compute vs. GPU
+  stochastic scheduling. Series D at $2.8B valuation. GroqCloud API and
+  enterprise deployments.
+
+investability:
+  type: uninvestable
+  notes: "Not publicly listed. Monitor for IPO or SPAC."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "LPU (Language Processing Unit) architecture achieves highest published inference tokens/second for LLM inference — deterministic compute vs. GPU stochastic scheduling"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "GroqCloud API revenue growing; enterprise inference deployments"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "Series D at $2.8B valuation; well-funded"
+  downside_scenario: >
+    NVIDIA builds inference-optimized SKUs (H200, Blackwell) to close the
+    latency gap. Inference market commoditizes on price. Limited software
+    ecosystem vs. CUDA prevents enterprise adoption at scale.
+  market_expansion: 8
+  market_expansion_rationale: "AI inference demand growing faster than training — Groq's specialization is directly in the highest-growth AI workload"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If inference becomes the dominant AI compute workload (likely), Groq's LPU advantage compounds"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Every AI application company that needs low-latency inference is a potential Groq customer — regardless of which LLM wins"
+  upside_probability: 0.25
+  upside_multiple: 10.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 2.8
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.1
+  pe_ratio: null
+  sources:
+    - description: "Groq Series D press release and GroqCloud launch"
+      url: "groq.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Saudi Aramco and SoftBank partnerships signal sovereign AI compute buyers as early adopters"
+  - type: risk
+    note: "Unlisted — no retail access. Monitor for IPO or SPAC."
+
+relationships: []

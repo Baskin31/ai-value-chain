@@ -1,0 +1,62 @@
+id: constellation_energy
+name: Constellation Energy
+ticker: CEG
+exchange: NASDAQ
+layer: energy_power
+secondary_layers: []
+is_dark_horse: false
+description: >
+  Largest nuclear fleet operator in the US with ~21 GW of zero-carbon
+  baseload capacity. Three Mile Island restart (Crane Clean Energy Center)
+  under 20-year Microsoft PPA is a landmark proof-of-concept that is being
+  replicated. Nuclear uniquely provides 24/7 carbon-free baseload power that
+  wind/solar cannot match for AI data centers.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as CEG. Liquid mid/large-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "Largest nuclear fleet operator in the US — zero-carbon baseload power that cannot be quickly replicated; Three Mile Island restart for Microsoft is a landmark deal"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "Nuclear power purchase agreements with tech hyperscalers — direct revenue tie to AI data center demand"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash; nuclear fuel hedged multi-year"
+  downside_scenario: >
+    Nuclear regulatory complications delay or cancel plant life extensions.
+    TMI restart cost overruns erode economics. New nuclear (SMRs) become
+    competitive faster than expected, reducing Constellation's scarcity premium.
+  market_expansion: 8
+  market_expansion_rationale: "Nuclear is uniquely positioned to provide 24/7 carbon-free baseload for AI data centers — wind/solar cannot provide this"
+  competitive_position_ceiling: 8
+  competitive_position_rationale: "If nuclear renaissance accelerates and Constellation wins 10+ hyperscaler PPAs, earnings power doubles"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "Every hyperscaler committed to carbon-free energy needs nuclear — Constellation is the only US operator at scale"
+  upside_probability: 0.55
+  upside_multiple: 2.5
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 85
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 25
+  revenue_growth_yoy: 0.07
+  pe_ratio: 25
+  sources:
+    - description: "Constellation Energy Q1 2026 10-Q filing"
+      url: "investor.constellationenergy.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Microsoft 20-year PPA for Three Mile Island restart is a proof-of-concept that's being replicated by other hyperscalers"
+  - type: opportunity
+    note: "Crane Clean Energy Center (Palisades) restart adds significant clean baseload capacity"
+  - type: risk
+    note: "New nuclear (SMRs) could eventually compete, but 10+ year timeline makes it a non-threat within investment horizon"
+
+relationships: []

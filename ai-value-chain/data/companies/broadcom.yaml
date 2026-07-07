@@ -1,0 +1,65 @@
+id: broadcom
+name: Broadcom Inc.
+ticker: AVGO
+exchange: NASDAQ
+layer: silicon_design
+secondary_layers: []
+is_dark_horse: false
+description: >
+  Diversified semiconductor and infrastructure software company. Custom ASIC
+  (XPU) business for hyperscalers (Google TPU, Meta MTIA, Apple Neural Engine)
+  plus VMware enterprise software post-acquisition. Designs chips fabbed at
+  TSMC.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as AVGO. Highly liquid large-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "VMware integration creates software-defined infrastructure moat; custom ASIC (XPU) business for Google, Meta, Apple is unique"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "VMware recurring software revenue ($4B+ ARR growing rapidly); networking and custom chip backlog"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "High leverage from VMware acquisition but strong FCF covers comfortably"
+  downside_scenario: >
+    Marvell and others win hyperscaler XPU design wins away from Broadcom.
+    Hyperscalers grow in-house ASIC design teams to the point of
+    self-sufficiency. VMware integration execution issues.
+  market_expansion: 8
+  market_expansion_rationale: "Custom AI ASICs (Google TPU, Meta MTIA, Apple Neural Engine) — Broadcom designs and enables what hyperscalers don't want to outsource to NVIDIA"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "XPU revenue could grow from ~$12B to $60B+ if hyperscaler custom silicon trend continues"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "VMware benefits from any cloud infrastructure growth; XPUs benefit from hyperscaler AI capex"
+  upside_probability: 0.50
+  upside_multiple: 2.5
+  valuation_sentiment: priced_for_perfection
+
+fundamentals:
+  market_cap_usd_b: 900
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 58
+  revenue_growth_yoy: 0.51
+  pe_ratio: 32
+  sources:
+    - description: "Broadcom FY2025 Q2 10-Q filing"
+      url: "investors.broadcom.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Google, Meta, and Apple all use Broadcom-designed ASICs — these are multi-year, hard-to-switch relationships"
+  - type: risk
+    note: "High leverage means rising rates or recession materially impact FCF and credit profile"
+
+relationships:
+  - company_id: tsmc
+    type: supplier
+    note: "Primary fab for custom XPU ASICs and networking chips"
+  - company_id: nvidia
+    type: competitor
+    note: "Competes for hyperscaler AI compute spend — Broadcom's XPU vs NVIDIA GPU"

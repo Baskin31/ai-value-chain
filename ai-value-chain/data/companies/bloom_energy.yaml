@@ -1,0 +1,59 @@
+id: bloom_energy
+name: Bloom Energy
+ticker: BE
+exchange: NYSE
+layer: energy_power
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Solid oxide fuel cell manufacturer generating electricity from natural gas
+  or hydrogen at point-of-use. Data centers seeking on-site power generation
+  to bypass grid constraints are Bloom's core growth thesis. Hydrogen fuel
+  cell capability provides future optionality.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as BE. Liquid small/mid-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 5
+  moat_durability_rationale: "Solid oxide fuel cell technology — generates electricity from natural gas or hydrogen at the point of use with high efficiency; no transmission loss"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "Service revenue from existing installed base; project revenue lumpy"
+  balance_sheet_strength: 4
+  balance_sheet_rationale: "Significant accumulated deficit; equity-dilutive; not yet sustainably profitable"
+  downside_scenario: >
+    Grid-connected data centers don't need on-site generation at scale.
+    Fuel cell economics remain uncompetitive with grid power outside
+    incentive programs. Sustained losses require dilutive equity raises.
+  market_expansion: 7
+  market_expansion_rationale: "Data centers seeking on-site power generation to bypass grid constraints — Bloom's Energy Server is a direct solution"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "If on-site power generation becomes mainstream for AI data centers, Bloom is the leading deployed technology"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Hydrogen fuel cell capability means Bloom benefits from hydrogen infrastructure buildout AND current gas-fired use cases"
+  upside_probability: 0.30
+  upside_multiple: 5.0
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 3
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 1.5
+  revenue_growth_yoy: 0.14
+  pe_ratio: null
+  sources:
+    - description: "Bloom Energy Q1 2026 10-Q filing"
+      url: "investors.bloomenergy.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "SK E&C partnership in South Korea and US hyperscaler pilots validate the data center use case"
+  - type: risk
+    note: "Fuel cell economics still not competitive with grid power in most markets without incentives"
+
+relationships: []

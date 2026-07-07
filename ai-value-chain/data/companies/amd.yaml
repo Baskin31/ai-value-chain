@@ -1,0 +1,64 @@
+id: amd
+name: Advanced Micro Devices
+ticker: AMD
+exchange: NASDAQ
+layer: silicon_design
+secondary_layers: []
+is_dark_horse: false
+description: >
+  x86 CPU/GPU designer with EPYC server CPU gaining share from Intel and
+  MI300X/MI350 GPU targeting AI inference. ROCm software ecosystem improving
+  but significantly behind CUDA. Fabless — manufactured at TSMC.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as AMD. Highly liquid large-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "x86 CPU architecture duopoly with Intel; MI300X GPU gaining AI traction; ROCm software ecosystem improving but far behind CUDA"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "EPYC CPU datacenter revenue is growing and sticky; GPU revenue less contracted"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash, improving FCF"
+  downside_scenario: >
+    ROCm ecosystem fails to close the CUDA gap; enterprise software
+    qualification requires CUDA-compatible alternatives and AMD can't deliver.
+    Intel recovers x86 server CPU share.
+  market_expansion: 8
+  market_expansion_rationale: "EPYC gaining server CPU share from Intel; MI300X/MI350 targeting the AI inference market segment NVIDIA can't fully serve"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If ROCm closes the CUDA gap even partially, AMD captures a meaningful slice of AI training — large upside from current ~10% share"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Benefits from AI capex growth even at #2 position — the TAM is large enough for two strong players"
+  upside_probability: 0.45
+  upside_multiple: 3.5
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 250
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 28
+  revenue_growth_yoy: 0.24
+  pe_ratio: 130
+  sources:
+    - description: "AMD Q1 2026 10-Q filing"
+      url: "ir.amd.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "MI300X memory bandwidth advantage over H100 in specific inference workloads — genuine differentiation, not just cheaper"
+  - type: risk
+    note: "CUDA switching costs are cultural and organizational, not just technical — enterprises resist ROCm migrations"
+
+relationships:
+  - company_id: tsmc
+    type: supplier
+    note: "Fab partner for EPYC CPUs and MI series GPUs at leading nodes"
+  - company_id: nvidia
+    type: competitor
+    note: "Primary competitor in AI accelerator GPU market"
