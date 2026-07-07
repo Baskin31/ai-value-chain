@@ -2,6 +2,7 @@ import { DisclaimerModal } from './components/Disclaimer'
 import { AppLayout } from './components/layout/AppLayout'
 import { DetailPanel } from './components/layout/DetailPanel'
 import { StackView } from './components/views/StackView'
+import { CompanyDetail } from './components/company/CompanyDetail'
 import { useAppStore } from './store'
 
 // Placeholder view components — replaced in later phases
@@ -35,11 +36,7 @@ export default function App() {
         open={selectedCompanyId !== null}
         onClose={() => selectCompany(null)}
       >
-        {selectedCompanyId && (
-          <p className="text-slate-400 font-mono text-sm">
-            Company detail for {selectedCompanyId} — coming in Phase 13
-          </p>
-        )}
+        {selectedCompanyId && <CompanyDetail companyId={selectedCompanyId} />}
       </DetailPanel>
     </>
   )
