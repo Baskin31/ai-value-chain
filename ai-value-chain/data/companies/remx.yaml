@@ -1,0 +1,36 @@
+id: remx
+name: VanEck Rare Earth/Strategic Metals ETF
+ticker: REMX
+exchange: "NYSE Arca"
+layer: raw_materials
+is_dark_horse: true
+is_exposure_vehicle: true
+description: >
+  ETF providing diversified exposure to rare earth and strategic metals producers
+  globally. Top holdings include MP Materials, Lynas, China Northern Rare Earth,
+  and other producers. Expense ratio ~0.50%. Provides indirect exposure to Chinese
+  RE producers without requiring HK Stock Connect or mainland China equity access.
+  Holdings concentration: ~30% China exposure via HK-listed names.
+
+investability:
+  type: etf_bucket
+  notes: "Listed on NYSE Arca as REMX. Direct substitute for investors who cannot or prefer not to access HK Stock Connect for Chinese RE names. Note: ETF basket exposure means you own a diversified slice, not concentrated upside from individual companies."
+  proxy_for: null
+
+fundamentals:
+  market_cap_usd_b: 0.4
+  market_cap_date: "2026-06-01"
+  pe_ratio: null
+  sources:
+    - description: "VanEck REMX ETF fund page — holdings, expense ratio, AUM"
+      url: "https://www.vaneck.com/us/en/investments/rare-earth-strategic-metals-etf-remx"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Provides diversified RE exposure with a single ticker — avoids single-company execution risk while maintaining sector exposure"
+  - type: risk
+    note: "ETF basket exposure dilutes upside from individual winners; China-heavy weighting (~30%) carries geopolitical risk"
+
+relationships: []

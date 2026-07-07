@@ -1,0 +1,60 @@
+id: china_rare_earth
+name: China Rare Earth Holdings
+ticker: "0769.HK"
+exchange: "HKEX (HK Stock Connect)"
+layer: raw_materials
+is_dark_horse: true
+description: >
+  State-linked rare earth producer with access to ionic clay deposits in
+  southern China — the primary source of heavy rare earths (dysprosium,
+  terbium) with no non-Chinese equivalent at commercial scale. Heavy REEs
+  are irreplaceable in high-performance permanent magnets.
+
+investability:
+  type: hk_stock_connect
+  notes: "Accessible via HK Stock Connect through most major brokers with HK trading capability (Interactive Brokers, Fidelity International, etc.). REMX ETF (VanEck) provides indirect exposure without requiring direct China equity access."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "State-linked access to ionic clay deposits in southern China — source of heavy REEs with no non-Chinese equivalent at scale"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Domestic and export revenue; government pricing floors and quota system provide partial downside protection"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "State support implicit in Chinese RE sector; leverage manageable; government would not allow strategic RE producer to fail"
+  downside_scenario: >
+    Chinese government sector consolidation results in forced merger unfavorable
+    to minority HK shareholders. Export controls reduce export revenue.
+    US/EU tariffs on Chinese RE products.
+  market_expansion: 8
+  market_expansion_rationale: "Heavy RE demand for EV motors, wind turbines, and robotics growing structurally; Chinese government rationalizing and consolidating sector"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "Within China's RE complex, consolidation creates stronger pricing power for surviving producers"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Heavy REEs (dysprosium, terbium) are irreplaceable in high-performance motors — every AI data center cooling pump and robotics joint needs them"
+  upside_probability: 0.30
+  upside_multiple: 5.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 2.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.8
+  revenue_growth_yoy: 0.05
+  pe_ratio: 15
+  sources:
+    - description: "China Rare Earth Holdings HK Stock Exchange filings"
+      url: "https://www.hkexnews.hk/listedco/listconews/SEHK/company_search.aspx"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "Chinese government RE sector consolidation may result in forced mergers unfavorable to minority HK shareholders"
+  - type: opportunity
+    note: "Heavy RE scarcity outside China gives this company pricing leverage as Western customers seek supply security"
+  - type: risk
+    note: "HK Stock Connect access can be restricted; RMB/HKD currency exposure adds FX risk; China geopolitical risk is unhedgeable"
+
+relationships: []

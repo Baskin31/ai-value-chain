@@ -1,0 +1,58 @@
+id: albemarle
+name: Albemarle Corporation
+ticker: ALB
+exchange: NYSE
+layer: raw_materials
+is_dark_horse: false
+description: >
+  World's largest lithium producer with tier-1 assets in Chile (Salar de Atacama)
+  and the US (Silver Peak, Nevada). Also a major bromine producer. Revenue heavily
+  exposed to lithium spot prices, which collapsed 2023-24.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as ALB. Pure-play lithium with direct US equity access."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "World-class lithium brine assets with decades of reserves; low-cost production position"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "Multi-year supply agreements exist but lithium spot price crash caused ~50% revenue decline 2023-24"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Investment-grade credit but elevated leverage from lithium downturn; dividend cut to preserve liquidity"
+  downside_scenario: >
+    Sustained lithium price weakness below $10/kg destroys project economics.
+    Direct lithium extraction (DLE) technology commoditizes production.
+  market_expansion: 7
+  market_expansion_rationale: "Lithium demand growth underpinned by EV adoption and grid storage regardless of AI cycle"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "Tier-1 producer but faces structural competition from hard-rock and DLE entrants in medium term"
+  strategic_optionality: 5
+  strategic_optionality_rationale: "Lithium is the battery chemistry AI data centers may shift toward for UPS/storage — indirect exposure"
+  upside_probability: 0.40
+  upside_multiple: 3.5
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 6.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 4.3
+  revenue_growth_yoy: -0.42
+  pe_ratio: null
+  sources:
+    - description: "Albemarle Q1 2026 earnings release"
+      url: "https://investors.albemarle.com/financial-information/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "Lithium spot price is the dominant earnings driver — all guidance is price-assumption sensitive"
+  - type: opportunity
+    note: "US government offtake interest for battery supply chain security; IRA credits for domestic production"
+  - type: risk
+    note: "Chilean lithium nationalization risk to Salar de Atacama operations — regulatory overhang"
+
+relationships: []

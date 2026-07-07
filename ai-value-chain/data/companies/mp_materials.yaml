@@ -1,0 +1,58 @@
+id: mp_materials
+name: MP Materials
+ticker: MP
+exchange: NYSE
+layer: raw_materials
+is_dark_horse: false
+description: >
+  Only operating rare earth mining and processing facility in the United States
+  (Mountain Pass, California). Produces NdPr concentrate and is expanding into
+  magnet manufacturing. Strategic importance cemented by DoD contracts.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as MP. Direct US equity exposure to domestic rare earth supply chain."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Only operating US rare earth mine, but China still dominates downstream processing — separation is the real bottleneck"
+  revenue_defensibility: 6
+  revenue_defensibility_rationale: "DoD offtake agreements provide floor, but significant spot price exposure remains"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Net debt position from Stage III expansion capex; FCF negative during buildout"
+  downside_scenario: >
+    China floods market with processed rare earth, making US processing economics
+    untenable. Or: DoD contracts not renewed post-administration change.
+  market_expansion: 7
+  market_expansion_rationale: "Reshoring policy tailwinds; US government demand for domestic rare earth supply chain is structural"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "First-mover in US RE processing, but separation IP is nascent — ceiling depends on successful Stage III execution"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Every advanced magnet motor (EV, wind, defense) needs NdPr regardless of which AI chip wins"
+  upside_probability: 0.45
+  upside_multiple: 4.5
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 3.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.25
+  revenue_growth_yoy: 0.08
+  pe_ratio: null
+  sources:
+    - description: "MP Materials Q1 2026 10-Q filing"
+      url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=MP"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "China controls ~85% of global RE processing — MP competes on geopolitics as much as economics"
+  - type: opportunity
+    note: "IRA and CHIPS Act direct substantial capital to domestic RE supply; DoD is a motivated buyer"
+  - type: risk
+    note: "Stage III magnet manufacturing facility is unproven at scale — execution risk through 2026-27"
+
+relationships: []

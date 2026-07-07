@@ -1,0 +1,60 @@
+id: china_northern_rare_earth
+name: China Northern Rare Earth Group
+ticker: "600111.SS"
+exchange: "SSE (Shanghai-Hong Kong Stock Connect)"
+layer: raw_materials
+is_dark_horse: true
+description: >
+  World's largest single rare earth mining and processing company. The Bayan Obo
+  deposit in Inner Mongolia has decades of reserves of light REEs (Nd, Pr, La, Ce).
+  NdPr (neodymium-praseodymium) is the critical input for permanent magnets in
+  EVs, wind turbines, and robotics — no synthetic substitute exists.
+
+investability:
+  type: hk_stock_connect
+  notes: "A-share listed on Shanghai Stock Exchange (600111.SS). Accessible via Shanghai-Hong Kong Stock Connect. REMX ETF (VanEck) provides basket exposure without direct mainland China equity risk."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "World's largest RE company with the Bayan Obo deposit — one of the largest RE deposits on Earth with decades of reserve life"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Dominant domestic market position; government-set production quotas protect pricing; state-owned enterprise with policy support"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "State-owned enterprise backing provides implicit government guarantee; conservative leverage"
+  downside_scenario: >
+    Chinese government export restrictions reduce export revenue.
+    Sector consolidation reshuffles production quotas.
+    Geopolitical sanctions risk from Western governments.
+  market_expansion: 8
+  market_expansion_rationale: "NdPr demand driven by permanent magnet motors in EVs, wind, and robotics — structural multi-decade demand growth"
+  competitive_position_ceiling: 8
+  competitive_position_rationale: "Dominant in light REEs; scale advantages in separation processing; no credible non-Chinese competitor for NdPr at scale"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "NdPr is the critical input for permanent magnets — every EV, wind turbine, and AI robotics joint needs it. No synthetic substitute."
+  upside_probability: 0.35
+  upside_multiple: 4.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 10.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 4.5
+  revenue_growth_yoy: 0.08
+  pe_ratio: 12
+  sources:
+    - description: "China Northern Rare Earth Group annual report via Shanghai Stock Exchange filings"
+      url: "https://www.sse.com.cn/assortment/stock/list/info/company/index.shtml"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Bayan Obo ore body is one of the largest rare earth deposits on Earth — unmatched reserve life gives structural cost advantages"
+  - type: risk
+    note: "Bayan Obo is also an iron ore mine — RE extraction economics partially tied to steel industry demand cycles"
+  - type: risk
+    note: "Export control escalation risk: China restricted Ga, Ge, Sb in 2023-24 — RE controls would devastate Western supply chains"
+
+relationships: []

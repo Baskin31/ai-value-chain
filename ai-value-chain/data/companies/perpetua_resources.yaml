@@ -1,0 +1,58 @@
+id: perpetua_resources
+name: Perpetua Resources
+ticker: PPTA
+exchange: NASDAQ
+layer: raw_materials
+is_dark_horse: true
+description: >
+  Development-stage company with the Stibnite Gold-Antimony project in Idaho —
+  the only US domestic primary antimony resource. Antimony is a critical mineral
+  for munitions, flame retardants, and grid batteries. Received $1.7B DoD ATAP loan.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as PPTA. Pre-production development stage — high-risk/high-reward profile."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "Sole US domestic primary antimony resource with DoD backing — permitting and government support create a high barrier to entry"
+  revenue_defensibility: 4
+  revenue_defensibility_rationale: "Pre-production development stage — zero operating revenue; entirely dependent on financing and permitting timeline"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "DoD ATAP loan of $1.7B provides significant non-dilutive capital, but equity burn rate high pre-production; significant dilution risk"
+  downside_scenario: >
+    Mine permitting blocked or significantly delayed by conservation litigation.
+    DoD loan terms change or are cancelled. Antimony prices fall on Chinese
+    export normalization, destroying project economics.
+  market_expansion: 8
+  market_expansion_rationale: "Antimony supply is 80%+ Chinese-controlled; US government has identified it as critical mineral with effectively no domestic source"
+  competitive_position_ceiling: 8
+  competitive_position_rationale: "First-mover with government backing in a mineral with no US competition — ceiling is very high if permitted and operational"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Antimony trioxide is used in fire retardants for data center infrastructure — direct AI adjacency beyond defense"
+  upside_probability: 0.35
+  upside_multiple: 8.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 0.7
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.0
+  pe_ratio: null
+  sources:
+    - description: "Perpetua Resources 2025 Annual Report and DoD loan announcement"
+      url: "https://www.perpetuaresources.com/investors"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "US DoD ATAP loan of $1.7B de-risks balance sheet for development — unprecedented government support for a junior miner"
+  - type: risk
+    note: "Stibnite gold-antimony mine permitting opposed by conservation groups — multi-year legal risk in Idaho wilderness adjacent area"
+  - type: opportunity
+    note: "China's October 2024 antimony export controls validated the strategic thesis and created immediate supply crisis"
+
+relationships: []

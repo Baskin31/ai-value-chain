@@ -1,0 +1,58 @@
+id: lynas
+name: Lynas Rare Earths
+ticker: LYSCF
+exchange: "OTC (primary: LYC on ASX)"
+layer: raw_materials
+is_dark_horse: false
+description: >
+  Only significant rare earth producer and processor outside China at commercial
+  scale. Mines at Mount Weld (Australia), processes in Malaysia and expanding to
+  the US (Texas facility with DoD funding). Produces separated NdPr, heavy REEs.
+
+investability:
+  type: adr
+  notes: "Trades OTC in the US as LYSCF (thin liquidity). Primary listing on ASX as LYC — more liquid. Australian brokerage or ADR through major custodians."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Only significant RE producer and processor outside China — 20-year head start on separation IP and permitting"
+  revenue_defensibility: 6
+  revenue_defensibility_rationale: "Long-term supply agreements with Japanese and Western OEMs; processing diversified but Malaysia license is recurring risk"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Net cash, conservative management, no debt overhang — well-run for a mining company"
+  downside_scenario: >
+    Malaysian processing license not renewed; Australian government restricts
+    export of strategic minerals; Chinese RE price collapse destroys economics.
+  market_expansion: 7
+  market_expansion_rationale: "Western governments actively funding RE supply chain alternatives — Lynas is the primary non-Chinese beneficiary"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "Dominant outside China; scale and separation IP are genuine competitive moat with no near-term challenger"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Benefits from any policy that tightens Chinese RE export controls — every tightening increases Lynas' strategic value"
+  upside_probability: 0.45
+  upside_multiple: 4.0
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 4.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.55
+  revenue_growth_yoy: 0.05
+  pe_ratio: 35
+  sources:
+    - description: "Lynas Rare Earths FY2025 Annual Report"
+      url: "https://www.lynasrareearths.com/investors/annual-reports"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "Malaysian operating license renewals are a recurring regulatory overhang — government has previously imposed conditions"
+  - type: opportunity
+    note: "US DoD has funded Lynas Texas facility — cementing strategic partnership and de-risking US market entry"
+  - type: risk
+    note: "Chinese RE export restrictions could paradoxically hurt Lynas if NdPr price spikes depress magnet demand"
+
+relationships: []

@@ -1,0 +1,58 @@
+id: vital_metals
+name: Vital Metals Limited
+ticker: VMLFF
+exchange: "OTC (primary: VML on ASX)"
+layer: raw_materials
+is_dark_horse: true
+description: >
+  Australian junior miner with the Nechalacho rare earth project in Canada's
+  Northwest Territories — a high-grade NdPr-rich deposit in a Five Eyes
+  security-cleared jurisdiction. Early-stage with minimal revenue.
+
+investability:
+  type: adr
+  notes: "OTC in US as VMLFF (very thin liquidity). Primary listing on ASX as VML. Highly speculative small-cap — consider position sizing carefully."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 5
+  moat_durability_rationale: "High-grade NdPr-rich deposit in NWT Canada — good grade but no vertically integrated processing capability"
+  revenue_defensibility: 3
+  revenue_defensibility_rationale: "Early stage — minimal revenue from concentrate sales; entirely dependent on capital raises and partner support"
+  balance_sheet_strength: 3
+  balance_sheet_rationale: "Thin balance sheet with equity dilution risk; sub-$100M market cap means financing risk is significant"
+  downside_scenario: >
+    Cannot self-fund to production; dependent on offtake partners or acquirer
+    who may not materialize. Small-cap liquidity risk. OTC listing provides
+    poor US investor access.
+  market_expansion: 7
+  market_expansion_rationale: "Canadian RE assets increasingly valuable given US-Canada critical minerals partnership and Five Eyes security framework"
+  competitive_position_ceiling: 5
+  competitive_position_rationale: "High-grade asset in a favorable jurisdiction, but processing capability absent — must partner or sell to realize value"
+  strategic_optionality: 4
+  strategic_optionality_rationale: "Deposit contains both light and heavy REEs including dysprosium — heavy RE exposure is valuable but distant"
+  upside_probability: 0.25
+  upside_multiple: 7.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 0.08
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.002
+  pe_ratio: null
+  sources:
+    - description: "Vital Metals ASX announcements and annual report"
+      url: "https://www.vitalmetals.com.au/investors"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "No vertically integrated processing — concentrate must be sold or processed externally; value capture depends on partners"
+  - type: opportunity
+    note: "Proximity to US market and Five Eyes security clearance make this a strategic supply chain asset for Western governments"
+  - type: risk
+    note: "OTC listing provides very poor liquidity for US investors — ASX primary market is more liquid but requires international brokerage"
+
+relationships: []

@@ -1,0 +1,59 @@
+id: energy_fuels
+name: Energy Fuels Inc.
+ticker: UUUU
+exchange: "NYSE American"
+layer: raw_materials
+is_dark_horse: true
+description: >
+  Only US company simultaneously producing uranium and rare earth carbonate
+  at the White Mesa Mill (Utah) — the only licensed and operating conventional
+  uranium mill in the US. Dual-commodity position across two critical minerals.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE American as UUUU. Also trades on TSX as EFR. US-listed direct access."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 6
+  moat_durability_rationale: "Only US company producing both uranium AND RE carbonate at White Mesa Mill — dual-commodity position is uniquely defensible"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "Uranium contracted revenue plus emerging RE revenue; small absolute scale makes revenue lumpy"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Net cash position improved by uranium price recovery; low debt; small company with manageable burn"
+  downside_scenario: >
+    Uranium price reversal; RE carbonate processing economics unproven at
+    commercial scale; small-cap execution and financing risk.
+  market_expansion: 7
+  market_expansion_rationale: "US nuclear renaissance for AI data center power + RE supply security are two independent structural tailwinds"
+  competitive_position_ceiling: 6
+  competitive_position_ceiling_rationale: "Small-cap with genuine optionality across two critical minerals; execution is the binding constraint"
+  competitive_position_rationale: "Small-cap with genuine optionality across two critical minerals; execution is the binding constraint"
+  strategic_optionality: 5
+  strategic_optionality_rationale: "Benefits from both nuclear power demand (data centers) and RE magnet demand — rare dual-commodity position"
+  upside_probability: 0.35
+  upside_multiple: 5.0
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 0.7
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.08
+  revenue_growth_yoy: 0.25
+  pe_ratio: null
+  sources:
+    - description: "Energy Fuels Q1 2026 quarterly report"
+      url: "https://www.energyfuels.com/investors"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "White Mesa Mill is the only licensed and operating conventional uranium mill in the US — a permitted facility has enormous replacement value"
+  - type: risk
+    note: "RE carbonate product requires further processing — not yet producing finished magnet metals; dependent on downstream partners"
+  - type: opportunity
+    note: "AI data center power demand driving nuclear energy investment directly benefits uranium supply thesis"
+
+relationships: []
