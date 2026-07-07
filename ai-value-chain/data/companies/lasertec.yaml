@@ -1,0 +1,66 @@
+id: lasertec
+name: Lasertec Corporation
+ticker: LSRCF
+exchange: "OTC (primary: 6920.T on Tokyo Stock Exchange)"
+layer: lithography_fab_equipment
+is_dark_horse: true
+description: >
+  Only supplier of EUV mask inspection systems (ACTIS series) — a monopoly
+  in a critical chokepoint that ASML's EUV production depends on. Every EUV
+  photomask must pass ACTIS inspection before use. High-NA EUV requires an
+  entirely new ACTIS generation, creating a new product cycle.
+
+investability:
+  type: adr
+  notes: "Trades OTC in the US as LSRCF (thin liquidity — use limit orders). Primary listing on Tokyo Stock Exchange as 6920.T — more liquid. Requires Japan-capable brokerage or international custodian for TSE access."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "Only supplier of EUV mask inspection systems globally — a monopoly in a critical chokepoint with no credible competitor in development"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "ASML EUV shipment rate directly drives ACTIS demand; backlog 2+ years; service contracts on installed base"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash, conservatively managed Japanese company with clean balance sheet and minimal debt"
+  downside_scenario: >
+    EUV adoption slows or ASML shipment guidance cut sharply.
+    Japanese yen strengthens, compressing USD-reported earnings.
+    Single-product concentration means any ACTIS disruption is existential.
+  market_expansion: 8
+  market_expansion_rationale: "Every EUV mask needs ACTIS inspection — demand grows proportionally with EUV shipments; High-NA EUV requires entirely new ACTIS generation"
+  competitive_position_ceiling: 8
+  competitive_position_rationale: "No credible competitor in EUV mask inspection; High-NA EUV introduction creates a new multi-year revenue cycle"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "EUV capacity expansion for AI chip production directly drives Lasertec revenue — every leading-edge AI chip depends on EUV masks"
+  upside_probability: 0.45
+  upside_multiple: 3.5
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 8.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 1.1
+  revenue_growth_yoy: 0.22
+  pe_ratio: 28
+  sources:
+    - description: "Lasertec FY2025 annual results and investor presentation"
+      url: "https://www.lasertec.co.jp/en/ir/results.html"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "High-NA EUV introduction requires an entirely new ACTIS mask inspection toolset — a complete new product cycle for Lasertec"
+  - type: risk
+    note: "OTC ADR (LSRCF) has very poor liquidity vs. TSE primary listing — US investors face significant bid-ask spreads"
+  - type: risk
+    note: "Single-product concentration: if EUV adoption is disrupted, Lasertec has no fallback revenue stream"
+
+relationships:
+  - company_id: asml
+    type: customer
+    note: "ASML's EUV production depends on Lasertec ACTIS for photomask inspection — symbiotic relationship"
+  - company_id: tsmc
+    type: customer
+    note: "TSMC uses ACTIS for all EUV mask qualification at N3/N2 nodes"

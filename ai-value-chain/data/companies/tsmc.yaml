@@ -1,0 +1,69 @@
+id: tsmc
+name: Taiwan Semiconductor Manufacturing Company
+ticker: TSM
+exchange: "NYSE (ADR; primary: 2330.TW on TWSE)"
+layer: fabrication_packaging
+is_dark_horse: false
+description: >
+  World's dominant contract semiconductor manufacturer. Sole producer of
+  leading-edge logic at 3nm and 2nm at commercial scale. NVIDIA, Apple, AMD,
+  Qualcomm, and Broadcom all depend on TSMC exclusively for their most advanced
+  chips. ~60% global foundry market share by revenue.
+
+investability:
+  type: adr
+  notes: "NYSE ADR as TSM (liquid, highly traded). Primary listing on TWSE as 2330.TW for direct Taiwan exposure. Note: Taiwan geopolitical risk applies to both listings."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 9
+  moat_durability_rationale: "Sole manufacturer of leading-edge logic below 5nm at scale; estimated 10-year manufacturing lead over nearest competitor (Samsung Foundry)"
+  revenue_defensibility: 9
+  revenue_defensibility_rationale: "Multi-year capacity agreements with Apple, NVIDIA, AMD, Qualcomm — most revenue booked 12-18 months in advance; customers cannot switch"
+  balance_sheet_strength: 8
+  balance_sheet_rationale: "Net cash; $40B+ annual capex capacity self-funded; fortress balance sheet despite massive ongoing investment"
+  downside_scenario: >
+    Taiwan geopolitical risk materializes — this is the dominant tail risk
+    and cannot be hedged by most investors. TSMC Arizona ramp slower and
+    more expensive than planned, eroding margin advantage.
+  market_expansion: 9
+  market_expansion_rationale: "AI accelerator demand driving unprecedented 3nm and 2nm capacity expansion; CoWoS advanced packaging is a new revenue stream"
+  competitive_position_ceiling: 9
+  competitive_position_rationale: "No competitor within 5 years of matching N3/N2 economics — ceiling is structurally very high if Taiwan risk is managed"
+  strategic_optionality: 9
+  strategic_optionality_rationale: "Every AI chip regardless of designer is fabbed at TSMC — they benefit from the entire AI stack scaling with no application-layer risk"
+  upside_probability: 0.60
+  upside_multiple: 2.5
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 900.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 88.0
+  revenue_growth_yoy: 0.35
+  pe_ratio: 25
+  sources:
+    - description: "TSMC Q1 2026 earnings release and monthly revenue reports"
+      url: "https://investor.tsmc.com/english/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "~90% of leading-edge capacity is in Taiwan — geopolitical risk is the single largest unhedgeable risk for investors"
+  - type: opportunity
+    note: "TSMC Arizona (N4, N3 by 2026) and Japan (mature nodes) provide geographic diversification; US government funding de-risks Arizona expansion"
+  - type: risk
+    note: "Intel Foundry as a US-government-backed alternative represents a long-term competitive threat, though not credible at leading edge within 5 years"
+
+relationships:
+  - company_id: asml
+    type: customer
+    note: "TSMC is ASML's largest EUV customer (~50% of EUV shipments)"
+  - company_id: applied_materials
+    type: customer
+    note: "Major equipment customer for CVD, PVD, and etch across all nodes"
+  - company_id: lam_research
+    type: customer
+    note: "Major etch and deposition equipment customer"

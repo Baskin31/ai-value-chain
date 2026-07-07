@@ -1,0 +1,62 @@
+id: amkor
+name: Amkor Technology Inc.
+ticker: AMKR
+exchange: NASDAQ
+layer: fabrication_packaging
+is_dark_horse: true
+description: >
+  Second-largest OSAT globally. Strong position in automotive and mobile
+  advanced packaging. Growing US-onshoring story with Arizona factory serving
+  domestic customers (DoD, Apple, automotive). Benefiting from advanced
+  packaging demand for AI chips.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as AMKR. Mid-cap US-listed OSAT with US-onshoring angle."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 6
+  moat_durability_rationale: "Second-largest OSAT with strong automotive and mobile advanced packaging — qualification costs create stickiness but less scale moat than ASE"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Customer base diversified across mobile (Apple), automotive, and compute; long-term supply agreements with key customers"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Net cash improving as capex-heavy Arizona factory phase winds down; conservative capital allocation"
+  downside_scenario: >
+    Apple concentration: Apple is ~20% of revenue — any Apple advanced packaging
+    moves in-house would be a significant headwind.
+  market_expansion: 8
+  market_expansion_rationale: "Automotive semiconductor content growing; AI edge inference chips need packaging; US-onshoring demand is a new vector"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "Arizona facility positions Amkor uniquely for US domestic customers (DoD, automotive OEMs) — differentiated from Asian competitors"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Automotive AI (ADAS, autonomous driving) requires reliable advanced packaging — Amkor's automotive expertise is a differentiator"
+  upside_probability: 0.40
+  upside_multiple: 3.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 5.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 6.4
+  revenue_growth_yoy: 0.08
+  pe_ratio: 10
+  sources:
+    - description: "Amkor Technology Q1 2026 earnings release"
+      url: "https://ir.amkor.com/financial-information/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Arizona factory (AMKR US) positions Amkor for US-onshoring demand from DoD and domestic customers — unique among OSATs"
+  - type: risk
+    note: "Mobile packaging demand stagnant — automotive AI ramp must offset; Apple concentration is a customer dependency risk"
+  - type: opportunity
+    note: "CHIPS Act eligible for US-domiciled OSAT operations — potential government funding for Arizona expansion"
+
+relationships:
+  - company_id: ase_technology
+    type: competitor
+    note: "Global #1 vs #2 OSAT — compete for the same advanced packaging customers worldwide"

@@ -1,0 +1,65 @@
+id: samsung_electronics
+name: Samsung Electronics
+ticker: SSNLF
+exchange: "OTC (primary: 005930.KS on KRX)"
+layer: fabrication_packaging
+is_dark_horse: false
+description: >
+  World's largest memory chip maker (DRAM + NAND) and second-largest foundry.
+  Vertically integrated across DRAM, NAND, display, and logic foundry.
+  Lost HBM market leadership to SK Hynix in 2024 due to yield issues.
+  Attempting recovery with HBM4 and foundry node improvements.
+
+investability:
+  type: adr
+  notes: "OTC in the US as SSNLF (thin liquidity). Primary listing on KRX as 005930.KS — requires Korea-capable brokerage. Some brokers offer Samsung GDR access."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Vertically integrated across DRAM, NAND, and foundry — unique position combining memory and logic manufacturing with massive scale"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Memory revenue (~50% of sales) is cyclical; foundry trailing TSMC; but consumer electronics and display diversify"
+  balance_sheet_strength: 9
+  balance_sheet_rationale: "Enormous net cash position (~$100B); one of the strongest balance sheets of any technology company globally"
+  downside_scenario: >
+    HBM4 execution fails — Samsung loses another generation to SK Hynix.
+    Foundry continues to trail TSMC by 1-2 nodes with no customer recovery.
+  market_expansion: 7
+  market_expansion_rationale: "HBM4 and advanced DRAM demand for AI is Samsung's opportunity to reclaim memory leadership; foundry recovery would be a second vector"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If Samsung executes on HBM4 and closes the foundry gap, re-rating from extremely cheap valuation is the opportunity"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Memory + logic + display + components — benefits from the entire consumer and enterprise electronics stack regardless of AI winner"
+  upside_probability: 0.40
+  upside_multiple: 2.5
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 300.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 200.0
+  revenue_growth_yoy: 0.15
+  pe_ratio: 12
+  sources:
+    - description: "Samsung Electronics Q1 2026 earnings release"
+      url: "https://www.samsung.com/us/aboutsamsung/investor-relations/financial-information/earning-releases"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "HBM3e yield problems caused Samsung to lose NVIDIA HBM supply to SK Hynix — HBM4 execution is a must-win recovery attempt"
+  - type: opportunity
+    note: "Cheap absolute valuation (~0.9x book) embeds significant pessimism — material re-rating possible if HBM and foundry execution improves"
+  - type: risk
+    note: "Korean chaebol governance discount and cross-shareholding structure reduce capital efficiency and create minority shareholder risk"
+
+relationships:
+  - company_id: asml
+    type: customer
+    note: "Second-largest EUV customer for Samsung Foundry and DRAM production"
+  - company_id: lam_research
+    type: customer
+    note: "Major etch and deposition equipment customer for memory and logic"

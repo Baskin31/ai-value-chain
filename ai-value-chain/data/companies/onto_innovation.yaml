@@ -1,0 +1,61 @@
+id: onto_innovation
+name: Onto Innovation Inc.
+ticker: ONTO
+exchange: NASDAQ
+layer: lithography_fab_equipment
+is_dark_horse: true
+description: >
+  Specialty metrology and inspection tools for advanced packaging and compound
+  semiconductors. Focus areas include CoWoS/SoIC advanced packaging inspection
+  and SiC/GaN wafer metrology — two of the fastest-growing semiconductor segments.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as ONTO. Mid-cap US-listed semiconductor equipment dark horse."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 6
+  moat_durability_rationale: "Specialty metrology tools for advanced packaging — niche but defensible; process-of-record qualification costs deter switching"
+  revenue_defensibility: 6
+  revenue_defensibility_rationale: "Smaller installed base than AMAT/LRCX; customer concentration (top 5 ~60% revenue) is a risk"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash, profitable, conservatively managed — no balance sheet risk"
+  downside_scenario: >
+    Large customer (TSMC or NVIDIA) reduces CoWoS capacity plans.
+    KLA or AMAT develop competing advanced packaging inspection tools.
+  market_expansion: 7
+  market_expansion_rationale: "Advanced packaging for AI chips (CoWoS, SoIC) is the fastest-growing semiconductor subsegment — TSMC CoWoS capacity is tripling"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "Could become the dominant inspection vendor for advanced packaging — currently best-positioned in this specific niche"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Advanced packaging growth is directly driven by AI chip complexity — every chiplet integration needs metrology"
+  upside_probability: 0.40
+  upside_multiple: 4.0
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 5.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.58
+  revenue_growth_yoy: 0.18
+  pe_ratio: 25
+  sources:
+    - description: "Onto Innovation Q1 2026 earnings release"
+      url: "https://investors.ontoinnovation.com/financial-information/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "TSMC CoWoS capacity expansion for NVIDIA AI chips requires Onto Innovation advanced packaging inspection tools"
+  - type: risk
+    note: "KLA and Applied Materials have larger R&D budgets and could develop competing advanced packaging inspection tools"
+  - type: opportunity
+    note: "SiC power semiconductor metrology is a growing second revenue stream as SiC adoption accelerates"
+
+relationships:
+  - company_id: tsmc
+    type: customer
+    note: "CoWoS advanced packaging inspection — key customer for advanced packaging metrology"

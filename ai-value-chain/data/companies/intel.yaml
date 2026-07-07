@@ -1,0 +1,63 @@
+id: intel
+name: Intel Corporation
+ticker: INTC
+exchange: NASDAQ
+layer: fabrication_packaging
+is_dark_horse: false
+description: >
+  Former semiconductor leader now in a difficult turnaround. Only US company
+  with both chip design and leading-edge fab (IDM model). Intel Foundry (IFS)
+  is targeting external customers with the 18A process node. Received $8.5B
+  in CHIPS Act grants plus $11B in loans.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as INTC. Highly liquid US-listed. Turnaround story with binary outcomes — high risk, potentially high reward from distressed entry."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 5
+  moat_durability_rationale: "x86 architecture IP and established OEM relationships remain valuable, but manufacturing lead has evaporated — moat is eroding"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "PC/server CPU revenue declining as AMD gains share; foundry revenue minimal and cash-burning; IDM 2.0 strategy unproven"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "Debt-laden from massive capex program; dividend cut; ongoing operating losses in foundry and PC segments"
+  downside_scenario: >
+    18A process node fails to achieve competitive yields.
+    Further market share loss in data center CPUs to AMD.
+    Foundry customers defect or never sign up. Bankruptcy risk is non-zero.
+  market_expansion: 6
+  market_expansion_rationale: "Intel 18A could be competitive if yields are achieved — credibility requires successful external customer tapeout by 2026"
+  competitive_position_ceiling: 5
+  competitive_position_rationale: "If Intel Foundry achieves 18A and attracts external customers, the re-rating from severely depressed levels could be large"
+  strategic_optionality: 5
+  strategic_optionality_rationale: "Only US company with both chip design and leading-edge fab — US government strategic value provides a floor on how bad it can get"
+  upside_probability: 0.25
+  upside_multiple: 3.0
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 95.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 52.0
+  revenue_growth_yoy: -0.08
+  pe_ratio: null
+  sources:
+    - description: "Intel Q1 2026 earnings release and CHIPS Act announcement"
+      url: "https://www.intc.com/investor-relations/financial-information/quarterly-earnings"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "CHIPS Act funding ($8.5B grants + $11B loans) comes with strings and oversight — not a blank check, and turnaround timelines keep slipping"
+  - type: opportunity
+    note: "If AI inference shifts to x86-optimized silicon, Intel's architecture and x86 ecosystem has genuine residual value"
+  - type: risk
+    note: "Pat Gelsinger departure and leadership instability signal internal execution challenges; foundry customer confidence is fragile"
+
+relationships:
+  - company_id: asml
+    type: customer
+    note: "Intel is qualifying ASML High-NA EUV for 18A process node"

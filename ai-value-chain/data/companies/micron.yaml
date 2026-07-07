@@ -1,0 +1,66 @@
+id: micron
+name: Micron Technology Inc.
+ticker: MU
+exchange: NASDAQ
+layer: memory
+is_dark_horse: false
+description: >
+  Only US-based DRAM manufacturer and one of three global DRAM oligopolists.
+  Secured NVIDIA HBM3e design wins in 2024. Receiving $6.1B in CHIPS Act
+  grants for US fab expansion. HBM for AI accelerators is the highest-margin
+  and fastest-growing segment.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as MU. High-liquidity US-listed. Only US-based DRAM exposure."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 6
+  moat_durability_rationale: "One of three DRAM oligopolists; HBM3e design wins at NVIDIA demonstrate process capability; US strategic positioning is a soft moat"
+  revenue_defensibility: 6
+  revenue_defensibility_rationale: "DRAM and NAND cycles are violent; HBM supply agreements with NVIDIA add qualified revenue visibility but are still a minority of sales"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Investment grade; capex program funded partly by $6.1B CHIPS Act grants; net debt manageable at current commodity prices"
+  downside_scenario: >
+    Memory cycle turns down; NAND oversupply repeats 2022-23 pattern.
+    SK Hynix and Samsung maintain HBM lead, preventing Micron from expanding
+    HBM market share beyond current ~20%.
+  market_expansion: 8
+  market_expansion_rationale: "HBM for AI training is the fastest-growing memory segment — each new GPU generation requires more HBM capacity per chip"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If Micron closes the HBM technology gap with SK Hynix, the valuation re-rating is material from a structurally undervalued base"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "AI training requires HBM; AI inference requires LPDDR5/DDR5 — Micron benefits from both ends of the AI compute spectrum"
+  upside_probability: 0.50
+  upside_multiple: 3.5
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 120.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 28.0
+  revenue_growth_yoy: 0.52
+  pe_ratio: 22
+  sources:
+    - description: "Micron Technology Q2 FY2026 earnings release"
+      url: "https://investors.micron.com/financial-information/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Only US-based DRAM manufacturer — strategic value for US supply chain security; CHIPS Act funding validates government commitment"
+  - type: risk
+    note: "HBM yield and capacity ramp is the critical execution variable — Micron previously fell behind SK Hynix on HBM3e timing"
+  - type: opportunity
+    note: "NVIDIA HBM3e design win validates process capability and creates a recurring qualified supply relationship"
+
+relationships:
+  - company_id: lam_research
+    type: customer
+    note: "Major etch and deposition equipment customer for DRAM and NAND"
+  - company_id: applied_materials
+    type: customer
+    note: "Major CVD and PVD equipment customer for memory manufacturing"

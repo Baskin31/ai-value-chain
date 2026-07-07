@@ -1,0 +1,62 @@
+id: ase_technology
+name: ASE Technology Holding Co.
+ticker: ASX
+exchange: "NYSE (ADR)"
+layer: fabrication_packaging
+is_dark_horse: true
+description: >
+  World's largest OSAT (outsourced semiconductor assembly and test) company.
+  Leading capabilities in advanced packaging: SiP (system in package), flip chip,
+  2.5D interposer, and CoWoS-equivalent fan-out. Directly benefits from AI chip
+  complexity driving advanced packaging demand beyond TSMC's in-house capacity.
+
+investability:
+  type: adr
+  notes: "NYSE ADR as ASX. Also trades on TWSE as 3711.TW. Liquid ADR for US investors seeking advanced packaging exposure."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "World's largest OSAT with scale advantages in advanced packaging (SiP, flip chip, 2.5D) — qualification costs create sticky customer relationships"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Diversified customer base across fabless, IDM, and foundry customers; long-term framework agreements with major customers"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Moderate leverage; consistent FCF generation; manageable capex requirements for capacity expansion"
+  downside_scenario: >
+    TSMC brings more advanced packaging in-house (InFO, CoWoS) for its largest
+    customers, reducing OSAT addressable market.
+  market_expansion: 8
+  market_expansion_rationale: "AI chips require advanced packaging at 5-10x the complexity of traditional chips — OSAT market growing faster than fab market"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "Advanced packaging is the fastest-growing semiconductor segment; ASE expanding CoWoS-equivalent capacity aggressively"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Every chiplet and heterogeneous integration design requires OSAT — directly benefits from AI chip complexity trend"
+  upside_probability: 0.45
+  upside_multiple: 3.5
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 20.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 18.0
+  revenue_growth_yoy: 0.12
+  pe_ratio: 15
+  sources:
+    - description: "ASE Technology Holding Q1 2026 earnings release"
+      url: "https://ir.aseglobal.com/english/financial-information/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Demand for advanced packaging far exceeds current industry capacity — ASE is expanding CoWoS-equivalent capabilities to capture overflow from TSMC"
+  - type: risk
+    note: "TSMC CoWoS in-house capacity expansion for Apple and NVIDIA's highest-end packages partially displaces OSAT revenue"
+  - type: opportunity
+    note: "HBM integration with AI processors requires advanced packaging expertise — ASE is building dedicated HBM packaging lines"
+
+relationships:
+  - company_id: tsmc
+    type: competitor
+    note: "TSMC's in-house CoWoS/InFO advanced packaging competes with ASE in the highest-end packaging segment"

@@ -1,0 +1,58 @@
+id: cxmt
+name: ChangXin Memory Technologies (CXMT)
+ticker: null
+exchange: null
+layer: memory
+is_dark_horse: true
+description: >
+  China's first credible DRAM manufacturer — reached DDR5 mass production
+  in 2024, backed by approximately $10B in state investment. Critical vehicle
+  for China's DRAM self-sufficiency strategy. Uninvestable directly but
+  relevant to competitive dynamics for Micron and SK Hynix.
+
+investability:
+  type: uninvestable
+  notes: "Not listed. No ADR. No accessible proxy captures CXMT upside directly. Monitor competitive impact on Micron and SK Hynix. Consider tracking Chinese domestic semiconductor ETFs for indirect exposure."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Unlimited state investment and captive domestic market create effective moat — Chinese OEMs are directed to qualify CXMT DRAM"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Captive domestic market of Chinese smartphone and PC makers mandated to qualify CXMT memory provides demand floor"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Effectively unlimited state backing — Chinese government would not allow CXMT to fail given strategic importance"
+  downside_scenario: >
+    Equipment sanctions prevent progression to sub-10nm DRAM nodes.
+    Cannot develop HBM equivalent without EUV lithography access.
+    Cost structure permanently uncompetitive vs. SK Hynix without subsidies.
+  market_expansion: 7
+  market_expansion_rationale: "Chinese domestic DRAM market is enormous — CXMT can grow domestically even if export markets remain closed"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If CXMT achieves leading-edge DRAM (HBM equivalents) within 5 years, geopolitical implications for the global memory industry are massive"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Domestic AI accelerator chips (Huawei Ascend, Cambricon) need domestic HBM equivalent — CXMT is the only candidate supplier"
+  upside_probability: 0.30
+  upside_multiple: 5.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 12.0
+  market_cap_date: "2026-06-01"
+  pe_ratio: null
+  sources:
+    - description: "CXMT company overview and industry reports (private company — limited public data)"
+      url: "https://www.cxmt.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: risk
+    note: "Equipment sanctions may prevent CXMT from progressing beyond current DRAM nodes — EUV access is blocked, limiting leading-edge roadmap"
+  - type: risk
+    note: "Production cost structure is unknown — may require indefinite government subsidy to remain competitive with SK Hynix and Micron"
+  - type: opportunity
+    note: "Uninvestable directly — but a credible CXMT is a competitive threat to Micron and SK Hynix; monitoring CXMT progress informs views on listed competitors"
+
+relationships: []

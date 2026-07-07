@@ -1,0 +1,69 @@
+id: sk_hynix
+name: SK Hynix Inc.
+ticker: HXSCL
+exchange: "OTC (primary: 000660.KS on KRX)"
+layer: memory
+is_dark_horse: false
+description: >
+  HBM (high bandwidth memory) market leader — supplied approximately 70% of
+  NVIDIA's HBM3e in 2024-25. Fastest HBM process development cadence in the
+  industry. Also the world's #2 DRAM producer by revenue. NVIDIA's de-facto
+  preferred HBM partner.
+
+investability:
+  type: proxy
+  notes: "HXSCL trades OTC in the US but with very thin liquidity — consider limit orders only. Primary listing on KRX as 000660.KS requires Korea-capable brokerage (Interactive Brokers has access)."
+  proxy_for: "000660.KS — primary KRX listing; HXSCL OTC is technically accessible but illiquid"
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "HBM market leader with 12-18 month process lead over Samsung — NVIDIA HBM3e preference represents a qualified process-of-record advantage"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "NVIDIA HBM3e supply agreements provide multi-quarter revenue visibility; general DRAM cycle adds underlying volatility"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net debt but manageable at current HBM pricing; strong FCF in memory upcycles; SK Group backing"
+  downside_scenario: >
+    Samsung recovers HBM yield problem and closes the gap.
+    Micron catches up on HBM4, fragmenting SK Hynix's market share.
+    HBM pricing normalizes as industry capacity scales.
+  market_expansion: 8
+  market_expansion_rationale: "HBM is the highest-margin memory product ever produced; SK Hynix is structurally positioned as the dominant supplier through 2026"
+  competitive_position_ceiling: 8
+  competitive_position_rationale: "If HBM maintains its premium economics and SK Hynix holds 60%+ share, re-rating from cheap Korean valuation could be large"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "NVIDIA, AMD, and hyperscaler AI accelerators all require HBM — SK Hynix sits at a critical chokepoint in the AI compute supply chain"
+  upside_probability: 0.50
+  upside_multiple: 3.0
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 85.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 56.0
+  revenue_growth_yoy: 0.68
+  pe_ratio: 12
+  sources:
+    - description: "SK Hynix Q1 2026 earnings release"
+      url: "https://www.skhynix.com/eng/invest/IR.jsp"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "HBM3e and HBM4 qualification lead over Samsung is estimated at 12-18 months — difficult for Samsung to close quickly"
+  - type: risk
+    note: "Korean market governance discount and geopolitical proximity risk (North Korea) suppresses valuation multiples vs. US peers"
+  - type: opportunity
+    note: "HBM4 next-generation product cycle — SK Hynix is first to qualify, extending market leadership to 2027+"
+
+relationships:
+  - company_id: lam_research
+    type: customer
+    note: "Critical HBM etch and deposition equipment — Lam's ALD tools are central to HBM production"
+  - company_id: micron
+    type: competitor
+    note: "Global DRAM market: SK Hynix #1 in HBM, competes directly with Micron for AI accelerator HBM supply"
+  - company_id: samsung_electronics
+    type: competitor
+    note: "Direct competitor in DRAM and HBM — Samsung is attempting HBM4 recovery to reclaim market share"

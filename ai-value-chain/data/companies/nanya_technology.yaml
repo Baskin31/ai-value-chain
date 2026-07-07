@@ -1,0 +1,59 @@
+id: nanya_technology
+name: Nanya Technology Corporation
+ticker: "2408.TW"
+exchange: "TWSE (requires Taiwan brokerage; no liquid US ADR)"
+layer: memory
+is_dark_horse: true
+description: >
+  Trailing-edge DRAM producer (1Y/1Z process nodes) serving embedded and
+  industrial applications. Part of the Formosa Plastics Group. Not competing
+  in HBM or cutting-edge server DRAM. Niche but resilient market in
+  industrial, automotive, and consumer DRAM.
+
+investability:
+  type: proxy
+  notes: "No liquid US ADR exists. Access requires Taiwan brokerage account or wait for potential DR issuance. Primary listing TWSE: 2408.TW."
+  proxy_for: "No accessible US proxy — requires direct TWSE access via Taiwan-capable brokerage"
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 4
+  moat_durability_rationale: "Trailing-edge DRAM with Formosa Plastics Group backing — but permanently behind SK Hynix and Micron on technology nodes"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "Consumer and industrial DRAM revenue; no HBM exposure; more stable than leading-edge DRAM but limited upside"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Formosa Plastics Group backing provides implicit support; conservative leverage for a cyclical company"
+  downside_scenario: >
+    Technology node gap vs. SK Hynix and Micron continues to widen.
+    No credible path to HBM competitiveness without a transformative capital event.
+  market_expansion: 6
+  market_expansion_rationale: "Specialty and industrial DRAM for embedded applications (automotive, IoT) is less cyclical than PC/server DRAM"
+  competitive_position_ceiling: 5
+  competitive_position_rationale: "Could benefit from China+1 supply chain diversification as non-Chinese, non-Korean DRAM alternative for Taiwan-friendly OEMs"
+  strategic_optionality: 5
+  strategic_optionality_rationale: "Industrial IoT and automotive DRAM demand is less cyclical than PC/server — provides downside buffer but limited upside optionality"
+  upside_probability: 0.25
+  upside_multiple: 4.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 4.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 1.2
+  revenue_growth_yoy: 0.08
+  pe_ratio: null
+  sources:
+    - description: "Nanya Technology annual report via TWSE filings"
+      url: "https://www.nanya.com/en/Investor-Relations/Financial-Reports"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "Permanently trailing-edge — unlikely to close the technology gap with SK Hynix or Micron without transformative capital investment"
+  - type: opportunity
+    note: "Formosa Plastics Group financial backing provides access to capital if strategic decision to upgrade nodes is made"
+  - type: risk
+    note: "No accessible US investment vehicle — limits investor base to those with direct TWSE access"
+
+relationships: []

@@ -1,0 +1,69 @@
+id: asml
+name: ASML Holding
+ticker: ASML
+exchange: NASDAQ
+layer: lithography_fab_equipment
+is_dark_horse: false
+description: >
+  Sole manufacturer of EUV (extreme ultraviolet) lithography systems required
+  for sub-7nm semiconductor manufacturing. Also produces DUV systems used at
+  mature nodes. ~90% gross margin on EUV tools. Backlog visibility 2+ years.
+  No credible competitor within 5-10 years.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as ASML (ADR structure). Also trades on Euronext Amsterdam as ASML. Highly liquid — one of the most accessible European semiconductor names for US investors."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 9
+  moat_durability_rationale: "EUV is a 20-year R&D moat accumulated by ASML alone — no competitor has ever shipped an EUV system commercially"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "Multi-year backlog (€39B+ as of 2025); service revenue ~25% of sales is highly recurring; customers cannot switch suppliers"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash positive; strong FCF but capex-heavy R&D investment required to sustain technology lead"
+  downside_scenario: >
+    Export controls expand to cover DUV systems, collapsing China revenue
+    (~15% of sales). Or: geopolitical disruption of Veldhoven facility.
+    Or: leading-edge semiconductor investment cycle turns down sharply.
+  market_expansion: 8
+  market_expansion_rationale: "Gate-all-around transistor transition and High-NA EUV introduction drive a second major upgrade cycle through 2027-30"
+  competitive_position_ceiling: 9
+  competitive_position_rationale: "No competitor within 5-10 years of EUV parity — TSMC, Samsung, Intel all dependent on ASML for leading-edge capability"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Benefits from any AI capex that flows to advanced node semiconductor production — the entire AI chip stack depends on ASML"
+  upside_probability: 0.50
+  upside_multiple: 3.5
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 285.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 27.6
+  revenue_growth_yoy: 0.12
+  pe_ratio: 32
+  sources:
+    - description: "ASML Q1 2026 earnings release and investor presentation"
+      url: "https://www.asml.com/en/investors/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "Export controls are an existential variable: Dutch and US governments control ASML's addressable market via export licenses"
+  - type: opportunity
+    note: "Intel's foundry ambitions are a large incremental customer if 18A process node achieves competitive yields"
+  - type: risk
+    note: "TSMC concentration: ~50% of EUV revenue; if TSMC capex contracts, ASML follows with a lag"
+
+relationships:
+  - company_id: tsmc
+    type: customer
+    note: "~50% of EUV shipments go to TSMC for N3/N2 production"
+  - company_id: samsung_electronics
+    type: customer
+    note: "Second-largest EUV customer for Samsung Foundry and DRAM"
+  - company_id: intel
+    type: customer
+    note: "Intel is qualifying ASML High-NA EUV for 18A node"

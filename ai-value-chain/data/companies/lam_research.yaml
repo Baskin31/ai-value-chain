@@ -1,0 +1,64 @@
+id: lam_research
+name: Lam Research Corporation
+ticker: LRCX
+exchange: NASDAQ
+layer: lithography_fab_equipment
+is_dark_horse: false
+description: >
+  Dominant supplier of etch and deposition equipment for memory semiconductors.
+  ~60% share of the etch equipment market. Revenue heavily tied to NAND and
+  DRAM capex cycles. HBM memory for AI accelerators is a structural new demand driver.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as LRCX. High-liquidity US-listed semiconductor equipment company."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Dominant in etch (60%+ market share) and deposition for memory — deep process-of-record qualifications at SK Hynix, Micron, Samsung"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Memory-heavy revenue mix means cyclicality is higher than ASML; service revenue ~35% of sales partially offsets"
+  balance_sheet_strength: 8
+  balance_sheet_rationale: "Net cash, very strong FCF, conservative balance sheet management"
+  downside_scenario: >
+    Memory capex downcycle (NAND oversupply is the historical pattern every 3-4 years).
+    China export restrictions erode ~30% of revenue.
+  market_expansion: 7
+  market_expansion_rationale: "HBM (high bandwidth memory) for AI training requires new atomic-layer etch processes Lam dominates — direct AI tailwind"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "Etch dominance is real and defensible; memory capex cycles are violent but recoverable at each new node"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Every AI chip needs HBM — every HBM wafer requires Lam etch tools; inference scaling is a second wave"
+  upside_probability: 0.50
+  upside_multiple: 3.0
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 90.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 14.9
+  revenue_growth_yoy: 0.20
+  pe_ratio: 23
+  sources:
+    - description: "Lam Research Q3 FY2026 earnings release"
+      url: "https://investor.lamresearch.com/financial-information/quarterly-results"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "HBM demand from AI training and inference is a structural new demand pool for etch tools — each AI accelerator needs multiple HBM stacks"
+  - type: risk
+    note: "Memory is more cyclical than logic — revenue visibility worse than ASML or AMAT; NAND oversupply cycles are severe"
+  - type: risk
+    note: "China export restrictions have structurally reduced SAM for memory tools sold to Chinese customers"
+
+relationships:
+  - company_id: micron
+    type: customer
+    note: "Major DRAM and NAND etch equipment customer"
+  - company_id: sk_hynix
+    type: customer
+    note: "HBM etch and deposition tools — critical for HBM3e/HBM4 production"

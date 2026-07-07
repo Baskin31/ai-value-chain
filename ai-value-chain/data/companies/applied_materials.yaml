@@ -1,0 +1,65 @@
+id: applied_materials
+name: Applied Materials Inc.
+ticker: AMAT
+exchange: NASDAQ
+layer: lithography_fab_equipment
+is_dark_horse: false
+description: >
+  World's largest semiconductor equipment company by revenue. Provides CVD,
+  PVD, etch, CMP, and inspection tools across logic, memory, and display.
+  No single-customer dependency like ASML but strong installed base across
+  all chipmakers globally.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as AMAT. High-liquidity US-listed semiconductor equipment bellwether."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Broad CVD/PVD/etch/CMP portfolio with deep process-of-record qualifications — replacing qualified tools is expensive and risky"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Service revenue ~25% of sales provides recurring floor; fab equipment cycles but service contracts are multi-year"
+  balance_sheet_strength: 8
+  balance_sheet_rationale: "Net cash, strong consistent FCF generation; returns capital via buybacks and dividends"
+  downside_scenario: >
+    Equipment overcapacity if AI capex cycle reverses sharply.
+    China export restrictions continue to erode SAM (~30% of revenue pre-2023).
+  market_expansion: 7
+  market_expansion_rationale: "Gate-all-around transistors and advanced packaging (CoWoS, HBM stacking) require new deposition and etch tools"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "Competes against Lam, KLA, Tokyo Electron — no monopoly but top-3 in most process steps; breadth is the moat"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "Benefits from any advanced node semiconductor investment regardless of which chipmaker wins — picks-and-shovels in the AI compute buildout"
+  upside_probability: 0.50
+  upside_multiple: 3.0
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 140.0
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 26.5
+  revenue_growth_yoy: 0.07
+  pe_ratio: 22
+  sources:
+    - description: "Applied Materials Q2 FY2026 earnings release"
+      url: "https://ir.appliedmaterials.com/financial-information/quarterly-earnings"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "China represented ~30% of revenue before export controls — ongoing erosion of this revenue stream is structural"
+  - type: opportunity
+    note: "Advanced packaging (CoWoS, HBM stacking) requires new etch and deposition tools — growing TAM directly tied to AI chip complexity"
+  - type: risk
+    note: "Semiconductor equipment cycles are violent — capex cuts from memory or logic makers hit AMAT disproportionately"
+
+relationships:
+  - company_id: tsmc
+    type: customer
+    note: "Major logic fab customer for CVD, PVD, and etch tools"
+  - company_id: micron
+    type: customer
+    note: "Major memory customer for DRAM and NAND process equipment"
