@@ -1,0 +1,21 @@
+# Scoring weights — must sum to 1.0 within each group
+floor_weights:
+  moat_durability: 0.30
+  revenue_defensibility: 0.40
+  balance_sheet_strength: 0.30
+
+ceiling_weights:
+  market_expansion: 0.40
+  competitive_position_ceiling: 0.30
+  strategic_optionality: 0.30
+
+# Applied to ceiling score only — compresses upside from today's entry price
+valuation_sentiment_multipliers:
+  cheap: 1.20
+  fair: 1.00
+  stretched: 0.85
+  priced_for_perfection: 0.70
+
+# Physical cap on upside multiples — prevents flattering large-cap companies.
+# Default: largest market cap ever reached (~$3.8T Apple peak) × 2 = $8T.
+max_plausible_market_cap_usd_b: 8000

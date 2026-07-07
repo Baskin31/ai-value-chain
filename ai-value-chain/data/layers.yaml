@@ -1,0 +1,37 @@
+layers:
+  - id: raw_materials
+    name: Raw Materials & Refining
+    order: 1
+    accent_color: "#a78bfa"
+  - id: lithography_fab_equipment
+    name: Lithography & Fab Equipment
+    order: 2
+    accent_color: "#60a5fa"
+  - id: fabrication_packaging
+    name: Fabrication & Advanced Packaging
+    order: 3
+    accent_color: "#34d399"
+  - id: memory
+    name: Memory
+    order: 4
+    accent_color: "#fbbf24"
+  - id: silicon_design
+    name: Silicon Design
+    order: 5
+    accent_color: "#f87171"
+  - id: energy_power
+    name: Energy & Power
+    order: 6
+    accent_color: "#fb923c"
+  - id: data_centers_compute
+    name: Data Centers & Compute
+    order: 7
+    accent_color: "#38bdf8"
+  - id: frontier_labs
+    name: Frontier Model Labs
+    order: 8
+    accent_color: "#e879f9"
+  - id: application_harness
+    name: Application & Harness Layer
+    order: 9
+    accent_color: "#4ade80"
