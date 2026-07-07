@@ -1,12 +1,10 @@
 import { DisclaimerModal } from './components/Disclaimer'
 import { AppLayout } from './components/layout/AppLayout'
 import { DetailPanel } from './components/layout/DetailPanel'
+import { StackView } from './components/views/StackView'
 import { useAppStore } from './store'
 
 // Placeholder view components — replaced in later phases
-function StackView() {
-  return <div className="p-8 text-slate-400 font-mono text-sm">Stack view — coming in Phase 12</div>
-}
 function ScatterView() {
   return <div className="p-8 text-slate-400 font-mono text-sm">Scatter view — coming in Phase 14</div>
 }
