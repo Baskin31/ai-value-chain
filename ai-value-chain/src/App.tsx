@@ -2,13 +2,11 @@ import { DisclaimerModal } from './components/Disclaimer'
 import { AppLayout } from './components/layout/AppLayout'
 import { DetailPanel } from './components/layout/DetailPanel'
 import { StackView } from './components/views/StackView'
+import { ScatterView } from './components/views/ScatterView'
 import { CompanyDetail } from './components/company/CompanyDetail'
 import { useAppStore } from './store'
 
 // Placeholder view components — replaced in later phases
-function ScatterView() {
-  return <div className="p-8 text-slate-400 font-mono text-sm">Scatter view — coming in Phase 14</div>
-}
 function RankingView() {
   return <div className="p-8 text-slate-400 font-mono text-sm">Ranking view — coming in Phase 15</div>
 }
