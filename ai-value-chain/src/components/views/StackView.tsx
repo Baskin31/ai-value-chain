@@ -1,24 +1,23 @@
 import { useMemo } from 'react'
-import { companies, layers, modelConfig } from '../../data/loader'
-import { scoreCompany } from '../../model'
+import { companies, layers } from '../../data/loader'
 import { useAppStore } from '../../store'
+import { useScoredCompanies } from '../../hooks/useScoredCompanies'
 import { CompanyCard } from '../company/CompanyCard'
 import type { ScoredCompany } from '../../model'
 import type { Layer } from '../../schema/types'
 
 export function StackView() {
   const { activeLayerIds } = useAppStore()
+  const allScored = useScoredCompanies()
 
-  // Score all companies that have a model
+  // Build a map from company id to scored entry
   const scoredMap = useMemo(() => {
     const map = new Map<string, ScoredCompany>()
-    for (const company of companies) {
-      if (company.model) {
-        map.set(company.id, scoreCompany(company, modelConfig))
-      }
+    for (const entry of allScored) {
+      map.set(entry.company.id, entry)
     }
     return map
-  }, [])
+  }, [allScored])
 
   // Sort layers by order
   const sortedLayers = useMemo(

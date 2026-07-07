@@ -1,8 +1,8 @@
 import { useEffect, useRef, useMemo } from 'react'
 import * as d3 from 'd3'
-import { companies, layers, modelConfig } from '../../data/loader'
-import { scoreCompany } from '../../model'
+import { layers } from '../../data/loader'
 import { useAppStore } from '../../store'
+import { useScoredCompanies } from '../../hooks/useScoredCompanies'
 import type { ScoredCompany } from '../../model'
 
 interface TooltipData {
@@ -27,12 +27,8 @@ export function FloorCeilingScatter() {
     return m
   }, [])
 
-  // Score all companies that have a model
-  const scored: ScoredCompany[] = useMemo(() => {
-    return companies
-      .filter((c) => c.model)
-      .map((c) => scoreCompany(c, modelConfig))
-  }, [])
+  // Score all companies that have a model (respects weight overrides)
+  const scored: ScoredCompany[] = useScoredCompanies()
 
   // Filter by active layers
   const visible = useMemo(() => {
@@ -141,10 +137,24 @@ export function FloorCeilingScatter() {
         tooltipEl.style.display = 'block'
         tooltipEl.style.left = `${tip.x + 12}px`
         tooltipEl.style.top = `${tip.y - 28}px`
-        tooltipEl.innerHTML = `
-          <div class="font-medium text-slate-100">${tip.name}${tip.ticker ? ` <span class="text-slate-400 font-mono text-xs">${tip.ticker}</span>` : ''}</div>
-          <div class="text-slate-400 text-xs font-mono">Floor: ${tip.floorScore.toFixed(1)} | Ceil: ${tip.ceilingAdjusted.toFixed(1)} | Entry: ${tip.entryScore.toFixed(2)}</div>
-        `
+
+        while (tooltipEl.firstChild) tooltipEl.removeChild(tooltipEl.firstChild)
+
+        const nameEl = document.createElement('div')
+        nameEl.className = 'font-medium text-slate-100'
+        nameEl.textContent = tip.name
+        if (tip.ticker) {
+          const tickerEl = document.createElement('span')
+          tickerEl.className = 'text-slate-400 font-mono text-xs ml-1'
+          tickerEl.textContent = tip.ticker
+          nameEl.appendChild(tickerEl)
+        }
+        tooltipEl.appendChild(nameEl)
+
+        const scoresEl = document.createElement('div')
+        scoresEl.className = 'text-slate-400 text-xs font-mono'
+        scoresEl.textContent = `Floor: ${tip.floorScore.toFixed(1)} | Ceil: ${tip.ceilingAdjusted.toFixed(1)} | Entry: ${tip.entryScore.toFixed(2)}`
+        tooltipEl.appendChild(scoresEl)
       })
       .on('mouseleave', () => {
         tooltipEl.style.display = 'none'

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { companies, modelConfig } from '../../data/loader'
-import { scoreCompany } from '../../model'
+import { useAppStore } from '../../store'
+import { useScoredCompanies } from '../../hooks/useScoredCompanies'
 import { ScoreBar } from '../charts/ScoreBar'
 import { UpsideShapeChart } from '../charts/UpsideShapeChart'
 import { DisclaimerInline } from '../Disclaimer'
@@ -30,10 +31,28 @@ export function CompanyDetail({ companyId }: CompanyDetailProps) {
     [companyId]
   )
 
-  const scored = useMemo(() => {
-    if (!company || !company.model) return null
-    return scoreCompany(company, modelConfig)
-  }, [company])
+  const allScored = useScoredCompanies()
+  const scored = useMemo(
+    () => allScored.find((s) => s.company.id === companyId) ?? null,
+    [allScored, companyId]
+  )
+
+  const { weightOverrides } = useAppStore()
+  const effectiveConfig = useMemo(() => ({
+    ...modelConfig,
+    floor_weights: {
+      ...modelConfig.floor_weights,
+      ...(weightOverrides.moat_durability !== undefined ? { moat_durability: weightOverrides.moat_durability } : {}),
+      ...(weightOverrides.revenue_defensibility !== undefined ? { revenue_defensibility: weightOverrides.revenue_defensibility } : {}),
+      ...(weightOverrides.balance_sheet_strength !== undefined ? { balance_sheet_strength: weightOverrides.balance_sheet_strength } : {}),
+    },
+    ceiling_weights: {
+      ...modelConfig.ceiling_weights,
+      ...(weightOverrides.market_expansion !== undefined ? { market_expansion: weightOverrides.market_expansion } : {}),
+      ...(weightOverrides.competitive_position_ceiling !== undefined ? { competitive_position_ceiling: weightOverrides.competitive_position_ceiling } : {}),
+      ...(weightOverrides.strategic_optionality !== undefined ? { strategic_optionality: weightOverrides.strategic_optionality } : {}),
+    },
+  }), [weightOverrides])
 
   if (!company) {
     return <p className="text-slate-500 text-sm">Company not found.</p>
@@ -94,11 +113,11 @@ export function CompanyDetail({ companyId }: CompanyDetailProps) {
 
             {/* Floor breakdown */}
             <p className="text-slate-500 text-xs mb-1">Floor breakdown</p>
-            <ScoreBar type="floor" scores={model} weights={modelConfig.floor_weights} />
+            <ScoreBar type="floor" scores={model} weights={effectiveConfig.floor_weights} />
 
             {/* Ceiling breakdown */}
             <p className="text-slate-500 text-xs mb-1 mt-3">Ceiling breakdown</p>
-            <ScoreBar type="ceiling" scores={model} weights={modelConfig.ceiling_weights} />
+            <ScoreBar type="ceiling" scores={model} weights={effectiveConfig.ceiling_weights} />
           </div>
 
           {/* Valuation */}

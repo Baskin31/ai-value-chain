@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
-import { companies, layers, modelConfig } from '../../data/loader'
-import { scoreCompany } from '../../model'
+import { layers } from '../../data/loader'
 import { useAppStore } from '../../store'
+import { useScoredCompanies } from '../../hooks/useScoredCompanies'
 import type { ScoredCompany } from '../../model'
 
 type SortKey = 'entryScore' | 'floorScore' | 'ceilingAdjusted' | 'currentMarketCapB'
@@ -57,12 +57,8 @@ export function RankingView() {
     return m
   }, [])
 
-  // Score all companies with a model
-  const scored: ScoredCompany[] = useMemo(() => {
-    return companies
-      .filter((c) => c.model)
-      .map((c) => scoreCompany(c, modelConfig))
-  }, [])
+  // Score all companies with a model (respects weight overrides)
+  const scored: ScoredCompany[] = useScoredCompanies()
 
   // Filter by active layers
   const filtered = useMemo(() => {
