@@ -1,4 +1,5 @@
 import { layers } from '../../data/loader'
+import { ModelControls } from '../ModelControls'
 import type { Layer } from '../../schema/types'
 
 interface SidebarProps {
@@ -12,8 +13,8 @@ export function Sidebar({ activeLayerIds, onToggleLayer, onSelectAll }: SidebarP
   const allActive = activeLayerIds.length === 0
 
   return (
-    <aside className="w-48 shrink-0 bg-slate-900 border-r border-slate-800 overflow-y-auto">
-      <div className="p-3">
+    <aside className="w-48 shrink-0 bg-slate-900 border-r border-slate-800 overflow-y-auto flex flex-col">
+      <div className="p-3 flex-1">
         <div className="text-xs text-slate-500 uppercase tracking-wider mb-2 px-1">
           Layers
         </div>
@@ -50,6 +51,7 @@ export function Sidebar({ activeLayerIds, onToggleLayer, onSelectAll }: SidebarP
           )
         })}
       </div>
+      <ModelControls />
     </aside>
   )
 }
