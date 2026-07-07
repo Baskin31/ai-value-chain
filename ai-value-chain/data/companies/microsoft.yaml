@@ -1,0 +1,70 @@
+id: microsoft
+name: Microsoft Corporation
+ticker: MSFT
+exchange: NASDAQ
+layer: data_centers_compute
+secondary_layers:
+  - frontier_labs
+is_dark_horse: false
+description: >
+  Azure cloud platform + Office 365 + GitHub Copilot + Teams enterprise
+  stack. $13.75B OpenAI investment creates unique frontier AI product moat.
+  Copilot integration across all products monetizes AI at unprecedented scale
+  within an existing enterprise installed base. Azure is the primary beneficiary
+  of enterprise AI adoption.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as MSFT. Largest US company by market cap; extremely liquid."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 9
+  moat_durability_rationale: "Azure + Office 365 + GitHub Copilot + Teams — enterprise software stack that is exceptionally difficult to displace; OpenAI investment creates AI product moat"
+  revenue_defensibility: 9
+  revenue_defensibility_rationale: "Cloud + subscription revenue is 90%+ recurring; multi-year enterprise agreements"
+  balance_sheet_strength: 9
+  balance_sheet_rationale: "AAA credit rating; $80B+ cash; extraordinary FCF"
+  downside_scenario: >
+    OpenAI relationship deteriorates or OpenAI builds competing cloud.
+    Google Workspace takes enterprise share. Antitrust action on cloud
+    bundling. At $3.1T, the risk/reward from today's price is less
+    favorable than the business quality suggests.
+  market_expansion: 8
+  market_expansion_rationale: "Azure is the primary beneficiary of enterprise AI adoption — every Copilot seat and Azure AI API call is incremental revenue"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "At $3.1T, effective multiple is ~2.6x even assuming $8T max plausible cap — model correctly constrains"
+  strategic_optionality: 9
+  strategic_optionality_rationale: "Benefits from more AI capex (Azure infrastructure), more AI usage (Copilot seats), and the OpenAI platform regardless of competitive outcome"
+  upside_probability: 0.60
+  upside_multiple: 2.0
+  valuation_sentiment: priced_for_perfection
+
+fundamentals:
+  market_cap_usd_b: 3100
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 270
+  revenue_growth_yoy: 0.16
+  pe_ratio: 35
+  sources:
+    - description: "Microsoft FY2026 Q3 10-Q filing"
+      url: "investor.microsoft.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "GitHub Copilot has 1.8M+ paid seats and is growing — developer productivity tool with strong retention"
+  - type: risk
+    note: "OpenAI is both MSFT's most valuable asset and a potential competitor — Microsoft must navigate this carefully"
+  - type: risk
+    note: "At $3.1T, the market already prices in significant AI success — the risk/reward from today's price is less favorable than the business quality alone suggests"
+
+relationships:
+  - company_id: constellation_energy
+    type: customer
+    note: "20-year nuclear PPA for Three Mile Island restart (Crane Clean Energy Center)"
+  - company_id: nvidia
+    type: customer
+    note: "Azure H100/B200 GPU cluster deployment — one of the largest NVIDIA hyperscaler customers"

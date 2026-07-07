@@ -1,0 +1,57 @@
+id: harvey_ai
+name: Harvey AI
+ticker: null
+exchange: null
+layer: application_harness
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Legal AI platform trained on proprietary legal corpora with major law firm
+  partnerships (A&O Shearman, PwC Legal). Legal workflow data creates a
+  feedback loop hard to replicate. Series D funded. $3B+ valuation.
+
+investability:
+  type: uninvestable
+  notes: "Not listed. IPO timeline unknown."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Legal AI platform trained on proprietary legal corpora with major law firm partnerships (A&O Shearman, PwC Legal) — legal workflow data creates a feedback loop that is hard to replicate"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "Subscription revenue from law firms and legal departments; growing ARR"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "Series D funded; well-capitalized for growth phase"
+  downside_scenario: >
+    Microsoft Copilot for Legal, Thomson Reuters CoCounsel, and LexisNexis AI
+    are well-funded competitors with existing distribution. OpenAI Enterprise
+    and Anthropic's API with system prompts replicate core functionality.
+  market_expansion: 8
+  market_expansion_rationale: "Legal services market is $1T+ globally and largely un-automated — AI penetration is in early innings"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If Harvey becomes the default AI layer for legal work globally, it could be a $50B+ company"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Every large law firm, in-house legal team, and legal services company is a potential customer"
+  upside_probability: 0.25
+  upside_multiple: 12.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 3
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.1
+  pe_ratio: null
+  sources:
+    - description: "Harvey AI Series D announcement"
+      url: "harvey.ai"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Allen & Overy (now A&O Shearman) adopting Harvey firm-wide validates the enterprise legal deployment model"
+  - type: risk
+    note: "Not listed — no retail investor access. IPO timeline unknown."
+
+relationships: []

@@ -1,0 +1,56 @@
+id: writer
+name: Writer Inc.
+ticker: null
+exchange: null
+layer: application_harness
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Enterprise-grade AI writing platform with compliance controls, style guides,
+  and brand voice management. Addresses the governance gap that ChatGPT cannot
+  fill in regulated industries (pharma, financial services). Series C at
+  $1.9B valuation.
+
+investability:
+  type: uninvestable
+  notes: "Not listed. Limited retail access."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 6
+  moat_durability_rationale: "Enterprise-grade AI writing platform with compliance controls, style guides, and brand voice management — addresses the governance gap that ChatGPT cannot fill in regulated industries"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "SaaS subscription model; pharmaceutical and financial services customers"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "Series C at $1.9B valuation"
+  downside_scenario: >
+    OpenAI Enterprise and Anthropic's API with system prompts replicate
+    Writer's core functionality. Smaller moat than Harvey in legal.
+    Compliance governance features get commoditized.
+  market_expansion: 8
+  market_expansion_rationale: "Regulated enterprise content creation is a defensible niche where governance and compliance matter more than raw capability"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "If compliant AI writing becomes mandatory for regulated industries, Writer has first-mover advantage"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Pharmaceutical, financial services, and healthcare content workflows are high-value and compliance-driven"
+  upside_probability: 0.20
+  upside_multiple: 12.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 1.9
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.05
+  pe_ratio: null
+  sources:
+    - description: "Writer Series C announcement"
+      url: "writer.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: risk
+    note: "Not listed. Limited retail access."
+
+relationships: []

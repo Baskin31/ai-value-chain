@@ -1,0 +1,59 @@
+id: servicenow
+name: ServiceNow Inc.
+ticker: NOW
+exchange: NYSE
+layer: application_harness
+secondary_layers: []
+is_dark_horse: false
+description: >
+  IT service management platform that has become the operating system for
+  enterprise IT workflows. 99%+ renewal rate. NowAssist AI is embedded in
+  existing workflows — enterprise AI adoption happens inside ServiceNow
+  rather than requiring a new platform. ACV growing 22%+ consistently.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as NOW. Liquid large-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "IT service management platform that has become the operating system for enterprise IT workflows — replacing it requires re-training thousands of IT staff and migrating years of workflow logic"
+  revenue_defensibility: 9
+  revenue_defensibility_rationale: "99%+ renewal rate; subscription-only model; ACV growing 22%+ consistently"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash; strong FCF"
+  downside_scenario: >
+    At 60x earnings, execution of AI monetization must materialize quickly.
+    SAP and Oracle compete in workflow automation.
+    Any deceleration in subscription growth will be severely punished.
+  market_expansion: 8
+  market_expansion_rationale: "Now Platform AI (NowAssist) is embedded in the workflows enterprises already use — AI adoption happens inside ServiceNow rather than requiring a new platform"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If every IT workflow gets an AI co-pilot and ServiceNow charges per AI interaction, revenue per seat doubles"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "Horizontal platform for any enterprise workflow — expansion beyond IT into HR, finance, legal is underway"
+  upside_probability: 0.55
+  upside_multiple: 2.5
+  valuation_sentiment: priced_for_perfection
+
+fundamentals:
+  market_cap_usd_b: 250
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 12
+  revenue_growth_yoy: 0.22
+  pe_ratio: 60
+  sources:
+    - description: "ServiceNow Q1 2026 10-Q filing"
+      url: "investors.servicenow.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Enterprise AI adoption is happening inside existing software platforms, not through new point solutions — ServiceNow's embedded position is the strongest distribution advantage in enterprise AI"
+  - type: risk
+    note: "Priced for perfection — any deceleration in subscription growth will be punished severely at current multiple"
+
+relationships: []

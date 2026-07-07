@@ -1,0 +1,60 @@
+id: equinix
+name: Equinix
+ticker: EQIX
+exchange: NASDAQ
+layer: data_centers_compute
+secondary_layers: []
+is_dark_horse: false
+description: >
+  Network-neutral colocation REIT with 260+ data centers across 70+ metros.
+  Interconnection revenue (cross-connects between tenants) compounds as more
+  services connect through Equinix facilities. Average customer tenure >8
+  years. AI API traffic from OpenAI, Anthropic, and Google all routes through
+  Equinix for low-latency enterprise delivery.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as EQIX. REIT structure. Liquid large-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Network-neutral colocation with interconnection — 260+ data centers across 70+ metros; switching cost is physical (cabling, cross-connects)"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "95%+ revenue recurring; average customer tenure >8 years; colocation contracts 3-5 years"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "REIT structure; high but serviceable debt; strong FFO"
+  downside_scenario: >
+    Hyperscaler private data centers reduce colocation demand for large-scale
+    training. Rising rates compress REIT valuations. Power availability
+    constrains expansion in key metros.
+  market_expansion: 7
+  market_expansion_rationale: "AI inference at the edge requires low-latency compute near end users — Equinix's metro colocation footprint is irreplaceable"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "Interconnection revenue (fastest growing segment) compounds as more services connect through Equinix facilities"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Every cloud on-ramp, CDN, and enterprise hybrid connection routes through Equinix — AI API traffic does too"
+  upside_probability: 0.45
+  upside_multiple: 2.5
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 80
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 8.8
+  revenue_growth_yoy: 0.08
+  pe_ratio: null
+  sources:
+    - description: "Equinix Q1 2026 10-Q filing"
+      url: "investor.equinix.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "AI API traffic from OpenAI, Anthropic, and Google all requires low-latency endpoints near enterprise customers — Equinix is the default interconnection point"
+  - type: risk
+    note: "Power availability and cost is a growing constraint for Equinix data center expansion in key metros"
+
+relationships: []

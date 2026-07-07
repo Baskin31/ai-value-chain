@@ -1,0 +1,60 @@
+id: palantir
+name: Palantir Technologies
+ticker: PLTR
+exchange: NYSE
+layer: application_harness
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Ontology-based data integration (Foundry) and AI decision support (AIP)
+  platform. Government classification capabilities are a hard moat. AIP
+  translates LLMs into enterprise-safe, ontology-grounded workflows —
+  addressing the AI hallucination problem in mission-critical decisions.
+  US Government revenue ~55% of total.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as PLTR. Liquid mid-large-cap with high retail investor interest."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Ontology-based data integration (Foundry) and AI decision support (AIP) — unique architecture for complex enterprise data environments; government classification capabilities are a hard moat"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "US Government revenue (~55% of total) is extremely sticky — multiyear classified contracts; commercial growing 40%+"
+  balance_sheet_strength: 8
+  balance_sheet_rationale: "Net cash >$4B; no debt; approaching sustained profitability"
+  downside_scenario: >
+    Valuation at ~30x revenue is extremely high. Commercial revenue growth
+    must sustain 40%+ for years. Government contract concentration —
+    loss of a major contract causes outsized revenue impact.
+  market_expansion: 8
+  market_expansion_rationale: "AIP (AI Platform) translates LLMs into enterprise-safe, ontology-grounded workflows — addresses the AI hallucination in mission-critical workflows problem"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If ontology-based AI becomes the enterprise standard for high-stakes decisions, Palantir has no direct competitor"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Government AI spending growing; every defense contractor and intelligence agency is a potential customer"
+  upside_probability: 0.45
+  upside_multiple: 2.0
+  valuation_sentiment: priced_for_perfection
+
+fundamentals:
+  market_cap_usd_b: 250
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 3.8
+  revenue_growth_yoy: 0.36
+  pe_ratio: null
+  sources:
+    - description: "Palantir Q1 2026 10-Q filing"
+      url: "investors.palantir.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "US AI military spending (JADC2, Project Maven, battlefield AI) is a structural multi-decade budget item — Palantir's classified clearances are the moat"
+  - type: risk
+    note: "Government contract concentration — loss of a major contract causes outsized revenue impact"
+
+relationships: []

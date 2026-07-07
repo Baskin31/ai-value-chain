@@ -1,0 +1,57 @@
+id: glean
+name: Glean Technologies
+ticker: null
+exchange: null
+layer: application_harness
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Enterprise search and AI assistant connecting to all company data sources
+  (Slack, Drive, Salesforce, Jira). The more integrations and usage, the
+  better the relevance model. Series E at $4.6B valuation.
+
+investability:
+  type: uninvestable
+  notes: "Not listed. No accessible proxy."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Enterprise search and AI assistant that connects to all company data sources (Slack, Drive, Salesforce, Jira) — the more integrations and usage, the better the relevance model"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "SaaS subscription model; ARR growing rapidly from enterprise deployments"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "Series E at $4.6B valuation; well-capitalized"
+  downside_scenario: >
+    Microsoft Copilot for M365 and Google Workspace AI provide competing
+    functionality for customers in those ecosystems — which is most of the
+    Fortune 500. Limited moat outside non-MSFT/GOOG enterprises.
+  market_expansion: 8
+  market_expansion_rationale: "Every knowledge worker spending time searching for information is a potential Glean user — massive addressable market in enterprise productivity"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If Glean becomes the default enterprise search layer (the 'Google for work'), it could be a $50B+ company at scale"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Connects to every enterprise data source — becomes more valuable as companies accumulate more data"
+  upside_probability: 0.25
+  upside_multiple: 12.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 4.6
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.15
+  pe_ratio: null
+  sources:
+    - description: "Glean Series E announcement"
+      url: "glean.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Non-Microsoft, non-Google enterprises are the core market — avoids direct bundling competition in the mid-market"
+  - type: risk
+    note: "Not listed. No accessible proxy."
+
+relationships: []

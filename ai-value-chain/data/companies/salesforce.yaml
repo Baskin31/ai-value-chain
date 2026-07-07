@@ -1,0 +1,62 @@
+id: salesforce
+name: Salesforce Inc.
+ticker: CRM
+exchange: NYSE
+layer: application_harness
+secondary_layers: []
+is_dark_horse: false
+description: >
+  CRM market leader with Customer 360, Data Cloud, and Agentforce AI platform.
+  Deep enterprise workflows expensive to rip out. Agentforce (AI agents for
+  sales, service, marketing) represents the first genuinely new revenue driver
+  since Marketing Cloud. >90% Fortune 500 penetration.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as CRM. Liquid large-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "CRM market leader with Salesforce Customer 360, Data Cloud, and Agentforce AI — deep enterprise workflows that are expensive to rip out"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "~95% subscription revenue; average contract 3 years; Fortune 500 penetration >90%"
+  balance_sheet_strength: 7
+  balance_sheet_rationale: "Net cash; strong FCF"
+  downside_scenario: >
+    Microsoft Copilot for Dynamics competes directly for enterprise CRM spend.
+    HubSpot grows in mid-market. AI commoditizes CRM functionality,
+    reducing Salesforce's pricing power.
+  market_expansion: 7
+  market_expansion_rationale: "Agentforce (AI agents for sales, service, marketing) is a new revenue line layered on top of existing CRM subscriptions"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "If Agentforce captures enterprise AI agent budget, Salesforce becomes an AI platform not just a CRM"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Every enterprise that deploys AI agents for customer-facing workflows is a potential Agentforce customer"
+  upside_probability: 0.45
+  upside_multiple: 2.5
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 270
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 38
+  revenue_growth_yoy: 0.09
+  pe_ratio: 42
+  sources:
+    - description: "Salesforce FY2026 Q4 10-K filing"
+      url: "investor.salesforce.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Agentforce represents the first genuinely new revenue driver since Marketing Cloud — AI agent pricing could be significant"
+  - type: risk
+    note: "ServiceNow and Microsoft are both expanding into Salesforce's territory with AI-native approaches"
+
+relationships:
+  - company_id: microsoft
+    type: competitor
+    note: "Microsoft Dynamics + Copilot competes directly in enterprise CRM and AI agent market"

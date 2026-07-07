@@ -1,0 +1,59 @@
+id: digital_realty
+name: Digital Realty Trust
+ticker: DLR
+exchange: NYSE
+layer: data_centers_compute
+secondary_layers: []
+is_dark_horse: false
+description: >
+  Hyperscale and wholesale colocation REIT with facilities in 50+ metros.
+  Long-term leases with hyperscale tenants (5-10 years). Record pre-leasing
+  backlog as AI data center demand exceeds supply. Power procurement is now
+  the primary constraint on expansion.
+
+investability:
+  type: direct
+  notes: "Listed on NYSE as DLR. REIT structure. Liquid large-cap."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 6
+  moat_durability_rationale: "Hyperscale and wholesale colocation facilities in 50+ metros; long-term leases with hyperscalers"
+  revenue_defensibility: 7
+  revenue_defensibility_rationale: "Long-term leases (5-10 years) with investment-grade tenants; REIT structure provides dividend obligation"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "High leverage typical of REIT; manageable"
+  downside_scenario: >
+    Hyperscalers build own facilities reducing wholesale demand.
+    Rising rates compress REIT multiples. Power procurement failures
+    delay new development.
+  market_expansion: 7
+  market_expansion_rationale: "AI data center demand driving unprecedented hyperscale build-to-suit demand"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "Wholesale colocation grows with hyperscaler capex expansion"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Hyperscaler AI capex must go into physical data center capacity — Digital Realty is a direct pick-and-shovel play"
+  upside_probability: 0.40
+  upside_multiple: 2.5
+  valuation_sentiment: fair
+
+fundamentals:
+  market_cap_usd_b: 55
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 5.8
+  revenue_growth_yoy: 0.07
+  pe_ratio: null
+  sources:
+    - description: "Digital Realty Q1 2026 10-Q filing"
+      url: "ir.digitalrealty.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Record data center pre-leasing backlog as of 2025 — demand exceeding supply in key markets"
+  - type: risk
+    note: "Power procurement is now the primary constraint on data center expansion — sites without power commitments are worth little"
+
+relationships: []

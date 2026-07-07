@@ -1,0 +1,67 @@
+id: coreweave
+name: CoreWeave Inc.
+ticker: CRWV
+exchange: NASDAQ
+layer: data_centers_compute
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Purpose-built GPU cloud with NVIDIA H100/H200/B200 clusters and ultra-low
+  latency networking. First pure-play GPU cloud company — recently IPO'd.
+  Microsoft 5-year $10B contract anchors revenue. AI-native cloud filling
+  the gap hyperscalers cannot serve fast enough.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as CRWV. Recently IPO'd — moderate liquidity, growing institutional coverage."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 5
+  moat_durability_rationale: "Purpose-built GPU cloud with NVIDIA H100/H200/B200 clusters and ultra-low latency networking — 10x better GPU utilization than hyperscalers for pure AI workloads"
+  revenue_defensibility: 6
+  revenue_defensibility_rationale: "Microsoft 5-year $10B contract is the anchor; other hyperscaler and enterprise customers; but high customer concentration"
+  balance_sheet_strength: 5
+  balance_sheet_rationale: "Significant debt from GPU financing; IPO proceeds improving position"
+  downside_scenario: >
+    Customer concentration in Microsoft creates binary risk. GPU depreciation
+    creates a funding treadmill that requires constant capital raises.
+    Hyperscalers catch up on GPU capacity and reduce overflow demand.
+  market_expansion: 8
+  market_expansion_rationale: "AI-native cloud demand is growing faster than hyperscaler GPU capacity can absorb — CoreWeave fills the gap"
+  competitive_position_ceiling: 6
+  competitive_position_rationale: "First pure-play GPU cloud company — if this category captures 20% of AI compute spend, CoreWeave could be a $150B+ company"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Benefits from any AI capex constraint at hyperscalers — overflow demand comes to CoreWeave"
+  upside_probability: 0.40
+  upside_multiple: 3.5
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 45
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 4.5
+  revenue_growth_yoy: 1.60
+  pe_ratio: null
+  sources:
+    - description: "CoreWeave S-1 and Q1 2026 press releases post-IPO"
+      url: "investors.coreweave.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "NVIDIA relationship is both a moat (early allocation) and a dependency (collateral for GPU financing)"
+  - type: risk
+    note: "Debt financing of GPU assets creates a carry-trade structure — works until it doesn't"
+  - type: opportunity
+    note: "Microsoft's $10B contract validates the model and de-risks near-term revenue"
+
+relationships:
+  - company_id: nvidia
+    type: customer
+    note: "CoreWeave's entire infrastructure is NVIDIA GPU clusters — primary equipment vendor"
+  - company_id: microsoft
+    type: customer
+    note: "5-year $10B anchor contract; Microsoft also owns equity stake"

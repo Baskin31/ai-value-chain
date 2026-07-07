@@ -1,0 +1,59 @@
+id: xai
+name: xAI (Elon Musk)
+ticker: null
+exchange: null
+layer: frontier_labs
+secondary_layers: []
+is_dark_horse: true
+description: >
+  Frontier AI lab founded by Elon Musk, creator of Grok models trained on
+  real-time X/Twitter data. Unique training corpus with live social media signal.
+  Colossus supercomputer cluster (100k+ H100s) in Memphis. $50B private
+  valuation.
+
+investability:
+  type: uninvestable
+  notes: "Not listed. No accessible proxy. Tesla (TSLA) has indirect exposure via Dojo AI training compute and FSD, but is not a clean proxy."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Grok models trained on real-time X/Twitter data — unique training corpus with live social media signal"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "Grok API revenue; X platform integration for premium subscribers; early enterprise deals"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Venture-funded at $50B valuation; Elon Musk network provides non-dilutive partnership access"
+  downside_scenario: >
+    Elon Musk key-person risk — his political entanglements create
+    reputational drag. X platform declining user base reduces data value.
+    OpenAI, Anthropic, Google have 10x+ the training compute.
+  market_expansion: 9
+  market_expansion_rationale: "Real-time data-trained LLMs have unique advantages for financial analysis, news, and current events"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If xAI/Grok becomes the default LLM for real-time information retrieval, the valuation could justify the private price"
+  strategic_optionality: 7
+  strategic_optionality_rationale: "Tesla integration, Neuralink, SpaceX data for training — unique data moats from sister companies"
+  upside_probability: 0.30
+  upside_multiple: 10.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 50
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 1.0
+  pe_ratio: null
+  sources:
+    - description: "xAI funding round announcements and press releases"
+      url: "x.ai"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: risk
+    note: "Elon Musk single-point-of-failure: multiple government relationships, X platform, Tesla, SpaceX all intertwined — political risk is non-trivial"
+
+relationships:
+  - company_id: nvidia
+    type: customer
+    note: "Colossus cluster built on 100k+ NVIDIA H100 GPUs"

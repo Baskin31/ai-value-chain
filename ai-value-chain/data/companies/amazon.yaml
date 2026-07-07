@@ -1,0 +1,66 @@
+id: amazon
+name: Amazon.com
+ticker: AMZN
+exchange: NASDAQ
+layer: data_centers_compute
+secondary_layers:
+  - frontier_labs
+is_dark_horse: false
+description: >
+  AWS is the #1 cloud provider and 70%+ of Amazon's operating income.
+  $4B+ Anthropic investment drives AWS Bedrock AI services. Amazon Trainium2
+  custom AI chip reduces GPU dependency. Prime flywheel, advertising, and
+  AWS create three independent cash-generating businesses.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as AMZN. Mega-cap; extremely liquid."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "AWS #1 cloud provider; Prime flywheel; advertising business; Anthropic investment for Bedrock AI services"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "AWS is 70%+ of operating income despite being ~16% of revenue — extremely sticky enterprise cloud infrastructure"
+  balance_sheet_strength: 9
+  balance_sheet_rationale: "Net cash; massive FCF from AWS and advertising"
+  downside_scenario: >
+    Retail margin compression from AI automation costs. Regulatory pressure
+    on AWS cloud dominance. Google Cloud and Azure gaining AI market share
+    faster than expected. Anthropic loses the frontier model race.
+  market_expansion: 8
+  market_expansion_rationale: "AWS Bedrock monetizes Anthropic models and third-party LLMs — Amazon captures AI spend even without owning the model"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "AWS + advertising + Prime + Anthropic — multiple independent growth vectors"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "AWS is infrastructure for both AI training (GPU instances) and inference (Bedrock endpoints) — benefits from the whole stack"
+  upside_probability: 0.55
+  upside_multiple: 2.0
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 2200
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 638
+  revenue_growth_yoy: 0.11
+  pe_ratio: 35
+  sources:
+    - description: "Amazon Q1 2026 10-Q filing"
+      url: "ir.aboutamazon.com"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: opportunity
+    note: "Amazon Trainium2 custom AI chip reduces GPU dependency and improves margin on AI workloads"
+  - type: risk
+    note: "Anthropic is a $4B+ investment — if Anthropic loses the frontier model race, Amazon's AI narrative weakens"
+
+relationships:
+  - company_id: nvidia
+    type: customer
+    note: "AWS deploys large-scale NVIDIA GPU clusters for EC2 P/H instances"
+  - company_id: nextera_energy
+    type: customer
+    note: "Multi-GW renewable PPA agreements for AWS data center carbon goals"

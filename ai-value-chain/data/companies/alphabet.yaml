@@ -1,0 +1,68 @@
+id: alphabet
+name: Alphabet Inc.
+ticker: GOOGL
+exchange: NASDAQ
+layer: data_centers_compute
+secondary_layers:
+  - frontier_labs
+is_dark_horse: false
+description: >
+  Google Search dominance + YouTube + Android + GCP + Gemini AI. GCP
+  (Google Cloud Platform) growing 30%+ with unique TPU advantage for AI
+  training workloads. DeepMind/Google Brain merged as Google DeepMind,
+  producing Gemini models. Waymo represents autonomous driving optionality.
+
+investability:
+  type: direct
+  notes: "Listed on NASDAQ as GOOGL (voting) and GOOG (non-voting). Mega-cap; extremely liquid."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 8
+  moat_durability_rationale: "Search dominance + YouTube + Android + GCP + Gemini — diversified moat across consumer and enterprise AI"
+  revenue_defensibility: 8
+  revenue_defensibility_rationale: "Search advertising is ~57% of revenue — high-margin, somewhat cyclical but extremely durable"
+  balance_sheet_strength: 9
+  balance_sheet_rationale: "Net cash >$100B; aggressive buybacks"
+  downside_scenario: >
+    AI search (ChatGPT, Perplexity) cannibalizes search revenue faster than
+    expected. DOJ antitrust breakup of Google Search and ad business.
+    GCP continues trailing AWS and Azure in enterprise AI market share.
+  market_expansion: 8
+  market_expansion_rationale: "GCP AI services (Vertex AI, Gemini API) growing 30%+; TPU advantage for AI training workloads"
+  competitive_position_ceiling: 8
+  competitive_position_rationale: "If Google Search maintains relevance in AI-answer era AND GCP wins AI infrastructure share, both vectors compound"
+  strategic_optionality: 8
+  strategic_optionality_rationale: "TPU architecture is ahead of competition for certain training workloads; Waymo represents autonomous driving optionality"
+  upside_probability: 0.50
+  upside_multiple: 2.0
+  valuation_sentiment: stretched
+
+fundamentals:
+  market_cap_usd_b: 2300
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 350
+  revenue_growth_yoy: 0.12
+  pe_ratio: 23
+  sources:
+    - description: "Alphabet Q1 2026 10-Q filing"
+      url: "abc.xyz/investor"
+      accessed: "2026-06-01"
+      is_sourced_fact: true
+
+strategic_dynamics:
+  - type: risk
+    note: "DOJ antitrust case seeking to break up Google Search and ad business — existential tail risk"
+  - type: opportunity
+    note: "Gemini Ultra integration across Search, Gmail, Workspace creates massive distribution advantage for AI products"
+  - type: risk
+    note: "If AI answers replace search clicks, Google's revenue model requires fundamental reinvention"
+
+relationships:
+  - company_id: nvidia
+    type: customer
+    note: "GCP deploys NVIDIA GPU instances; also competes with custom TPU architecture"
+  - company_id: broadcom
+    type: supplier
+    note: "Broadcom designs Google's custom TPU ASICs"

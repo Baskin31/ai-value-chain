@@ -1,0 +1,61 @@
+id: mistral_ai
+name: Mistral AI
+ticker: null
+exchange: null
+layer: frontier_labs
+secondary_layers: []
+is_dark_horse: true
+description: >
+  European frontier AI lab with open-weight model strategy (Mistral 7B,
+  Mixtral MoE). EU jurisdiction creates a regulatory moat for EU enterprises
+  navigating the AI Act. Microsoft Azure partnership distributes Mistral models.
+  Series B at €600M valuation.
+
+investability:
+  type: uninvestable
+  notes: "Not listed. Monitor for EU listing or acquisition."
+  proxy_for: null
+
+model:
+  model_updated: "2026-07-06"
+  moat_durability: 7
+  moat_durability_rationale: "Open-weight model strategy (Mistral 7B, Mixtral MoE) creates developer ecosystem and enterprise deployment flexibility; European jurisdiction is a regulatory moat for EU enterprises"
+  revenue_defensibility: 5
+  revenue_defensibility_rationale: "La Plateforme API revenue; enterprise licensing; Microsoft Azure partnership distributes Mistral models"
+  balance_sheet_strength: 6
+  balance_sheet_rationale: "Series B at €600M valuation; well-funded for European startup"
+  downside_scenario: >
+    OpenAI, Google, and Anthropic have 10x+ the compute. Mistral's open-weight
+    strategy may commoditize its own product. EU startup exit multiples are
+    lower than US equivalents.
+  market_expansion: 8
+  market_expansion_rationale: "EU AI Act compliance concerns drive European enterprises to EU-domiciled AI providers"
+  competitive_position_ceiling: 7
+  competitive_position_rationale: "If EU AI regulation creates a significant compliance moat, Mistral could dominate European enterprise AI"
+  strategic_optionality: 6
+  strategic_optionality_rationale: "Open-weight distribution means Mistral models can be deployed anywhere — enterprise and government on-premise deployments"
+  upside_probability: 0.25
+  upside_multiple: 12.0
+  valuation_sentiment: cheap
+
+fundamentals:
+  market_cap_usd_b: 6
+  market_cap_date: "2026-06-01"
+  revenue_ttm_usd_b: 0.1
+  pe_ratio: null
+  sources:
+    - description: "Mistral AI funding announcements"
+      url: "mistral.ai"
+      accessed: "2026-06-01"
+      is_sourced_fact: false
+
+strategic_dynamics:
+  - type: opportunity
+    note: "EU AI Act compliance requirements may make Mistral the default choice for EU-regulated industries (banking, healthcare, public sector)"
+  - type: risk
+    note: "Not listed; EU startup exits are less frequent and less valuable than US equivalents — IPO path unclear"
+
+relationships:
+  - company_id: microsoft
+    type: investor
+    note: "Microsoft Azure distributes Mistral models via partnership"
