@@ -34,7 +34,7 @@ function WeightSlider({ label, weightKey, defaultValue, currentValue, onChange }
 }
 
 export function ModelControls() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const { weightOverrides, setWeightOverride, resetWeights } = useAppStore()
 
   const fw = modelConfig.floor_weights

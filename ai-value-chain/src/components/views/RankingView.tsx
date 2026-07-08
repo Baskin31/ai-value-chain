@@ -2,10 +2,17 @@ import { useState, useMemo } from 'react'
 import { layers } from '../../data/loader'
 import { useAppStore } from '../../store'
 import { useScoredCompanies } from '../../hooks/useScoredCompanies'
+import { Tooltip } from '../Tooltip'
+import { differenceInDays, parseISO } from 'date-fns'
 import type { ScoredCompany } from '../../model'
 
-type SortKey = 'entryScore' | 'floorScore' | 'ceilingAdjusted' | 'currentMarketCapB'
+type SortKey = 'expectedReturnMultiple' | 'floorMarketCapB' | 'ceilingMarketCapB' | 'currentMarketCapB' | 'vsVooReturn'
 type SortDir = 'asc' | 'desc'
+
+function formatCap(b: number): string {
+  if (b >= 1000) return `$${(b / 1000).toFixed(1)}T`
+  return `$${b.toFixed(0)}B`
+}
 
 const SENTIMENT_COLOR: Record<string, string> = {
   cheap: 'bg-emerald-900 text-emerald-300',
@@ -40,7 +47,7 @@ const INVESTABILITY_COLOR: Record<string, string> = {
 }
 
 export function RankingView() {
-  const [sortKey, setSortKey] = useState<SortKey>('entryScore')
+  const [sortKey, setSortKey] = useState<SortKey>('expectedReturnMultiple')
   const [sortDir, setSortDir] = useState<SortDir>('desc')
   const { activeLayerIds, selectCompany, addPick, picks } = useAppStore()
 
@@ -106,9 +113,10 @@ export function RankingView() {
               <th className="px-3 py-2 text-left text-xs text-slate-400 w-8">#</th>
               <th className="px-3 py-2 text-left text-xs text-slate-400">Company</th>
               <th className="px-3 py-2 text-left text-xs text-slate-400">Layer</th>
-              <SortHeader label="Floor" sKey="floorScore" />
-              <SortHeader label="Ceiling" sKey="ceilingAdjusted" />
-              <SortHeader label="Entry" sKey="entryScore" />
+              <SortHeader label="Floor $" sKey="floorMarketCapB" />
+              <SortHeader label="Ceil $" sKey="ceilingMarketCapB" />
+              <SortHeader label="Exp. Return" sKey="expectedReturnMultiple" />
+              <SortHeader label="vs VOO" sKey="vsVooReturn" />
               <th className="px-3 py-2 text-left text-xs text-slate-400">Valuation</th>
               <th className="px-3 py-2 text-left text-xs text-slate-400">Investability</th>
               <SortHeader label="Mkt Cap" sKey="currentMarketCapB" />
@@ -119,6 +127,15 @@ export function RankingView() {
             {sorted.map((s, i) => {
               const c = s.company
               const alreadyPicked = picks.some((p) => p.companyId === c.id)
+              const stalenessTooltip = [
+                s.isMarketDataStale
+                  ? `Market data ${differenceInDays(new Date(), parseISO(c.fundamentals.market_cap_date))}d old`
+                  : null,
+                s.isModelStale
+                  ? `Model ${differenceInDays(new Date(), parseISO(c.model!.model_updated))}d old`
+                  : null,
+              ].filter(Boolean).join(' · ')
+
               return (
                 <tr
                   key={c.id}
@@ -147,11 +164,18 @@ export function RankingView() {
                     </div>
                   </td>
                   <td className="px-3 py-2 font-mono text-xs text-blue-400">
-                    {s.floorScore.toFixed(1)}
-                    {s.isMarketDataStale && <span className="text-amber-400 ml-1">⚠</span>}
+                    {formatCap(s.floorMarketCapB)}
+                    {s.isMarketDataStale && (
+                      <Tooltip content={stalenessTooltip}>
+                        <span className="text-amber-400 ml-1">⚠</span>
+                      </Tooltip>
+                    )}
                   </td>
-                  <td className="px-3 py-2 font-mono text-xs text-amber-400">{s.ceilingAdjusted.toFixed(1)}</td>
-                  <td className="px-3 py-2 font-mono text-xs text-indigo-400 font-semibold">{s.entryScore.toFixed(2)}</td>
+                  <td className="px-3 py-2 font-mono text-xs text-amber-400">{formatCap(s.ceilingMarketCapB)}</td>
+                  <td className="px-3 py-2 font-mono text-xs text-indigo-400 font-semibold">×{s.expectedReturnMultiple.toFixed(2)}</td>
+                  <td className={`px-3 py-2 font-mono text-xs ${s.vsVooReturn >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {s.vsVooReturn >= 0 ? '+' : ''}{(s.vsVooReturn * 100).toFixed(0)}%
+                  </td>
                   <td className="px-3 py-2">
                     <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${SENTIMENT_COLOR[c.model!.valuation_sentiment]}`}>
                       {SENTIMENT_SHORT[c.model!.valuation_sentiment]}
@@ -163,9 +187,7 @@ export function RankingView() {
                     </span>
                   </td>
                   <td className="px-3 py-2 font-mono text-xs text-slate-300">
-                    ${s.currentMarketCapB >= 1000
-                      ? `${(s.currentMarketCapB / 1000).toFixed(1)}T`
-                      : `${s.currentMarketCapB.toFixed(0)}B`}
+                    {formatCap(s.currentMarketCapB)}
                   </td>
                   <td
                     className="px-3 py-2"
