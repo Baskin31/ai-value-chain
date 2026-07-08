@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { companies } from '../data/loader'
 import { useAppStore } from '../store'
+import { fetchSingleQuote } from '../market/client'
 
 interface SearchResult {
   type: 'existing'
@@ -58,23 +59,13 @@ export function TickerSearch() {
   async function handleAddExternal() {
     if (!isExternalTicker || adding) return
     setAdding(true)
-    setAddStatus('Fetching...')
+    setAddStatus('Fetching\u2026')
     try {
-      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(q)}?interval=1d&range=1d`
-      const res = await fetch(url)
-      if (!res.ok) throw new Error('Not found')
-      const json = await res.json()
-      const meta = json?.chart?.result?.[0]?.meta
-      if (!meta) throw new Error('No data')
-      const name: string = meta.longName ?? meta.shortName ?? q
-      const marketCapB: number = meta.marketCap ? meta.marketCap / 1e9 : 0
+      const data = await fetchSingleQuote(q)
+      if (!data) throw new Error('Not found')
 
-      // Check if already picked
-      const existing = picks.find((p) => {
-        const c = companies.find((co) => co.id === p.companyId)
-        return c?.ticker?.toUpperCase() === q
-      })
-      if (existing) {
+      const alreadyPicked = picks.some((p) => p.companyId === `external:${q}`)
+      if (alreadyPicked) {
         setAddStatus('Already in picks')
         return
       }
@@ -84,9 +75,9 @@ export function TickerSearch() {
         companyId: `external:${q}`,
         addedAt: new Date().toISOString(),
         status: 'watching',
-        notes: `${name}${marketCapB > 0 ? ` · $${marketCapB >= 1000 ? (marketCapB / 1000).toFixed(1) + 'T' : marketCapB.toFixed(0) + 'B'} market cap` : ''} · Added manually`,
+        notes: `${data.name}${data.marketCapB > 0 ? ` · $${data.marketCapB >= 1000 ? (data.marketCapB / 1000).toFixed(1) + 'T' : data.marketCapB.toFixed(0) + 'B'} market cap` : ''} · Added manually`,
       })
-      setAddStatus(`Added ${q} to picks`)
+      setAddStatus(`\u2713 Added ${q} to picks`)
       setQuery('')
       setTimeout(() => { setOpen(false); setAddStatus(null) }, 1500)
     } catch {
