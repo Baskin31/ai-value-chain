@@ -55,11 +55,20 @@ const usePicksStore = create<{ picks: Pick[] } & { addPick: (p: Pick) => void; u
   )
 )
 
-const useEphemeralStore = create<Omit<AppState, 'picks'> & Omit<AppActions, 'addPick' | 'updatePick' | 'removePick' | 'exportPicks' | 'importPicks'>>()((set) => ({
+interface EphemeralExtra {
+  liveMarketCaps: Record<string, number>
+  lastRefreshedAt: string | null
+  setLiveMarketCap: (ticker: string, marketCapB: number) => void
+  setLastRefreshedAt: (ts: string) => void
+}
+
+const useEphemeralStore = create<Omit<AppState, 'picks'> & Omit<AppActions, 'addPick' | 'updatePick' | 'removePick' | 'exportPicks' | 'importPicks'> & EphemeralExtra>()((set) => ({
   view: 'stack',
   selectedCompanyId: null,
   activeLayerIds: [],
   weightOverrides: {},
+  liveMarketCaps: {},
+  lastRefreshedAt: null,
   setView: (view) => set({ view }),
   selectCompany: (id) => set({ selectedCompanyId: id }),
   toggleLayer: (layerId) =>
@@ -72,10 +81,13 @@ const useEphemeralStore = create<Omit<AppState, 'picks'> & Omit<AppActions, 'add
   setWeightOverride: (key, value) =>
     set((s) => ({ weightOverrides: { ...s.weightOverrides, [key]: value } })),
   resetWeights: () => set({ weightOverrides: {} }),
+  setLiveMarketCap: (ticker, marketCapB) =>
+    set((s) => ({ liveMarketCaps: { ...s.liveMarketCaps, [ticker]: marketCapB } })),
+  setLastRefreshedAt: (ts) => set({ lastRefreshedAt: ts }),
 }))
 
 // Single unified hook for the whole app
-export function useAppStore(): AppState & AppActions {
+export function useAppStore(): AppState & AppActions & EphemeralExtra {
   const ephemeral = useEphemeralStore()
   const { picks, addPick, updatePick, removePick } = usePicksStore()
 

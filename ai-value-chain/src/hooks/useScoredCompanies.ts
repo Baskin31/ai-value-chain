@@ -6,7 +6,7 @@ import type { ScoredCompany } from '../model'
 import type { ModelConfig } from '../schema/types'
 
 export function useScoredCompanies(): ScoredCompany[] {
-  const { weightOverrides } = useAppStore()
+  const { weightOverrides, liveMarketCaps } = useAppStore()
 
   const effectiveConfig = useMemo((): ModelConfig => {
     return {
@@ -41,6 +41,9 @@ export function useScoredCompanies(): ScoredCompany[] {
   return useMemo(() => {
     return companies
       .filter((c) => c.model)
-      .map((c) => scoreCompany(c, effectiveConfig))
-  }, [effectiveConfig])
+      .map((c) => {
+        const liveCap = c.ticker ? liveMarketCaps[c.ticker] : undefined
+        return scoreCompany(c, effectiveConfig, liveCap)
+      })
+  }, [effectiveConfig, liveMarketCaps])
 }
