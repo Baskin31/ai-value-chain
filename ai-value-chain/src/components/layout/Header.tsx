@@ -1,4 +1,5 @@
 import type { View } from '../../store'
+import { TickerSearch } from '../TickerSearch'
 
 const NAV_ITEMS: { id: View; label: string }[] = [
   { id: 'stack', label: 'Stack' },
@@ -24,22 +25,27 @@ export function Header({ view, onViewChange }: HeaderProps) {
         </span>
       </div>
 
-      <nav className="flex gap-1">
-        {NAV_ITEMS.map(({ id, label }) => (
-          <button
-            key={id}
-            onClick={() => onViewChange(id)}
-            className={[
-              'px-3 py-1.5 rounded text-sm transition-colors',
-              view === id
-                ? 'bg-indigo-600 text-white font-medium'
-                : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800',
-            ].join(' ')}
-          >
-            {label}
-          </button>
-        ))}
-      </nav>
+      <div className="flex items-center gap-3">
+        <nav className="flex gap-1">
+          {NAV_ITEMS.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => onViewChange(id)}
+              className={[
+                'px-3 py-1.5 rounded text-sm transition-colors',
+                view === id
+                  ? 'bg-indigo-600 text-white font-medium'
+                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800',
+              ].join(' ')}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+        <div className="ml-2">
+          <TickerSearch />
+        </div>
+      </div>
     </header>
   )
 }
