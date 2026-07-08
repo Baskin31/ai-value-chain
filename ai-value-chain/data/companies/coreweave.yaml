@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "CoreWeave S-1 and Q1 2026 press releases post-IPO"
-      url: "investors.coreweave.com"
+      url: "https://investors.coreweave.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "CoreWeave investor relations"
+      url: "https://finance.yahoo.com/quote/CRWV"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

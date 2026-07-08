@@ -45,9 +45,13 @@ fundamentals:
   pe_ratio: 130
   sources:
     - description: "AMD Q1 2026 10-Q filing"
-      url: "ir.amd.com"
+      url: "https://ir.amd.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "AMD investor relations"
+      url: "https://finance.yahoo.com/quote/AMD"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

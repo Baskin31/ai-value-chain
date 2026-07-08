@@ -48,6 +48,10 @@ fundamentals:
       url: "https://investor.tsmc.com/english/quarterly-results"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "TSMC Yahoo Finance ADR quote"
+      url: "https://finance.yahoo.com/quote/TSM"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: 32
   sources:
     - description: "Broadcom FY2025 Q2 10-Q filing"
-      url: "investors.broadcom.com"
+      url: "https://investors.broadcom.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Broadcom investor relations"
+      url: "https://finance.yahoo.com/quote/AVGO"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

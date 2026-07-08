@@ -46,6 +46,10 @@ fundamentals:
       url: "https://www.energyfuels.com/investors"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Energy Fuels investor relations"
+      url: "https://finance.yahoo.com/quote/UUUU"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

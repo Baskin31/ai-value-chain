@@ -47,6 +47,10 @@ fundamentals:
       url: "https://www.samsung.com/us/aboutsamsung/investor-relations/financial-information/earning-releases"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Samsung Electronics global investor relations"
+      url: "https://www.samsung.com/global/ir/"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

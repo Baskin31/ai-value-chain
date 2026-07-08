@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Digital Realty Q1 2026 10-Q filing"
-      url: "ir.digitalrealty.com"
+      url: "https://ir.digitalrealty.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Digital Realty investor relations"
+      url: "https://finance.yahoo.com/quote/DLR"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

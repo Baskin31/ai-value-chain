@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: 22
   sources:
     - description: "NextEra Energy Q1 2026 10-Q filing"
-      url: "investor.nexteraenergy.com"
+      url: "https://investor.nexteraenergy.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "NextEra Energy investor relations"
+      url: "https://finance.yahoo.com/quote/NEE"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

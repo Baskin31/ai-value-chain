@@ -47,9 +47,13 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Palantir Q1 2026 10-Q filing"
-      url: "investors.palantir.com"
+      url: "https://investors.palantir.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Palantir investor relations"
+      url: "https://finance.yahoo.com/quote/PLTR"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

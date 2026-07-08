@@ -269,15 +269,25 @@ export function CompanyDetail({ companyId }: CompanyDetailProps) {
       {fund.sources.length > 0 && (
         <div>
           <h2 className="text-slate-400 text-xs uppercase tracking-wider mb-2">Sources</h2>
-          <div className="space-y-1">
-            {fund.sources.map((s, i) => (
-              <div key={i} className="text-xs text-slate-500">
-                {s.description}{' '}
-                <span className="font-mono">[{s.url}]</span>{' '}
-                <span className="text-slate-600">{s.accessed}</span>
-                {!s.is_sourced_fact && <span className="text-amber-600 ml-1">(estimated)</span>}
-              </div>
-            ))}
+          <div className="space-y-1.5">
+            {fund.sources.map((s, i) => {
+              const href = s.url.startsWith('http') ? s.url : `https://${s.url}`
+              return (
+                <div key={i} className="flex items-start gap-2 text-xs">
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-400 hover:text-indigo-300 underline underline-offset-2 transition-colors flex-1"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {s.description}
+                  </a>
+                  <span className="text-slate-600 shrink-0">{s.accessed}</span>
+                  {!s.is_sourced_fact && <span className="text-amber-700 shrink-0">(est.)</span>}
+                </div>
+              )
+            })}
           </div>
         </div>
       )}

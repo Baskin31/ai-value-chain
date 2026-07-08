@@ -47,9 +47,13 @@ fundamentals:
   pe_ratio: 23
   sources:
     - description: "Alphabet Q1 2026 10-Q filing"
-      url: "abc.xyz/investor"
+      url: "https://abc.xyz/investor"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Alphabet investor relations"
+      url: "https://finance.yahoo.com/quote/GOOGL"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

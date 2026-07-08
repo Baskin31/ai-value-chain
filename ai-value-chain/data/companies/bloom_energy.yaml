@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Bloom Energy Q1 2026 10-Q filing"
-      url: "investors.bloomenergy.com"
+      url: "https://investors.bloomenergy.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Bloom Energy investor relations"
+      url: "https://finance.yahoo.com/quote/BE"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

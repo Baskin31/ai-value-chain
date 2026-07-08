@@ -46,6 +46,10 @@ fundamentals:
       url: "https://www.perpetuaresources.com/investors"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Perpetua Resources investor relations"
+      url: "https://finance.yahoo.com/quote/PPTA"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

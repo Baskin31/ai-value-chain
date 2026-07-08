@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: 20
   sources:
     - description: "nVent Electric Q1 2026 10-Q filing"
-      url: "investors.nvent.com"
+      url: "https://investors.nvent.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "nVent Electric investor relations"
+      url: "https://finance.yahoo.com/quote/NVT"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

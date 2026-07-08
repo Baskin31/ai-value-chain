@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: 60
   sources:
     - description: "ServiceNow Q1 2026 10-Q filing"
-      url: "investors.servicenow.com"
+      url: "https://investors.servicenow.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "ServiceNow investor relations"
+      url: "https://finance.yahoo.com/quote/NOW"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

@@ -47,6 +47,10 @@ fundamentals:
       url: "https://investor.axcelis.com/financial-information/quarterly-results"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Axcelis Technologies Yahoo Finance"
+      url: "https://finance.yahoo.com/quote/ACLS"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

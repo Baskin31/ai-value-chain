@@ -46,6 +46,10 @@ fundamentals:
       url: "https://investors.albemarle.com/financial-information/quarterly-results"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Albemarle Corporation Yahoo Finance"
+      url: "https://finance.yahoo.com/quote/ALB"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

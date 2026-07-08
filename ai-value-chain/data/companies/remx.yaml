@@ -26,6 +26,10 @@ fundamentals:
       url: "https://www.vaneck.com/us/en/investments/rare-earth-strategic-metals-etf-remx"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "VanEck Rare Earth ETF fund page"
+      url: "https://www.vaneck.com/us/en/investments/rare-earth-strategic-metals-etf-remx/"
+      accessed: "2026-07-07"
+      is_sourced_fact: true
 
 strategic_dynamics:
   - type: opportunity

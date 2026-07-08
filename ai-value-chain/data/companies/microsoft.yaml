@@ -49,9 +49,13 @@ fundamentals:
   pe_ratio: 35
   sources:
     - description: "Microsoft FY2026 Q3 10-Q filing"
-      url: "investor.microsoft.com"
+      url: "https://investor.microsoft.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Microsoft investor relations"
+      url: "https://finance.yahoo.com/quote/MSFT"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

@@ -46,9 +46,13 @@ fundamentals:
   pe_ratio: 42
   sources:
     - description: "Salesforce FY2026 Q4 10-K filing"
-      url: "investor.salesforce.com"
+      url: "https://investor.salesforce.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Salesforce investor relations"
+      url: "https://finance.yahoo.com/quote/CRM"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

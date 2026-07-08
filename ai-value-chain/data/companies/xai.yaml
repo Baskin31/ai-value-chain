@@ -45,8 +45,12 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "xAI funding round announcements and press releases"
-      url: "x.ai"
+      url: "https://x.ai"
       accessed: "2026-06-01"
+      is_sourced_fact: false
+    - description: "xAI (Grok) corporate website"
+      url: "https://x.ai/"
+      accessed: "2026-07-07"
       is_sourced_fact: false
 
 strategic_dynamics:

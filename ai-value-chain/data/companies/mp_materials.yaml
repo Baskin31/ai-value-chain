@@ -46,6 +46,10 @@ fundamentals:
       url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=MP"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "MP Materials investor relations and SEC filings"
+      url: "https://finance.yahoo.com/quote/MP"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

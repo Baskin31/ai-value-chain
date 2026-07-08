@@ -46,8 +46,12 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Cerebras S-1 filing and press releases"
-      url: "cerebras.net"
+      url: "https://cerebras.net"
       accessed: "2026-06-01"
+      is_sourced_fact: false
+    - description: "Cerebras Systems corporate website and funding announcements"
+      url: "https://cerebras.ai/"
+      accessed: "2026-07-07"
       is_sourced_fact: false
 
 strategic_dynamics:

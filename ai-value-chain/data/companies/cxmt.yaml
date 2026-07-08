@@ -46,6 +46,10 @@ fundamentals:
       url: "https://www.cxmt.com"
       accessed: "2026-06-01"
       is_sourced_fact: false
+    - description: "CXMT (ChangXin Memory) corporate website"
+      url: "https://www.cxmt.com/"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

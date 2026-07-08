@@ -45,8 +45,12 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Mistral AI funding announcements"
-      url: "mistral.ai"
+      url: "https://mistral.ai"
       accessed: "2026-06-01"
+      is_sourced_fact: false
+    - description: "Mistral AI corporate website and La Plateforme docs"
+      url: "https://mistral.ai/"
+      accessed: "2026-07-07"
       is_sourced_fact: false
 
 strategic_dynamics:

@@ -48,6 +48,10 @@ fundamentals:
       url: "https://www.skhynix.com/eng/invest/IR.jsp"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "SK Hynix investor relations (KRX: 000660)"
+      url: "https://www.skhynix.com/ir/"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

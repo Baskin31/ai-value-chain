@@ -48,6 +48,10 @@ fundamentals:
       url: "https://www.intc.com/investor-relations/financial-information/quarterly-earnings"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Intel Corporation investor relations"
+      url: "https://finance.yahoo.com/quote/INTC"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

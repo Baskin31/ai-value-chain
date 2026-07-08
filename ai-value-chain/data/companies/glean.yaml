@@ -44,8 +44,12 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Glean Series E announcement"
-      url: "glean.com"
+      url: "https://glean.com"
       accessed: "2026-06-01"
+      is_sourced_fact: false
+    - description: "Glean Technologies corporate website"
+      url: "https://www.glean.com/"
+      accessed: "2026-07-07"
       is_sourced_fact: false
 
 strategic_dynamics:

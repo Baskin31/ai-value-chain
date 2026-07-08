@@ -47,9 +47,13 @@ fundamentals:
   pe_ratio: 25
   sources:
     - description: "Constellation Energy Q1 2026 10-Q filing"
-      url: "investor.constellationenergy.com"
+      url: "https://investor.constellationenergy.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Constellation Energy investor relations"
+      url: "https://finance.yahoo.com/quote/CEG"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

@@ -47,9 +47,13 @@ fundamentals:
   pe_ratio: 35
   sources:
     - description: "Amazon Q1 2026 10-Q filing"
-      url: "ir.aboutamazon.com"
+      url: "https://ir.aboutamazon.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Amazon investor relations"
+      url: "https://finance.yahoo.com/quote/AMZN"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

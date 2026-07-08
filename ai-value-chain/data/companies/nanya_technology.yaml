@@ -47,6 +47,10 @@ fundamentals:
       url: "https://www.nanya.com/en/Investor-Relations/Financial-Reports"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Nanya Technology TWSE investor page"
+      url: "https://www.nanya.com/en/Investor"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

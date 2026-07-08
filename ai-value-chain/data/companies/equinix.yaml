@@ -47,9 +47,13 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Equinix Q1 2026 10-Q filing"
-      url: "investor.equinix.com"
+      url: "https://investor.equinix.com"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "Equinix investor relations"
+      url: "https://finance.yahoo.com/quote/EQIX"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

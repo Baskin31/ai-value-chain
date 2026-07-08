@@ -47,6 +47,10 @@ fundamentals:
       url: "https://www.sse.com.cn/assortment/stock/list/info/company/index.shtml"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "JCET Group SSE filings and IR"
+      url: "https://www.jcetglobal.com/en/investor-relations/"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

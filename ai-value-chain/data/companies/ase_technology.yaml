@@ -47,6 +47,10 @@ fundamentals:
       url: "https://ir.aseglobal.com/english/financial-information/quarterly-results"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "ASE Technology Holding investor relations"
+      url: "https://finance.yahoo.com/quote/ASX"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

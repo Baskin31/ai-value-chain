@@ -48,6 +48,10 @@ fundamentals:
       url: "https://www.hkexnews.hk/listedco/listconews/SEHK/company_search.aspx"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "China Rare Earth Holdings HKEX filings"
+      url: "https://www.hkex.com.hk/Market-Data/Securities-Prices/Equities?sc_lang=en"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: risk

@@ -48,6 +48,10 @@ fundamentals:
       url: "https://www.sse.com.cn/assortment/stock/list/info/company/index.shtml"
       accessed: "2026-06-01"
       is_sourced_fact: true
+    - description: "China Northern Rare Earth SSE investor relations"
+      url: "https://finance.yahoo.com/quote/CHERY/"
+      accessed: "2026-07-07"
+      is_sourced_fact: false
 
 strategic_dynamics:
   - type: opportunity

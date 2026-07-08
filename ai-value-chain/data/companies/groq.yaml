@@ -45,8 +45,12 @@ fundamentals:
   pe_ratio: null
   sources:
     - description: "Groq Series D press release and GroqCloud launch"
-      url: "groq.com"
+      url: "https://groq.com"
       accessed: "2026-06-01"
+      is_sourced_fact: false
+    - description: "Groq corporate website and GroqCloud"
+      url: "https://groq.com/"
+      accessed: "2026-07-07"
       is_sourced_fact: false
 
 strategic_dynamics:
