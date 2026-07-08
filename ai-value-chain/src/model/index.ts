@@ -16,6 +16,22 @@ export interface ScoredCompany {
   currentMarketCapB: number
   isMarketDataStale: boolean
   isModelStale: boolean
+
+  // Dollar figures
+  floorMarketCapB: number
+  ceilingMarketCapB: number
+  expectedReturnMultiple: number
+
+  // Scenario breakdown (probabilities summing to 1.0)
+  scenarioBreakdown: {
+    impaired: number
+    flat: number
+    strong: number
+    transformative: number
+  }
+
+  // vs VOO benchmark (3-year horizon, 30% expected = ~10%/yr)
+  vsVooReturn: number
 }
 
 export function scoreCompany(
@@ -42,6 +58,21 @@ export function scoreCompany(
   const entryScore =
     floorScore * 0.40 + ceilingAdjusted * 0.35 + ev * 0.25
 
+  const VOO_BENCHMARK = 0.30
+  const prob = model.upside_probability
+  const f = floorScore
+
+  const floorMarketCapB = currentMarketCapB * (floorScore / 10)
+  const ceilingMarketCapB = currentMarketCapB * effectiveMultiple
+  const expectedReturnMultiple = 1 + ev
+  const scenarioBreakdown = {
+    impaired: (1 - prob) * (1 - f / 10),
+    flat: (1 - prob) * (f / 10),
+    strong: prob * 0.60,
+    transformative: prob * 0.40,
+  }
+  const vsVooReturn = expectedReturnMultiple - 1 - VOO_BENCHMARK
+
   const now = new Date()
   const isMarketDataStale =
     differenceInDays(now, parseISO(company.fundamentals.market_cap_date)) > 21
@@ -59,6 +90,11 @@ export function scoreCompany(
     currentMarketCapB,
     isMarketDataStale,
     isModelStale,
+    floorMarketCapB,
+    ceilingMarketCapB,
+    expectedReturnMultiple,
+    scenarioBreakdown,
+    vsVooReturn,
   }
 }
 

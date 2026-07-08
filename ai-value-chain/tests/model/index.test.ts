@@ -98,6 +98,32 @@ describe('scoreCompany', () => {
     // entry_score = 7.0*0.40 + 7.1*0.35 + 1.575*0.25
     //             = 2.8 + 2.485 + 0.39375 = 5.67875
     expect(scored.entryScore).toBeCloseTo(5.67875)
+
+    // floorMarketCapB = 100 * (7.0/10) = 70
+    expect(scored.floorMarketCapB).toBeCloseTo(70)
+
+    // ceilingMarketCapB = 100 * 4.5 = 450
+    expect(scored.ceilingMarketCapB).toBeCloseTo(450)
+
+    // expectedReturnMultiple = 1 + 1.575 = 2.575
+    expect(scored.expectedReturnMultiple).toBeCloseTo(2.575)
+
+    // vsVooReturn = 2.575 - 1 - 0.30 = 1.275
+    expect(scored.vsVooReturn).toBeCloseTo(1.275)
+
+    // scenarioBreakdown with prob=0.45, f=7.0
+    // impaired = (1-0.45) * (1 - 7/10) = 0.55 * 0.30 = 0.165
+    expect(scored.scenarioBreakdown.impaired).toBeCloseTo(0.165)
+    // flat = (1-0.45) * (7/10) = 0.55 * 0.70 = 0.385
+    expect(scored.scenarioBreakdown.flat).toBeCloseTo(0.385)
+    // strong = 0.45 * 0.60 = 0.27
+    expect(scored.scenarioBreakdown.strong).toBeCloseTo(0.27)
+    // transformative = 0.45 * 0.40 = 0.18
+    expect(scored.scenarioBreakdown.transformative).toBeCloseTo(0.18)
+
+    // probabilities sum to 1.0
+    const { impaired, flat, strong, transformative } = scored.scenarioBreakdown
+    expect(impaired + flat + strong + transformative).toBeCloseTo(1.0)
   })
 
   it('uses live market cap when provided', () => {

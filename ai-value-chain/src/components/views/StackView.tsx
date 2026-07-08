@@ -56,6 +56,11 @@ export function StackView() {
           currentMarketCapB: company.fundamentals.market_cap_usd_b,
           isMarketDataStale: false,
           isModelStale: false,
+          floorMarketCapB: 0,
+          ceilingMarketCapB: 0,
+          expectedReturnMultiple: 1,
+          scenarioBreakdown: { impaired: 0, flat: 0, strong: 0, transformative: 0 },
+          vsVooReturn: -0.30,
         }
         const existing = map.get(layerId)
         if (existing) {
