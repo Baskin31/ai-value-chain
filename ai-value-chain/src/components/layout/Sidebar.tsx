@@ -1,5 +1,4 @@
 import { layers } from '../../data/loader'
-import { ModelControls } from '../ModelControls'
 import type { Layer } from '../../schema/types'
 
 interface SidebarProps {
@@ -51,7 +50,6 @@ export function Sidebar({ activeLayerIds, onToggleLayer, onSelectAll }: SidebarP
           )
         })}
       </div>
-      <ModelControls />
     </aside>
   )
 }
