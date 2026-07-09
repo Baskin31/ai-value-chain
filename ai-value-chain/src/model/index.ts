@@ -74,8 +74,9 @@ export function scoreCompany(
   const vsVooReturn = expectedReturnMultiple - 1 - VOO_BENCHMARK
 
   const now = new Date()
-  const isMarketDataStale =
-    differenceInDays(now, parseISO(company.fundamentals.market_cap_date)) > 21
+  const isMarketDataStale = liveMarketCapB !== undefined
+    ? false
+    : differenceInDays(now, parseISO(company.fundamentals.market_cap_date)) > 21
   const isModelStale =
     differenceInDays(now, parseISO(model.model_updated)) > 90
 

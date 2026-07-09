@@ -48,8 +48,8 @@ export function DataFreshnessBar() {
 
   return (
     <div className="flex items-center gap-4 px-4 py-1.5 bg-slate-900 border-b border-slate-800 text-xs text-slate-400 font-mono">
-      <span className={marketStale ? 'text-amber-400' : 'text-slate-400'}>
-        Price data: {maxMarketCapAge}d old{marketStale ? ' ⚠' : ''}
+      <span className={lastRefreshedAt ? 'text-emerald-400' : marketStale ? 'text-amber-400' : 'text-slate-400'}>
+        {lastRefreshedAt ? 'Price data: live' : `Price data: ${maxMarketCapAge}d old${marketStale ? ' ⚠' : ''}`}
       </span>
       <span className="text-slate-600">|</span>
       <span className={modelStale ? 'text-amber-400' : 'text-slate-400'}>
@@ -57,7 +57,7 @@ export function DataFreshnessBar() {
       </span>
       <span className="text-slate-600">|</span>
       <span className="text-slate-400">
-        Last refreshed: {formatLastRefreshed(lastRefreshedAt)}
+        Refreshed: {formatLastRefreshed(lastRefreshedAt)}
       </span>
       <button
         onClick={() => void refetch()}
