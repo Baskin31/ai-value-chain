@@ -30,7 +30,7 @@ export default async function handler(req, res) {
   try {
     const { crumb, cookieHeader } = await getYahooCrumb()
 
-    const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(symbols)}&crumb=${encodeURIComponent(crumb)}&fields=regularMarketPrice,marketCap,longName,shortName`
+    const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(symbols)}&crumb=${encodeURIComponent(crumb)}&fields=regularMarketPrice,marketCap,longName,shortName,regularMarketTime`
     const quoteRes = await fetch(url, {
       headers: { 'User-Agent': UA, Cookie: cookieHeader, Accept: 'application/json' },
     })
