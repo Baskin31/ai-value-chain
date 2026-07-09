@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
 // Dev: Vite proxy (/api/yahoo → Yahoo Finance, no CORS)
-// Prod: Netlify serverless function (/.netlify/functions/quote, runs server-side)
+// Prod: Vercel serverless function (/api/quote, runs server-side)
 function quoteUrl(symbols: string): string {
   if (import.meta.env.DEV) {
     return `/api/yahoo/v7/finance/quote?symbols=${encodeURIComponent(symbols)}&fields=regularMarketPrice,marketCap,longName,shortName`
   }
-  return `/.netlify/functions/quote?symbols=${encodeURIComponent(symbols)}`
+  return `/api/quote?symbols=${encodeURIComponent(symbols)}`
 }
 
 async function fetchBatchQuotes(
