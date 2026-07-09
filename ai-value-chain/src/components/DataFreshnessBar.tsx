@@ -30,7 +30,7 @@ function formatLastRefreshed(lastRefreshedAt: string | null): string {
 }
 
 export function DataFreshnessBar() {
-  const { setLiveMarketCap, setLastRefreshedAt, lastRefreshedAt } = useAppStore()
+  const { setLiveMarketCap, setLiveMarketTime, setLastRefreshedAt, lastRefreshedAt } = useAppStore()
   const tickers = useMemo(() => companies.filter((c) => c.ticker).map((c) => c.ticker!), [])
   const { data, isFetching, refetch } = useMarketQuotes(tickers)
 
@@ -38,9 +38,10 @@ export function DataFreshnessBar() {
     if (!data) return
     for (const [ticker, quote] of Object.entries(data)) {
       if (quote.marketCapB > 0) setLiveMarketCap(ticker, quote.marketCapB)
+      if (quote.quoteTime != null) setLiveMarketTime(ticker, quote.quoteTime)
     }
     setLastRefreshedAt(new Date().toISOString())
-  }, [data, setLiveMarketCap, setLastRefreshedAt])
+  }, [data, setLiveMarketCap, setLiveMarketTime, setLastRefreshedAt])
 
   const { maxMarketCapAge, maxModelAge } = computeDataAges()
   const marketStale = maxMarketCapAge > 21

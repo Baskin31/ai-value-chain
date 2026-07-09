@@ -1,4 +1,4 @@
-import { differenceInDays, parseISO } from 'date-fns'
+import { differenceInDays, differenceInHours, parseISO } from 'date-fns'
 import type { Company, ModelConfig } from '../schema/types'
 import { computeFloor } from './floor'
 import { computeCeilingRaw, computeCeilingAdjusted } from './ceiling'
@@ -37,7 +37,8 @@ export interface ScoredCompany {
 export function scoreCompany(
   company: Company,
   config: ModelConfig,
-  liveMarketCapB?: number
+  liveMarketCapB?: number,
+  liveQuoteTime?: number // Unix seconds from Yahoo Finance regularMarketTime
 ): ScoredCompany {
   const model = company.model!
   const currentMarketCapB = liveMarketCapB ?? company.fundamentals.market_cap_usd_b
@@ -74,8 +75,8 @@ export function scoreCompany(
   const vsVooReturn = expectedReturnMultiple - 1 - VOO_BENCHMARK
 
   const now = new Date()
-  const isMarketDataStale = liveMarketCapB !== undefined
-    ? false
+  const isMarketDataStale = liveQuoteTime !== undefined
+    ? differenceInHours(now, new Date(liveQuoteTime * 1000)) > 48
     : differenceInDays(now, parseISO(company.fundamentals.market_cap_date)) > 21
   const isModelStale =
     differenceInDays(now, parseISO(model.model_updated)) > 90

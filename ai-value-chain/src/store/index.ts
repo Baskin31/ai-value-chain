@@ -57,8 +57,10 @@ const usePicksStore = create<{ picks: Pick[] } & { addPick: (p: Pick) => void; u
 
 interface EphemeralExtra {
   liveMarketCaps: Record<string, number>
+  liveMarketTimes: Record<string, number> // Unix seconds from regularMarketTime
   lastRefreshedAt: string | null
   setLiveMarketCap: (ticker: string, marketCapB: number) => void
+  setLiveMarketTime: (ticker: string, quoteTime: number) => void
   setLastRefreshedAt: (ts: string) => void
 }
 
@@ -68,6 +70,7 @@ const useEphemeralStore = create<Omit<AppState, 'picks'> & Omit<AppActions, 'add
   activeLayerIds: [],
   weightOverrides: {},
   liveMarketCaps: {},
+  liveMarketTimes: {},
   lastRefreshedAt: null,
   setView: (view) => set({ view }),
   selectCompany: (id) => set({ selectedCompanyId: id }),
@@ -83,6 +86,8 @@ const useEphemeralStore = create<Omit<AppState, 'picks'> & Omit<AppActions, 'add
   resetWeights: () => set({ weightOverrides: {} }),
   setLiveMarketCap: (ticker, marketCapB) =>
     set((s) => ({ liveMarketCaps: { ...s.liveMarketCaps, [ticker]: marketCapB } })),
+  setLiveMarketTime: (ticker, quoteTime) =>
+    set((s) => ({ liveMarketTimes: { ...s.liveMarketTimes, [ticker]: quoteTime } })),
   setLastRefreshedAt: (ts) => set({ lastRefreshedAt: ts }),
 }))
 

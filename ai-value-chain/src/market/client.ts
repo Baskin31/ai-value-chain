@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query'
 // Prod: Vercel serverless function (/api/quote, runs server-side)
 function quoteUrl(symbols: string): string {
   if (import.meta.env.DEV) {
-    return `/api/yahoo/v7/finance/quote?symbols=${encodeURIComponent(symbols)}&fields=regularMarketPrice,marketCap,longName,shortName`
+    return `/api/yahoo/v7/finance/quote?symbols=${encodeURIComponent(symbols)}&fields=regularMarketPrice,marketCap,longName,shortName,regularMarketTime`
   }
   return `/api/quote?symbols=${encodeURIComponent(symbols)}`
 }
 
 async function fetchBatchQuotes(
   tickers: string[]
-): Promise<Record<string, { price: number; marketCapB: number }>> {
+): Promise<Record<string, { price: number; marketCapB: number; quoteTime?: number }>> {
   if (tickers.length === 0) return {}
   try {
     const url = quoteUrl(tickers.join(','))
@@ -19,13 +19,14 @@ async function fetchBatchQuotes(
     if (!res.ok) return {}
     const json = await res.json()
     const results: unknown[] = json?.quoteResponse?.result ?? []
-    const out: Record<string, { price: number; marketCapB: number }> = {}
+    const out: Record<string, { price: number; marketCapB: number; quoteTime?: number }> = {}
     for (const r of results as Array<Record<string, unknown>>) {
       const ticker = r['symbol'] as string
       const price = r['regularMarketPrice'] as number | undefined
       const marketCap = r['marketCap'] as number | undefined
+      const quoteTime = r['regularMarketTime'] as number | undefined // Unix seconds
       if (ticker && price != null) {
-        out[ticker] = { price, marketCapB: marketCap != null ? marketCap / 1e9 : 0 }
+        out[ticker] = { price, marketCapB: marketCap != null ? marketCap / 1e9 : 0, quoteTime }
       }
     }
     return out
