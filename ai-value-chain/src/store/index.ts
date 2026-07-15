@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { ModelConfig } from '../schema/types'
+import type { Company } from '../schema/company'
 
 export type View = 'stack' | 'scatter' | 'ranking' | 'picks'
 
@@ -23,6 +24,12 @@ interface AppState {
   picks: Pick[]
 }
 
+interface PersistedExtra {
+  dynamicCompanies: Company[]
+  addDynamicCompany: (company: Company) => void
+  removeDynamicCompany: (id: string) => void
+}
+
 interface AppActions {
   setView: (view: View) => void
   selectCompany: (id: string | null) => void
@@ -37,11 +44,20 @@ interface AppActions {
   importPicks: (json: string) => void  // parses and merges
 }
 
-// Picks are persisted; view/filter state is ephemeral
-const usePicksStore = create<{ picks: Pick[] } & { addPick: (p: Pick) => void; updatePick: (id: string, u: Partial<Omit<Pick, 'id'>>) => void; removePick: (id: string) => void }>()(
+// Picks + dynamic companies are persisted; view/filter state is ephemeral
+const usePicksStore = create<{
+  picks: Pick[]
+  dynamicCompanies: Company[]
+  addPick: (p: Pick) => void
+  updatePick: (id: string, u: Partial<Omit<Pick, 'id'>>) => void
+  removePick: (id: string) => void
+  addDynamicCompany: (c: Company) => void
+  removeDynamicCompany: (id: string) => void
+}>()(
   persist(
     (set) => ({
       picks: [],
+      dynamicCompanies: [],
       addPick: (pick) =>
         set((s) => ({ picks: [...s.picks, pick] })),
       updatePick: (id, updates) =>
@@ -50,6 +66,15 @@ const usePicksStore = create<{ picks: Pick[] } & { addPick: (p: Pick) => void; u
         })),
       removePick: (id) =>
         set((s) => ({ picks: s.picks.filter((p) => p.id !== id) })),
+      addDynamicCompany: (company) =>
+        set((s) => ({
+          dynamicCompanies: [
+            ...s.dynamicCompanies.filter((c) => c.id !== company.id),
+            company,
+          ],
+        })),
+      removeDynamicCompany: (id) =>
+        set((s) => ({ dynamicCompanies: s.dynamicCompanies.filter((c) => c.id !== id) })),
     }),
     { name: 'ai-value-chain-picks' }
   )
@@ -92,16 +117,19 @@ const useEphemeralStore = create<Omit<AppState, 'picks'> & Omit<AppActions, 'add
 }))
 
 // Single unified hook for the whole app
-export function useAppStore(): AppState & AppActions & EphemeralExtra {
+export function useAppStore(): AppState & AppActions & EphemeralExtra & PersistedExtra {
   const ephemeral = useEphemeralStore()
-  const { picks, addPick, updatePick, removePick } = usePicksStore()
+  const { picks, dynamicCompanies, addPick, updatePick, removePick, addDynamicCompany, removeDynamicCompany } = usePicksStore()
 
   return {
     ...ephemeral,
     picks,
+    dynamicCompanies,
     addPick,
     updatePick,
     removePick,
+    addDynamicCompany,
+    removeDynamicCompany,
     exportPicks: () => JSON.stringify(picks, null, 2),
     importPicks: (json: string) => {
       try {
