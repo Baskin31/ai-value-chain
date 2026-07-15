@@ -3,6 +3,7 @@ import type { View } from '../../store'
 import { useAppStore } from '../../store'
 import { TickerSearch } from '../TickerSearch'
 import { ModelWeightsPanel } from '../ModelWeightsPanel'
+import { ApiKeySettings } from '../ApiKeySettings'
 
 const NAV_ITEMS: { id: View; label: string }[] = [
   { id: 'stack', label: 'Stack' },
@@ -62,6 +63,7 @@ export function Header({ view, onViewChange }: HeaderProps) {
             {hasOverrides && <span className="text-xs">(mod)</span>}
           </button>
         </nav>
+        <ApiKeySettings />
         <div className="ml-2">
           <TickerSearch />
         </div>

@@ -64,6 +64,50 @@ export async function fetchSingleQuote(ticker: string): Promise<{ name: string; 
   }
 }
 
+export interface AIAnalysis {
+  name: string
+  description: string
+  suggested_layer: string
+  is_dark_horse: boolean
+  investability_notes: string
+  moat_durability: number
+  moat_durability_rationale: string
+  revenue_defensibility: number
+  revenue_defensibility_rationale: string
+  balance_sheet_strength: number
+  balance_sheet_rationale: string
+  downside_scenario: string
+  market_expansion: number
+  market_expansion_rationale: string
+  competitive_position_ceiling: number
+  competitive_position_rationale: string
+  strategic_optionality: number
+  strategic_optionality_rationale: string
+  upside_probability: number
+  upside_multiple: number
+  valuation_sentiment: 'cheap' | 'fair' | 'stretched' | 'priced_for_perfection'
+  strategic_dynamics: Array<{ type: 'risk' | 'opportunity'; note: string }>
+}
+
+export async function fetchAIAnalysis(
+  ticker: string,
+  name: string,
+  marketCapB: number,
+  apiKey: string
+): Promise<AIAnalysis> {
+  const params = new URLSearchParams({
+    ticker,
+    name,
+    marketCapB: marketCapB.toString(),
+  })
+  const res = await fetch(`/api/analyze?${params.toString()}`, {
+    headers: { 'x-anthropic-key': apiKey },
+  })
+  const json = await res.json()
+  if (!res.ok) throw new Error(json?.error ?? `Analysis failed (${res.status})`)
+  return json as AIAnalysis
+}
+
 export function useRefreshFromSource() {
   return useQuery({ queryKey: ['source-refresh'], queryFn: async () => null, enabled: false, retry: 0 })
 }

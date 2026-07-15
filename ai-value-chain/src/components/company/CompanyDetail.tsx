@@ -1,10 +1,13 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { companies, modelConfig } from '../../data/loader'
 import { useAppStore } from '../../store'
 import { useScoredCompanies } from '../../hooks/useScoredCompanies'
+import { useApiKey } from '../../hooks/useApiKey'
+import { fetchAIAnalysis } from '../../market/client'
 import { ScoreBar } from '../charts/ScoreBar'
 import { UpsideShapeChart } from '../charts/UpsideShapeChart'
 import { DisclaimerInline } from '../Disclaimer'
+import { differenceInDays, parseISO } from 'date-fns'
 import type { Company } from '../../schema/types'
 
 const SENTIMENT_LABEL: Record<string, string> = {
@@ -26,9 +29,15 @@ interface CompanyDetailProps {
 }
 
 export function CompanyDetail({ companyId }: CompanyDetailProps) {
+  const { weightOverrides, dynamicCompanies, addDynamicCompany, liveMarketCaps } = useAppStore()
+  const { apiKey } = useApiKey()
+  const [reanalyzing, setReanalyzing] = useState(false)
+  const [reanalyzeMsg, setReanalyzeMsg] = useState<string | null>(null)
+
+  // Dynamic companies override static ones (re-analysis support)
   const company = useMemo(
-    () => companies.find((c: Company) => c.id === companyId),
-    [companyId]
+    () => dynamicCompanies.find((c) => c.id === companyId) ?? companies.find((c: Company) => c.id === companyId),
+    [companyId, dynamicCompanies]
   )
 
   const allScored = useScoredCompanies()
@@ -37,7 +46,58 @@ export function CompanyDetail({ companyId }: CompanyDetailProps) {
     [allScored, companyId]
   )
 
-  const { weightOverrides } = useAppStore()
+  async function handleReanalyze() {
+    if (!company) return
+    if (!apiKey) {
+      setReanalyzeMsg('No API key — click ⚿ in the header to add yours.')
+      return
+    }
+    setReanalyzing(true)
+    setReanalyzeMsg(null)
+    try {
+      const liveCap = company.ticker ? (liveMarketCaps[company.ticker] ?? company.fundamentals.market_cap_usd_b) : company.fundamentals.market_cap_usd_b
+      const result = await fetchAIAnalysis(company.ticker ?? company.id, company.name, liveCap, apiKey)
+      const today = new Date().toISOString().slice(0, 10)
+      const updated: Company = {
+        ...company,
+        description: result.description || company.description,
+        is_dark_horse: result.is_dark_horse ?? company.is_dark_horse,
+        layer: result.suggested_layer || company.layer,
+        strategic_dynamics: result.strategic_dynamics?.length ? result.strategic_dynamics : company.strategic_dynamics,
+        model: {
+          model_updated: today,
+          moat_durability: result.moat_durability,
+          moat_durability_rationale: result.moat_durability_rationale,
+          revenue_defensibility: result.revenue_defensibility,
+          revenue_defensibility_rationale: result.revenue_defensibility_rationale,
+          balance_sheet_strength: result.balance_sheet_strength,
+          balance_sheet_rationale: result.balance_sheet_rationale,
+          downside_scenario: result.downside_scenario,
+          market_expansion: result.market_expansion,
+          market_expansion_rationale: result.market_expansion_rationale,
+          competitive_position_ceiling: result.competitive_position_ceiling,
+          competitive_position_rationale: result.competitive_position_rationale,
+          strategic_optionality: result.strategic_optionality,
+          strategic_optionality_rationale: result.strategic_optionality_rationale,
+          upside_probability: result.upside_probability,
+          upside_multiple: result.upside_multiple,
+          valuation_sentiment: result.valuation_sentiment,
+        },
+        fundamentals: {
+          ...company.fundamentals,
+          market_cap_usd_b: liveCap,
+          market_cap_date: today,
+        },
+      }
+      addDynamicCompany(updated)
+      setReanalyzeMsg('Analysis updated.')
+      setTimeout(() => setReanalyzeMsg(null), 3000)
+    } catch (err) {
+      setReanalyzeMsg(err instanceof Error ? err.message : String(err))
+    } finally {
+      setReanalyzing(false)
+    }
+  }
   const effectiveConfig = useMemo(() => ({
     ...modelConfig,
     floor_weights: {
@@ -292,11 +352,28 @@ export function CompanyDetail({ companyId }: CompanyDetailProps) {
         </div>
       )}
 
-      {/* Model date */}
+      {/* Model date + re-analyze */}
       {model && (
-        <div className="text-xs text-slate-600">
-          Model updated: {model.model_updated}
-          {scored?.isModelStale && <span className="text-amber-600 ml-1">⚠ stale</span>}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-xs text-slate-600">
+              AI analysis: {model.model_updated}
+              {differenceInDays(new Date(), parseISO(model.model_updated)) > 28 && (
+                <span className="text-amber-500 ml-1.5">⚠ &gt;4 weeks old</span>
+              )}
+            </span>
+            <button
+              onClick={handleReanalyze}
+              disabled={reanalyzing}
+              className="flex items-center gap-1 text-xs text-slate-500 hover:text-indigo-400 transition-colors disabled:opacity-50"
+            >
+              <span className={reanalyzing ? 'animate-spin inline-block' : 'inline-block'}>↻</span>
+              {reanalyzing ? 'Analyzing…' : 'Re-analyze with AI'}
+            </button>
+          </div>
+          {reanalyzeMsg && (
+            <p className="text-xs text-slate-400">{reanalyzeMsg}</p>
+          )}
         </div>
       )}
 

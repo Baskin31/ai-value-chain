@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { layers } from '../data/loader'
 import { useAppStore } from '../store'
+import { useApiKey } from '../hooks/useApiKey'
+import { fetchAIAnalysis } from '../market/client'
 import type { Company, InvestabilityType, ValuationSentiment } from '../schema/company'
 
 interface Props {
@@ -66,8 +68,10 @@ export function AddCompanyModal({
   initialMarketCapB,
 }: Props) {
   const { addDynamicCompany } = useAppStore()
+  const { apiKey } = useApiKey()
 
   const [name, setName] = useState(initialName || initialTicker)
+  const [description, setDescription] = useState('')
   const [layer, setLayer] = useState('')
   const [investability, setInvestability] = useState<InvestabilityType>('direct')
   const [sentiment, setSentiment] = useState<ValuationSentiment>('fair')
@@ -80,7 +84,41 @@ export function AddCompanyModal({
   const [prob, setProb] = useState(40)
   const [multiple, setMultiple] = useState(3)
 
+  const [analyzing, setAnalyzing] = useState(false)
+  const [analyzeError, setAnalyzeError] = useState<string | null>(null)
+  const [analyzed, setAnalyzed] = useState(false)
+
   if (!open) return null
+
+  async function handleAnalyze() {
+    if (!apiKey) {
+      setAnalyzeError('No API key — click ⚿ in the header to add your Anthropic key.')
+      return
+    }
+    setAnalyzing(true)
+    setAnalyzeError(null)
+    try {
+      const result = await fetchAIAnalysis(initialTicker, name || initialTicker, initialMarketCapB, apiKey)
+      // Fill all form fields from AI response
+      if (result.name) setName(result.name)
+      if (result.description) setDescription(result.description)
+      if (result.suggested_layer) setLayer(result.suggested_layer)
+      setMoat(result.moat_durability)
+      setRevenue(result.revenue_defensibility)
+      setBalance(result.balance_sheet_strength)
+      setMarket(result.market_expansion)
+      setCeiling(result.competitive_position_ceiling)
+      setOptionality(result.strategic_optionality)
+      setProb(Math.round(result.upside_probability * 100))
+      setMultiple(result.upside_multiple)
+      setSentiment(result.valuation_sentiment)
+      setAnalyzed(true)
+    } catch (err) {
+      setAnalyzeError(err instanceof Error ? err.message : String(err))
+    } finally {
+      setAnalyzing(false)
+    }
+  }
 
   function handleSubmit() {
     if (!layer) return
@@ -95,23 +133,23 @@ export function AddCompanyModal({
       secondary_layers: [],
       is_dark_horse: false,
       is_exposure_vehicle: false,
-      description: name.trim() || initialTicker,
+      description: description.trim() || name.trim() || initialTicker,
       investability: { type: investability, notes: '', proxy_for: null },
       model: {
         model_updated: today,
         moat_durability: moat,
-        moat_durability_rationale: 'User-added',
+        moat_durability_rationale: 'AI-generated analysis',
         revenue_defensibility: revenue,
-        revenue_defensibility_rationale: 'User-added',
+        revenue_defensibility_rationale: 'AI-generated analysis',
         balance_sheet_strength: balance,
-        balance_sheet_rationale: 'User-added',
-        downside_scenario: 'User-added',
+        balance_sheet_rationale: 'AI-generated analysis',
+        downside_scenario: 'AI-generated analysis',
         market_expansion: market,
-        market_expansion_rationale: 'User-added',
+        market_expansion_rationale: 'AI-generated analysis',
         competitive_position_ceiling: ceiling,
-        competitive_position_rationale: 'User-added',
+        competitive_position_rationale: 'AI-generated analysis',
         strategic_optionality: optionality,
-        strategic_optionality_rationale: 'User-added',
+        strategic_optionality_rationale: 'AI-generated analysis',
         upside_probability: prob / 100,
         upside_multiple: multiple,
         valuation_sentiment: sentiment,
@@ -135,15 +173,48 @@ export function AddCompanyModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-slate-100 font-semibold">Add {initialTicker} to analysis</h2>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Market cap: {formatCap(initialMarketCapB)} · Set scores to place this company in all views
-            </p>
+            <p className="text-xs text-slate-500 mt-0.5">Market cap: {formatCap(initialMarketCapB)}</p>
           </div>
           <button onClick={onClose} className="text-slate-500 hover:text-slate-300 text-lg leading-none">✕</button>
         </div>
+
+        {/* AI Analyze button */}
+        <div className="mb-5">
+          <button
+            onClick={handleAnalyze}
+            disabled={analyzing}
+            className={[
+              'w-full py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2',
+              analyzed
+                ? 'bg-emerald-900/40 text-emerald-300 border border-emerald-800'
+                : 'bg-indigo-600 hover:bg-indigo-500 text-white disabled:opacity-50 disabled:cursor-not-allowed',
+            ].join(' ')}
+          >
+            {analyzing ? (
+              <>
+                <span className="animate-spin inline-block">↻</span>
+                Analyzing with Claude…
+              </>
+            ) : analyzed ? (
+              '✓ AI analysis complete — review and adjust below'
+            ) : (
+              '✦ Analyze with AI'
+            )}
+          </button>
+          {analyzeError && (
+            <p className="text-xs text-rose-400 mt-2">{analyzeError}</p>
+          )}
+          {!apiKey && !analyzeError && (
+            <p className="text-xs text-slate-500 mt-2">
+              No API key set — click ⚿ in the header to add yours, or fill scores manually below.
+            </p>
+          )}
+        </div>
+
+        <div className="border-t border-slate-800 mb-4" />
 
         {/* Company info */}
         <div className="space-y-3 mb-5">
@@ -155,6 +226,12 @@ export function AddCompanyModal({
               className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
             />
           </div>
+          {description && (
+            <div>
+              <label className="text-xs text-slate-400 block mb-1">Description</label>
+              <p className="text-xs text-slate-400 leading-relaxed bg-slate-800 rounded p-3">{description}</p>
+            </div>
+          )}
           <div className="flex gap-3">
             <div className="flex-1">
               <label className="text-xs text-slate-400 block mb-1">Layer <span className="text-rose-400">*</span></label>
@@ -184,8 +261,6 @@ export function AddCompanyModal({
           </div>
         </div>
 
-        <div className="border-t border-slate-800 my-4" />
-
         {/* Floor scores */}
         <p className="text-xs text-slate-500 uppercase tracking-wide mb-3">Floor scores</p>
         <div className="space-y-2 mb-5">
@@ -210,11 +285,7 @@ export function AddCompanyModal({
           <div className="flex items-center gap-3">
             <label className="text-xs text-slate-400 w-40 shrink-0">Upside probability</label>
             <input
-              type="range"
-              min={5}
-              max={95}
-              step={5}
-              value={prob}
+              type="range" min={5} max={95} step={5} value={prob}
               onChange={(e) => setProb(Number(e.target.value))}
               className="flex-1 accent-indigo-500"
             />
@@ -223,11 +294,7 @@ export function AddCompanyModal({
           <div className="flex items-center gap-3">
             <label className="text-xs text-slate-400 w-40 shrink-0">Upside multiple</label>
             <input
-              type="range"
-              min={1}
-              max={20}
-              step={0.5}
-              value={multiple}
+              type="range" min={1} max={20} step={0.5} value={multiple}
               onChange={(e) => setMultiple(Number(e.target.value))}
               className="flex-1 accent-indigo-500"
             />

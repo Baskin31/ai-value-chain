@@ -39,7 +39,13 @@ export function useScoredCompanies(): ScoredCompany[] {
   }, [weightOverrides])
 
   return useMemo(() => {
-    return [...companies, ...dynamicCompanies]
+    // Dynamic companies override static ones with the same ID (re-analysis support)
+    const dynamicIds = new Set(dynamicCompanies.map((c) => c.id))
+    const merged = [
+      ...companies.filter((c) => !dynamicIds.has(c.id)),
+      ...dynamicCompanies,
+    ]
+    return merged
       .filter((c) => c.model)
       .map((c) => {
         const liveCap = c.ticker ? liveMarketCaps[c.ticker] : undefined

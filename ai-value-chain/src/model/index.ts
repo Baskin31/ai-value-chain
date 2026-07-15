@@ -79,7 +79,7 @@ export function scoreCompany(
     ? differenceInHours(now, new Date(liveQuoteTime * 1000)) > 48
     : differenceInDays(now, parseISO(company.fundamentals.market_cap_date)) > 21
   const isModelStale =
-    differenceInDays(now, parseISO(model.model_updated)) > 90
+    differenceInDays(now, parseISO(model.model_updated)) > 28
 
   return {
     company,
