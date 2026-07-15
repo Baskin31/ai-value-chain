@@ -10,15 +10,6 @@ export function StackView() {
   const { activeLayerIds } = useAppStore()
   const allScored = useScoredCompanies()
 
-  // Build a map from company id to scored entry
-  const scoredMap = useMemo(() => {
-    const map = new Map<string, ScoredCompany>()
-    for (const entry of allScored) {
-      map.set(entry.company.id, entry)
-    }
-    return map
-  }, [allScored])
-
   // Sort layers by order
   const sortedLayers = useMemo(
     () => [...layers].sort((a, b) => a.order - b.order),
@@ -34,46 +25,46 @@ export function StackView() {
     [sortedLayers, activeLayerIds]
   )
 
-  // Group companies by layer (include secondary_layers)
+  // Group companies by layer — allScored includes dynamic companies
   const companiesByLayer = useMemo(() => {
     const map = new Map<string, ScoredCompany[]>()
     for (const layer of sortedLayers) {
       map.set(layer.id, [])
     }
-    for (const company of companies) {
-      const layerIds = [company.layer, ...(company.secondary_layers ?? [])]
+
+    // All scored companies (static + dynamic, deduped by useScoredCompanies)
+    for (const scored of allScored) {
+      const layerIds = [scored.company.layer, ...(scored.company.secondary_layers ?? [])]
       for (const layerId of layerIds) {
-        const scored = scoredMap.get(company.id)
-        // For companies without a model (ETFs), create a minimal ScoredCompany
-        const entry: ScoredCompany = scored ?? {
-          company,
-          floorScore: 0,
-          ceilingRaw: 0,
-          ceilingAdjusted: 0,
-          effectiveMultiple: 0,
-          ev: 0,
-          entryScore: 0,
-          currentMarketCapB: company.fundamentals.market_cap_usd_b,
-          isMarketDataStale: false,
-          isModelStale: false,
-          floorMarketCapB: 0,
-          ceilingMarketCapB: 0,
-          expectedReturnMultiple: 1,
-          scenarioBreakdown: { impaired: 0, flat: 0, strong: 0, transformative: 0 },
-          vsVooReturn: -0.30,
-        }
-        const existing = map.get(layerId)
-        if (existing) {
-          existing.push(entry)
-        }
+        map.get(layerId)?.push(scored)
       }
     }
+
+    // Exposure vehicles have no model so are excluded from allScored — add them from static list
+    const scoredIds = new Set(allScored.map((s) => s.company.id))
+    for (const company of companies) {
+      if (scoredIds.has(company.id)) continue
+      const layerIds = [company.layer, ...(company.secondary_layers ?? [])]
+      for (const layerId of layerIds) {
+        map.get(layerId)?.push({
+          company,
+          floorScore: 0, ceilingRaw: 0, ceilingAdjusted: 0, effectiveMultiple: 0,
+          ev: 0, entryScore: 0,
+          currentMarketCapB: company.fundamentals.market_cap_usd_b,
+          isMarketDataStale: false, isModelStale: false,
+          floorMarketCapB: 0, ceilingMarketCapB: 0, expectedReturnMultiple: 1,
+          scenarioBreakdown: { impaired: 0, flat: 0, strong: 0, transformative: 0 },
+          vsVooReturn: -0.30,
+        })
+      }
+    }
+
     // Sort each layer by entryScore descending
     for (const [, arr] of map) {
       arr.sort((a, b) => b.entryScore - a.entryScore)
     }
     return map
-  }, [scoredMap, sortedLayers])
+  }, [allScored, sortedLayers])
 
   // Build a quick lookup for layer accent colors
   const layerColorMap = useMemo(() => {
