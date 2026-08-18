@@ -1,0 +1,6 @@
+rss_sources:
+  - name: "Sample Source A"
+    url: "https://example.com/a.xml"
+    category_hint: "government"
+  - name: "Sample Source B"
+    url: "https://example.com/b.xml"
