@@ -2,6 +2,7 @@ import logging
 
 from anthropic import Anthropic
 
+from eureka_news.llm_text import extract_text
 from eureka_news.relevance.keyword_filter import CategorizedItem
 
 logger = logging.getLogger(__name__)
@@ -24,10 +25,10 @@ def _judge_relevant(client: Anthropic, entry: CategorizedItem) -> bool:
     try:
         response = client.messages.create(
             model=MODEL,
-            max_tokens=8,
+            max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         )
-        answer = response.content[0].text.strip().upper()
+        answer = extract_text(response).strip().upper()
         return answer.startswith("YES")
     except Exception:
         logger.warning("LLM relevance judgment failed for item; keeping item", exc_info=True)

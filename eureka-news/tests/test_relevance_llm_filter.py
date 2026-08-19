@@ -20,7 +20,7 @@ def _fake_client(answers):
 
     def create(**kwargs):
         response = Mock()
-        response.content = [Mock(text=next(responses))]
+        response.content = [Mock(type="text", text=next(responses))]
         return response
 
     client.messages.create.side_effect = create
@@ -51,3 +51,13 @@ def test_llm_filter_keeps_item_on_api_failure():
     result = llm_filter(entries, client=client)
     assert len(result) == 1
     assert result[0].item.title == "Council votes to raise property tax"
+
+
+def test_llm_filter_skips_leading_thinking_block_to_find_answer():
+    entries = [_entry("Council votes to raise property tax")]
+    client = Mock()
+    response = Mock()
+    response.content = [Mock(type="thinking", text=None), Mock(type="text", text="YES")]
+    client.messages.create.return_value = response
+    result = llm_filter(entries, client=client)
+    assert len(result) == 1

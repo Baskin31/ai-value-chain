@@ -4,6 +4,7 @@ from datetime import date
 
 from anthropic import Anthropic
 
+from eureka_news.llm_text import extract_text
 from eureka_news.relevance.config import Category
 from eureka_news.relevance.keyword_filter import CategorizedItem
 
@@ -45,8 +46,8 @@ def _llm_summarize(client: Anthropic, cluster: list[CategorizedItem]) -> str:
         f"resident of Eureka, MO:\n\n{combined}"
     )
     try:
-        response = client.messages.create(model=MODEL, max_tokens=200, messages=[{"role": "user", "content": prompt}])
-        return response.content[0].text.strip()
+        response = client.messages.create(model=MODEL, max_tokens=1024, messages=[{"role": "user", "content": prompt}])
+        return extract_text(response).strip()
     except Exception:
         logger.warning("LLM summarization failed for cluster; falling back to truncated text", exc_info=True)
         return cluster[0].item.text[:FALLBACK_SUMMARY_LENGTH]

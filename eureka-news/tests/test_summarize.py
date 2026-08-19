@@ -28,7 +28,20 @@ def test_summarize_cluster_with_llm_uses_generated_text():
     cluster = [_entry("FOX2", "Budget approved")]
     client = Mock()
     response = Mock()
-    response.content = [Mock(text="The city approved its annual budget.")]
+    response.content = [Mock(type="text", text="The city approved its annual budget.")]
+    client.messages.create.return_value = response
+    summary = summarize_cluster(cluster, client=client)
+    assert summary.summary_text == "The city approved its annual budget."
+
+
+def test_summarize_cluster_skips_leading_thinking_block_to_find_text():
+    cluster = [_entry("FOX2", "Budget approved")]
+    client = Mock()
+    response = Mock()
+    response.content = [
+        Mock(type="thinking", text=None),
+        Mock(type="text", text="The city approved its annual budget."),
+    ]
     client.messages.create.return_value = response
     summary = summarize_cluster(cluster, client=client)
     assert summary.summary_text == "The city approved its annual budget."
