@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://www.westnewsmagazine.com/schools/cbc-names-mike-seppi/article_09f9ebe8.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>West Newsmagazine</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:title>CBC names Mike Seppi as new vice president and chief operating officer</news:title>
+      <news:publication_date>2026-08-17T06:30:00-05:00</news:publication_date>
+      <news:keywords>christian brothers college high school,culture of st. louis,st. louis county, missouri</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.westnewsmagazine.com/news/eureka/new-cafe-opens/article_abc123.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>West Newsmagazine</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:title>New cafe opens in downtown Eureka</news:title>
+      <news:publication_date>2026-08-15T09:00:00-05:00</news:publication_date>
+      <news:keywords>eureka,restaurants,small business</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.westnewsmagazine.com/sports/chesterfield-team-wins/article_xyz789.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>West Newsmagazine</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:title>Chesterfield team wins regional title</news:title>
+      <news:publication_date>2026-08-16T09:00:00-05:00</news:publication_date>
+      <news:keywords>sports,chesterfield</news:keywords>
+    </news:news>
+  </url>
+</urlset>

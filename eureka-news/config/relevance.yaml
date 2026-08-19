@@ -1,0 +1,157 @@
+categories:
+  - id: government
+    display_name: "City/County Government & Elections"
+    keywords:
+      - "board of aldermen"
+      - "county council"
+      - "district 3"
+      - "election"
+      - "candidate"
+      - "ordinance"
+      - "tax"
+      - "levy"
+      - "budget"
+      - "agenda"
+    rule: >
+      Include votes or decisions (City of Eureka Board of Aldermen, or St.
+      Louis County Council District 3) that change laws, taxes, fees, or
+      spending. Include meeting agendas surfaced before the meeting happens
+      so the user can decide to attend. Include election/candidate news for
+      races that affect Eureka voters (municipal, County Council D3, and
+      relevant state legislative/congressional seats). Exclude routine
+      procedural announcements, ribbon-cuttings, and generic "council met"
+      stories with no decision content.
+
+  - id: crime_safety
+    display_name: "Crime & Public Safety"
+    keywords:
+      - "crime"
+      - "shooting"
+      - "robbery"
+      - "assault"
+      - "crash"
+      - "closure"
+      - "construction"
+      - "policing"
+      - "police"
+    rule: >
+      Only include stories set in Eureka, MO itself or immediately
+      unincorporated St. Louis County around it (ZIP 63025) — NOT the city of
+      St. Louis, not St. Louis County generally, and not the Illinois Metro
+      East. Exclude crime/safety stories from anywhere else even when they
+      are major regional or national news (e.g. a shooting in north St.
+      Louis, a carjacking in Spanish Lake, a courtroom trial in Las Vegas, an
+      incident in Philadelphia or Ohio, an I-64 closure in the Metro East).
+      Within Eureka itself, include violent crime / major incidents (not
+      petty theft or minor citations). Include traffic/road safety incidents:
+      crashes, closures, construction affecting routes in or immediately
+      around Eureka. Include policy changes (enacted or proposed) related to
+      crime/policing that apply to Eureka — ordinances, funding, staffing.
+      Exclude routine blotter items and minor DWI/citation reports unless
+      tied to a policy story.
+
+  - id: schools
+    display_name: "Schools (Rockwood School District)"
+    keywords:
+      - "rockwood"
+      - "eureka high"
+      - "school board"
+      - "dese"
+      - "accreditation"
+      - "bond"
+      - "device policy"
+      - "cell phone ban"
+      - "ai policy"
+    rule: >
+      Include major controversies or safety incidents at the district or
+      Eureka-area schools specifically. Include district/school ratings
+      (state DESE ratings, notable rankings, accreditation changes). Include
+      major decisions on technology use in schools (device policies, AI
+      policy, ed-tech contracts, cell phone bans, etc.). Include Board of
+      Education votes on funding/bonds/tax levies. Exclude sports scores,
+      individual student achievement stories, and routine PTA/event
+      announcements.
+
+  - id: roads_utilities
+    display_name: "Roads/Construction/Utilities"
+    keywords:
+      - "closure"
+      - "water main"
+      - "boil advisory"
+      - "outage"
+      - "i-44"
+      - "highway 109"
+      - "hwy 109"
+      - "modot"
+      - "construction"
+    rule: >
+      Include things that materially affect a resident's daily life:
+      closures, water main breaks, utility outages, MoDOT project updates on
+      I-44 or Hwy 109, boil advisories.
+
+  - id: development_zoning
+    display_name: "Development & Zoning"
+    keywords:
+      - "rezoning"
+      - "zoning"
+      - "variance"
+      - "development"
+      - "subdivision"
+      - "public hearing"
+    rule: >
+      Include proposed/approved rezoning, new commercial or residential
+      development in Eureka or unincorporated county land nearby, and
+      variance requests that would go to a public hearing.
+
+  - id: community_events
+    display_name: "Local Events & Community"
+    keywords:
+      - "eureka days"
+      - "brookdale farms"
+      - "festival"
+      - "event"
+    rule: >
+      Include notable community events — Eureka Days, events at Brookdale
+      Farms, and similar named local happenings. This is a firm "want to
+      know": treat named recurring community events as worth surfacing every
+      time they're announced or scheduled, not just novel ones.
+
+  - id: meramec_river
+    display_name: "Meramec River Conditions"
+    keywords:
+      - "meramec"
+      - "river level"
+      - "float"
+      - "gauge"
+      - "flood stage"
+      - "outfitter"
+    rule: >
+      Include river level/flow readings, float condition advisories,
+      closures or safety warnings (e.g. after heavy rain), and outfitter
+      announcements (opening/closing for season) for the Eureka stretch of
+      the Meramec.
+
+  - id: local_business
+    display_name: "New or Closing Restaurants and Stores"
+    keywords:
+      - "eureka"
+      - "opening"
+      - "closing"
+      - "closed"
+      - "new restaurant"
+      - "new store"
+    rule: >
+      Include openings/closings of restaurants, retail, or other commercial
+      spots in Eureka specifically. Skip generic chain-wide corporate news
+      unless it's about the local Eureka location.
+
+  - id: golf_carts
+    display_name: "Golf Cart Legality"
+    keywords:
+      - "golf cart"
+      - "golf carts"
+    rule: >
+      Include anything about golf cart ordinances, legality, or enforcement
+      — city, county, or state level — that would affect operating one in
+      Eureka or unincorporated St. Louis County. This is a narrow, specific
+      watch item; even a small local ordinance change here is relevant.

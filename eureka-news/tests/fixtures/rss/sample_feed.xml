@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Sample Feed</title>
+    <item>
+      <title>Board of Aldermen approves new budget</title>
+      <link>https://example.com/article-1</link>
+      <description>The Eureka Board of Aldermen voted to approve the fiscal year budget.</description>
+      <pubDate>Mon, 10 Aug 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Old article outside window</title>
+      <link>https://example.com/article-2</link>
+      <description>This is an old article.</description>
+      <pubDate>Mon, 01 Jan 2024 12:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

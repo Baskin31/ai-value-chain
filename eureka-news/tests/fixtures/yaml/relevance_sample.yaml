@@ -1,0 +1,14 @@
+categories:
+  - id: government
+    display_name: "City/County Government & Elections"
+    keywords:
+      - "board of aldermen"
+      - "county council"
+    rule: >
+      Include votes or decisions that change laws, taxes, fees, or spending.
+  - id: golf_carts
+    display_name: "Golf Cart Legality"
+    keywords:
+      - "golf cart"
+    rule: >
+      Include anything about golf cart ordinances or legality.
