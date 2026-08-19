@@ -35,10 +35,18 @@ categories:
       - "policing"
       - "police"
     rule: >
-      Include violent crime / major incidents (not petty theft or minor
-      citations). Include traffic/road safety incidents: crashes, closures,
-      construction affecting routes. Include policy changes (enacted or
-      proposed) related to crime/policing — ordinances, funding, staffing.
+      Only include stories set in Eureka, MO itself or immediately
+      unincorporated St. Louis County around it (ZIP 63025) — NOT the city of
+      St. Louis, not St. Louis County generally, and not the Illinois Metro
+      East. Exclude crime/safety stories from anywhere else even when they
+      are major regional or national news (e.g. a shooting in north St.
+      Louis, a carjacking in Spanish Lake, a courtroom trial in Las Vegas, an
+      incident in Philadelphia or Ohio, an I-64 closure in the Metro East).
+      Within Eureka itself, include violent crime / major incidents (not
+      petty theft or minor citations). Include traffic/road safety incidents:
+      crashes, closures, construction affecting routes in or immediately
+      around Eureka. Include policy changes (enacted or proposed) related to
+      crime/policing that apply to Eureka — ordinances, funding, staffing.
       Exclude routine blotter items and minor DWI/citation reports unless
       tied to a policy story.
 
