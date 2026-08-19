@@ -34,6 +34,17 @@ def test_summarize_cluster_with_llm_uses_generated_text():
     assert summary.summary_text == "The city approved its annual budget."
 
 
+def test_summarize_cluster_with_llm_failure_falls_back_to_truncated_text():
+    long_text = "x" * 500
+    cluster = [_entry("FOX2", "Budget approved", text=long_text)]
+    client = Mock()
+    client.messages.create.side_effect = RuntimeError("API error")
+    summary = summarize_cluster(cluster, client=client)
+    assert summary.primary_title == "Budget approved"
+    assert summary.summary_text == long_text[:280]
+    assert len(summary.summary_text) == 280
+
+
 def test_render_markdown_lists_every_category_and_marks_empty_ones():
     summaries = [
         ClusterSummary(

@@ -1,3 +1,4 @@
+import logging
 from dataclasses import dataclass
 from datetime import date
 
@@ -5,6 +6,8 @@ from anthropic import Anthropic
 
 from eureka_news.relevance.config import Category
 from eureka_news.relevance.keyword_filter import CategorizedItem
+
+logger = logging.getLogger(__name__)
 
 MODEL = "claude-sonnet-5"
 FALLBACK_SUMMARY_LENGTH = 280
@@ -41,8 +44,12 @@ def _llm_summarize(client: Anthropic, cluster: list[CategorizedItem]) -> str:
         "Write a 1-3 sentence neutral summary of this local news story for a "
         f"resident of Eureka, MO:\n\n{combined}"
     )
-    response = client.messages.create(model=MODEL, max_tokens=200, messages=[{"role": "user", "content": prompt}])
-    return response.content[0].text.strip()
+    try:
+        response = client.messages.create(model=MODEL, max_tokens=200, messages=[{"role": "user", "content": prompt}])
+        return response.content[0].text.strip()
+    except Exception:
+        logger.warning("LLM summarization failed for cluster; falling back to truncated text", exc_info=True)
+        return cluster[0].item.text[:FALLBACK_SUMMARY_LENGTH]
 
 
 def render_markdown(
