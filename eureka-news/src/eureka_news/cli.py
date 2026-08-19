@@ -46,6 +46,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--to", dest="to_date", help="End date, YYYY-MM-DD (use with --from)")
     args = parser.parse_args(argv)
 
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
     try:
         since, until = parse_window(args.since, args.from_date, args.to_date, today=date.today())
     except ValueError as error:
