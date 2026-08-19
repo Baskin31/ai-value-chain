@@ -45,3 +45,11 @@ def test_keyword_filter_drops_items_matching_no_category():
     items = [_item("Weather forecast for the weekend")]
     result = keyword_filter(items, [GOVERNMENT, GOLF_CARTS])
     assert result == []
+
+
+def test_keyword_filter_matches_first_category_when_item_matches_multiple():
+    """Verify first-match-wins behavior when item matches multiple categories."""
+    items = [_item("Board of Aldermen considers golf cart tax ordinance")]
+    result = keyword_filter(items, [GOVERNMENT, GOLF_CARTS])
+    assert len(result) == 1
+    assert result[0].category.id == "government"
