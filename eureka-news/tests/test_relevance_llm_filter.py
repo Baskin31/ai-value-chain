@@ -42,3 +42,12 @@ def test_llm_filter_sends_category_rule_in_prompt():
     prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
     assert "Include tax votes." in prompt
     assert client.messages.create.call_args.kwargs["model"] == "claude-sonnet-5"
+
+
+def test_llm_filter_keeps_item_on_api_failure():
+    entries = [_entry("Council votes to raise property tax")]
+    client = Mock()
+    client.messages.create.side_effect = RuntimeError("API error")
+    result = llm_filter(entries, client=client)
+    assert len(result) == 1
+    assert result[0].item.title == "Council votes to raise property tax"

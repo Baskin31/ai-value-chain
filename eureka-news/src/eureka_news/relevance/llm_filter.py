@@ -1,6 +1,10 @@
+import logging
+
 from anthropic import Anthropic
 
 from eureka_news.relevance.keyword_filter import CategorizedItem
+
+logger = logging.getLogger(__name__)
 
 MODEL = "claude-sonnet-5"
 
@@ -17,10 +21,14 @@ def _judge_relevant(client: Anthropic, entry: CategorizedItem) -> bool:
         "Does this story satisfy the category rule's inclusion criteria? "
         "Answer with exactly one word: YES or NO."
     )
-    response = client.messages.create(
-        model=MODEL,
-        max_tokens=8,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    answer = response.content[0].text.strip().upper()
-    return answer.startswith("YES")
+    try:
+        response = client.messages.create(
+            model=MODEL,
+            max_tokens=8,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        answer = response.content[0].text.strip().upper()
+        return answer.startswith("YES")
+    except Exception:
+        logger.warning("LLM relevance judgment failed for item; keeping item", exc_info=True)
+        return True
